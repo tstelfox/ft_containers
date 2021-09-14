@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   map.hpp                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/14 16:44:57 by tmullan       ########   odam.nl         */
+/*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
+/*   Updated: 2021/09/14 17:28:04 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-int		main(void) {
+class map
+{
+private:
+	/* data */
+public:
+	map(/* args */);
+	~map();
+};
 
-	std::cout << "pls" << std::endl;
+map::map(/* args */)
+{
+	std::cout << "The map is here" << std::endl;
+}
+
+map::~map()
+{
 }

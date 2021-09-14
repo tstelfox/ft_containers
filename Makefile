@@ -6,25 +6,24 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2021/09/14 16:54:21 by tmullan       ########   odam.nl          #
+#    Updated: 2021/09/14 17:42:23 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = realshit
+NAME = container
 CXX = clang++
-SRC = main.cpp
+SRC = vector_main.cpp
 OBJ_DIR = obj
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
+INCLUDES = vector
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
+all: $(OBJ)
 	$(CXX) $^ $(FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
-	$(CXX) $(FLAGS) -c $< -o $@
+	$(CXX) $(FLAGS) -c $< -o $@ -I$(INCLUDES)
 
 clean:
 	rm -rf $(OBJ_DIR)
