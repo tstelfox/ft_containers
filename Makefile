@@ -6,13 +6,13 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2021/09/14 18:22:13 by tmullan       ########   odam.nl          #
+#    Updated: 2021/09/14 18:24:19 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = container
 CXX = clang++
-SRC = vector_main.cpp
+SRC = src/vector_main.cpp
 OBJ_DIR = obj
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 FLAGS = -Wall -Wextra -Werror -std=c++98
@@ -24,7 +24,7 @@ all: $(OBJ)
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
 	@echo "Compiling object files"
-	@$(CXX) $(FLAGS) -c $< -o $@ -I$(INCLUDES)
+	@$(CXX) $(FLAGS) -c $< -o $@ -Isrc/$(INCLUDES)
 
 clean:
 	rm -rf $(OBJ_DIR)
