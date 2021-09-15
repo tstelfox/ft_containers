@@ -6,27 +6,25 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2021/09/14 18:50:12 by tmullan       ########   odam.nl          #
+#    Updated: 2021/09/15 18:02:32 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = container
 CXX = clang++
-SRC = src/vector_main.cpp
+SRC = vector_main.cpp
 OBJ_DIR = obj
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 FLAGS = -Wall -Wextra -Werror -std=c++98
-INCLUDES = vector
+INCLUDES = -Isrc/vector -Isrc/map
 
-vector map: $(OBJ)
-	@$(CXX) $^ $(FLAGS) -o $(NAME)
+vector map:
+	$(CXX) src/$@_main.cpp $(FLAGS) $(INCLUDES) -o $(NAME)
 
-$(OBJ_DIR)/%.o: %.cpp
-	@mkdir -p $(@D)
-	@echo "Compiling object files"
-	$(CXX) $(FLAGS) -c $< -o $@ -Isrc/$(INCLUDES)
-
-map: INCLUDES=map all
+# $(OBJ_DIR)/%.o: %.cpp
+# 	@mkdir -p $(@D)
+# 	@echo "Compiling object files"
+# 	$(CXX) $(FLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:
 	rm -rf $(OBJ_DIR)
