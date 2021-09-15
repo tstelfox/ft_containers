@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  vector:
+  Macvector:
     runs-on: macos-latest
     
     steps:
@@ -15,7 +15,7 @@ jobs:
     - name: make
       run: make vector
 
-  ubuild:
+  Ubuntuvector:
 
     runs-on: ubuntu-latest
 
