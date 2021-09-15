@@ -7,13 +7,13 @@ on:
     branches: [ main ]
 
 jobs:
-  macbuild:
+  vector:
     runs-on: macos-latest
     
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: make
+      run: make vector
 
 #   ubuild:
 
