@@ -6,7 +6,7 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2021/09/15 18:02:32 by tmullan       ########   odam.nl          #
+#    Updated: 2021/09/15 18:05:40 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,14 @@ INCLUDES = -Isrc/vector -Isrc/map
 vector map:
 	$(CXX) src/$@_main.cpp $(FLAGS) $(INCLUDES) -o $(NAME)
 
+# all: $(NAME)
+
+# $(NAME): $(OBJ)
+# 	$(CXX) $^ $(FLAGS) -o $(NAME)
+
 # $(OBJ_DIR)/%.o: %.cpp
 # 	@mkdir -p $(@D)
-# 	@echo "Compiling object files"
-# 	$(CXX) $(FLAGS) -c $< -o $@ $(INCLUDES)
+# 	$(CXX) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
