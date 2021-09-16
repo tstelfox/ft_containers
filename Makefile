@@ -6,7 +6,7 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2021/09/15 18:05:40 by tmullan       ########   odam.nl          #
+#    Updated: 2021/09/16 12:57:42 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDES = -Isrc/vector -Isrc/map
 
 vector map:
-	$(CXX) src/$@_main.cpp $(FLAGS) $(INCLUDES) -o $(NAME)
+	@echo Compiling $@
+	@$(CXX) src/$@_main.cpp $(FLAGS) $(INCLUDES) -o $(NAME)
 
 # all: $(NAME)
 
