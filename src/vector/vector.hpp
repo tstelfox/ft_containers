@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/17 15:36:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/17 15:40:35 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,21 @@ class vector
 			allocator.deallocate(data, capacity);
 		}
 
-		void	push_back(const T &arg) {
+		void		push_back(const T &arg) {
 			if (size >= capacity)
 				re_size();
 			data[size] = arg;
 			size++;
 		}
 
-		T const	back() {
+		const T&	back() {
 			return data[size - 1];
+		}
+
+		T&	operator [](size_t index) {
+			if (index >= size)
+				throw std::runtime_error("Out of bounds access attempt");
+			return data[index];
 		}
 
 	private:
