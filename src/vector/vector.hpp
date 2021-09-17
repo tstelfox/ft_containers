@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/17 12:34:49 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/17 12:49:06 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ class vector
 		}
 		
 		void	push_back(T arg) {
+			if (size == capacity)
+				re_size();
 			array[size] = arg;
 			size++;
 		}
@@ -50,6 +52,17 @@ class vector
 		allocator_type	allocator;
 		size_t			capacity;
 		size_t			size;
+
+		void	re_size() {
+			std::cout << "welcome welcome welcome" << std::endl;
+			T	*temp = allocator.allocate(capacity * 2);
+			for (size_t i = 0; i < size; i++)
+				temp[i] = array[i];
+			allocator.deallocate(array, capacity);
+			capacity *= 2;
+			array = temp;
+			std::cout << capacity << std::endl;
+		}
 };
 
 }
