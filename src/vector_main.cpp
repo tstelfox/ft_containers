@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/16 13:33:41 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/17 10:15:24 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int		main(void) {
 
-	ft::vector<int>	fuck;
+	ft::vector<int>	fuck(7);
 	std::cout << "pls" << std::endl;
 }
