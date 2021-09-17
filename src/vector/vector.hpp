@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/17 15:30:26 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/17 15:36:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,39 @@ class vector
 
 
 		vector<T, Alloc>() : capacity(10) , size(0) {
-			array = allocator.allocate(10); // Set it to allocate 10 randomly for now
+			data = allocator.allocate(10); // Set it to allocate 10 as a default for now
 		}
 		vector<T, Alloc>(unsigned int alloc_size) : capacity(alloc_size) , size(0) {
-			array = allocator.allocate(alloc_size);
+			data = allocator.allocate(alloc_size);
 		}
 		~vector<T, Alloc>() {
-			allocator.deallocate(array, capacity);
+			allocator.deallocate(data, capacity);
 		}
-		
-		void	push_back(T arg) {
-			if (size == capacity)
+
+		void	push_back(const T &arg) {
+			if (size >= capacity)
 				re_size();
-			array[size] = arg;
+			data[size] = arg;
 			size++;
 		}
 
 		T const	back() {
-			return array[size - 1];
+			return data[size - 1];
 		}
 
 	private:
-		value_type		*array;
+		value_type		*data;
 		allocator_type	allocator;
 		size_t			capacity;
 		size_t			size;
 
-		void	re_size() {
+		void	re_size() { // Only resizes up
 			T	*temp = allocator.allocate(capacity * 2);
 			for (size_t i = 0; i < size; i++)
-				temp[i] = array[i];
-			allocator.deallocate(array, capacity);
+				temp[i] = data[i];
+			allocator.deallocate(data, capacity);
 			capacity *= 2;
-			array = temp;
+			data = temp;
 		}
 };
 
