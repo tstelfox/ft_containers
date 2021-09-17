@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/17 10:15:09 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/17 11:01:46 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,24 @@ namespace ft {
 template < class T, class Alloc = std::allocator<T> >
 class vector
 {
-	private:
-		T					*value_type;
-		Alloc				allocator_type;
 	public:
+
+		typedef	Alloc		allocator_type;
+		typedef	T			value_type;
+
 		vector<T, Alloc>() {
-			value_type = allocator_type.allocate(10); // Set it to allocate 10 randomly for now
+			array = allocator.allocate(10); // Set it to allocate 10 randomly for now
 		}
 		vector<T, Alloc>(unsigned int alloc_size) {
-			value_type = allocator_type.allocate(alloc_size);
+			array = allocator.allocate(alloc_size);
 		}
 		~vector<T, Alloc>() {
-			allocator_type.deallocate(value_type, 10);
+			allocator.deallocate(array, 10);
 		}
+
+	private:
+		value_type		*array;
+		allocator_type	allocator;
 };
 
 }
