@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/21 16:46:01 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/21 17:38:39 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,9 @@ int		main(void) {
 
 	std::cout << attempt.size() << std::endl;
 
+	/* ft::vector<int> copyfuck(fuck);
+	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl;
+	fuck[2] = 99999;
+	std::cout << "Checking fuck item number 3: [" << fuck[2] << "]" << std::endl;
+	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl; */
 }

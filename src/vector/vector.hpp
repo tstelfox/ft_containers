@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/21 16:56:03 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/21 17:38:56 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ class vector
 		vector<T, Alloc>(unsigned int alloc_size) : v_capacity(alloc_size) , v_size(0) {
 			data = allocator.allocate(alloc_size);
 		}
+
+		// RIGHT WILL RETURN TO THE COPY CONSTRUCTOR CAUSE IT FUCKIN WITHN ME
+		
+		// vector<T, Alloc>(const vector &other) {
+		// 	*this = other;
+		// }
+		// vector&	operator = (const vector &rhs) {
+		// 	this->data = new T[rhs.v_capacity];
+		// 	this->allocator = rhs.allocator;
+		// 	this->v_capacity = rhs.v_capacity;
+		// 	this->v_size = rhs.v_size;
+		// 	this->data = rhs.data;
+		// 	return *this;
+		// }
 		~vector<T, Alloc>() {
 			allocator.deallocate(data, v_capacity);
 		}
@@ -54,6 +68,9 @@ class vector
 
 		const	size_t&	size() {
 			return v_size;
+		}
+		const	size_t&	max_size() {
+			return allocator.max_size();
 		}
 
 		const	size_t& capacity() {
