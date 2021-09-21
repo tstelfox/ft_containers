@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/21 16:12:13 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/21 16:56:03 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ class vector
 		typedef	typename	allocator_type::const_pointer	const_pointer;
 
 
-		vector<T, Alloc>() : capacity(10) , v_size(0) {
+		vector<T, Alloc>() : v_capacity(10) , v_size(0) {
 			data = allocator.allocate(10); // Set it to allocate 10 as a default for now
 		}
-		vector<T, Alloc>(unsigned int alloc_size) : capacity(alloc_size) , v_size(0) {
+		vector<T, Alloc>(unsigned int alloc_size) : v_capacity(alloc_size) , v_size(0) {
 			data = allocator.allocate(alloc_size);
 		}
 		~vector<T, Alloc>() {
-			allocator.deallocate(data, capacity);
+			allocator.deallocate(data, v_capacity);
 		}
 
 		void		push_back(const T &arg) {
-			if (v_size >= capacity)
+			if (v_size >= v_capacity)
 				re_size();
 			data[v_size] = arg;
 			v_size++;
@@ -56,6 +56,10 @@ class vector
 			return v_size;
 		}
 
+		const	size_t& capacity() {
+			return v_capacity;
+		}
+
 		T&	operator [](size_t index) {
 			if (index >= v_size)
 				throw std::runtime_error("Out of bounds access attempt");
@@ -65,15 +69,15 @@ class vector
 	private:
 		value_type		*data;
 		allocator_type	allocator;
-		size_t			capacity;
+		size_t			v_capacity;
 		size_t			v_size;
 
 		void	re_size() { // Only resizes up
-			T	*temp = allocator.allocate(capacity * 2);
+			T	*temp = allocator.allocate(v_capacity * 2);
 			for (size_t i = 0; i < v_size; i++)
 				temp[i] = data[i];
-			allocator.deallocate(data, capacity);
-			capacity *= 2;
+			allocator.deallocate(data, v_capacity);
+			v_capacity *= 2;
 			data = temp;
 		}
 };

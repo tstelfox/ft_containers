@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/21 16:12:49 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/21 16:46:01 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,14 @@ std::ostream& operator << (std::ostream &o, tester const &instance) {
 
 int		main(void) {
 
+	int		numset[5] = {69, 99, 7, 111, 47};
 	ft::vector<int>	fuck(2);
 	ft::vector<tester>	attempt;
 
 	tester	testinstance;
 	tester	second(69, 3.14, "Montolivo");
-	fuck.push_back(69);
-	fuck.push_back(99);
-	fuck.push_back(7);
-	fuck.push_back(69);
-	fuck.push_back(99);
-	fuck.push_back(865);
+	for (int i = 0; i < 5; i++)
+		fuck.push_back(numset[i]);
 
 	attempt.push_back(testinstance);
 
