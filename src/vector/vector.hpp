@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/21 17:38:56 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/22 15:01:47 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class vector
 		// 	this->data = rhs.data;
 		// 	return *this;
 		// }
+		
 		~vector<T, Alloc>() {
 			allocator.deallocate(data, v_capacity);
 		}
