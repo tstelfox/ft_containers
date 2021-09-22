@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/22 15:01:47 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/22 21:44:07 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ class vector
 
 		const T&	back() {
 			return data[v_size - 1];
+		}
+
+		const T&	front() {
+			return data[0];
 		}
 
 		const	size_t&	size() {

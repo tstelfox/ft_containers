@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/21 17:38:39 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/22 21:45:53 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int		main(void) {
 
 	std::cout << "Checking item number 3: [" << fuck[2] << "]" << std::endl;
 
-	std::cout << fuck.back() << std::endl;
+	std::cout << "The back: " << fuck.back() << std::endl;
+	std::cout << "The front: " << fuck.front() << std::endl;
 	std::cout << attempt.back();
 	
 	attempt.push_back(second);
