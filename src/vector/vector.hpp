@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/22 21:44:07 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 10:48:37 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ class vector
 
 		typedef				Alloc							allocator_type;
 		typedef				T								value_type;
-		typedef typename	allocator_type::reference		reference;
-		typedef typename	allocator_type::const_reference	const_reference;
-		typedef	typename	allocator_type::pointer			pointer;
-		typedef	typename	allocator_type::const_pointer	const_pointer;
+		typedef				value_type&						reference;
+		typedef const		value_type&						const_reference;
+		typedef				value_type*						pointer;
+		typedef	const		value_type*						const_pointer;
 
 
 		vector<T, Alloc>() : v_capacity(10) , v_size(0) {
@@ -63,11 +63,13 @@ class vector
 			v_size++;
 		}
 
-		const T&	back() {
+		// Gotta make const versions of these too
+
+		reference back() {
 			return data[v_size - 1];
 		}
 
-		const T&	front() {
+		reference	front() {
 			return data[0];
 		}
 
