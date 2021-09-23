@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 10:48:37 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 10:56:59 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class vector
 		typedef const		value_type&						const_reference;
 		typedef				value_type*						pointer;
 		typedef	const		value_type*						const_pointer;
-
+		typedef				sign_type						size_t;
 
 		vector<T, Alloc>() : v_capacity(10) , v_size(0) {
 			data = allocator.allocate(10); // Set it to allocate 10 as a default for now
@@ -65,12 +65,33 @@ class vector
 
 		// Gotta make const versions of these too
 
-		reference back() {
-			return data[v_size - 1];
+		reference	at(size_type n) {
+			if (n >= v_size) {
+				throw std::out_of_range("I'm out of range");
+			}
+			return (data[n]);
+		}
+		const_reference	at(size_type n) const {
+			if (n >= v_size) {
+				throw std::out_of_range("I'm out of range");
+			}
+			return (data[n]);
 		}
 
 		reference	front() {
 			return data[0];
+		}
+
+		const_reference	front() const {
+			return data[0];
+		}
+		
+		reference back() {
+			return data[v_size - 1];
+		}
+
+		const_reference back() const {
+			return data[v_size - 1];
 		}
 
 		const	size_t&	size() {
@@ -84,10 +105,12 @@ class vector
 			return v_capacity;
 		}
 
-		T&	operator [](size_t index) {
-			if (index >= v_size)
-				throw std::runtime_error("Out of bounds access attempt");
-			return data[index];
+		reference	operator [](size_type n) {
+			return data[n];
+		}
+
+		const_reference	operator [](size_type n) const {
+			return data[n];
 		}
 
 	private:
