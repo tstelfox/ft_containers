@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 10:56:59 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 11:02:02 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ class vector
 			v_size++;
 		}
 
-		// Gotta make const versions of these too
-
 		reference	at(size_type n) {
 			if (n >= v_size) {
 				throw std::out_of_range("I'm out of range");
@@ -94,14 +92,15 @@ class vector
 			return data[v_size - 1];
 		}
 
-		const	size_t&	size() {
+		size_type size() const {
 			return v_size;
 		}
-		const	size_t&	max_size() {
+
+		size_type max_size() const {
 			return allocator.max_size();
 		}
 
-		const	size_t& capacity() {
+		size_type capacity() const {
 			return v_capacity;
 		}
 
