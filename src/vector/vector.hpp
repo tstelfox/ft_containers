@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 16:33:30 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 16:42:37 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,19 +146,31 @@ class vector
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
-		// assign
+		// assign with iterator
 
-		void		push_back(const value_type& val) {
+		void	assign(size_type n, const value_type &val) {
+			for (size_type i = 0; i < n; i++) {
+				if (i >= v_capacity)
+					reserve(n + v_capacity);
+				allocator.destroy(&data[i]);
+				data[i] = allocator.construct(val);
+			}
+			v_size = n;
+		}
+
+		void	push_back(const value_type& val) {
 			if (v_size >= v_capacity)
 				reserve(v_capacity * 2);
 			data[v_size] = val;
 			++v_size;
 		}
 
-		void		pop_back() {
+		void	pop_back() {
 			allocator.destroy(&data[v_size]);
 			--v_size;
 		}
+
+		/* <<**------------------- ALLOCATOR ------------------**>> */
 
 		allocator_type	get_allocator() const {
 			return allocator;
@@ -169,20 +181,6 @@ class vector
 		allocator_type		allocator;
 		size_type			v_capacity;
 		size_type			v_size;
-
-		// void	re_size() { // Only resizes up
-		// 	// std::cout << "Resizing from: " << v_capacity << std::endl;
-		// 	int new_capacity = v_capacity * 2;
-		// 	if (new_capacity == 0)
-		// 		new_capacity = 10;
-		// 	pointer temp = allocator.allocate(new_capacity);
-		// 	for (size_t i = 0; i < v_size; i++)
-		// 		temp[i] = data[i];
-		// 	allocator.deallocate(data, v_capacity); // This might be zero, see what happens
-		// 	v_capacity = new_capacity;
-		// 	data = temp;
-		// 	// std::cout << "Resized to new capacity: " << new_capacity << std::endl;
-		// }
 
 };
 
