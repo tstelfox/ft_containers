@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 16:25:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 16:33:30 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ class vector
 				pop_back();
 			}
 			if (n > v_size) {
-				while (n > v_capacity)
-					re_size(); // Pretty sure there must be a better way to do this but whatevs
+				if (n > v_capacity)
+					reserve(n + v_capacity); // Pretty sure there must be a better way to do this but whatevs
 				for (size_type i = v_size; i < n; i++) {
 					data[i] = val;
 					++v_size;
@@ -89,14 +89,24 @@ class vector
 			return v_capacity;
 		}
 
-
 		bool		empty() const {
 			if (v_size == 0)
 				return true;
 			return false;
 		}
 		
-		//reserve
+		void	reserve(size_type n) {
+			if (n > max_size())
+				throw std::length_error("Too much memory to allocate");
+			if (n > v_capacity) {
+				pointer temp = allocator.allocate(n);
+				for (size_type i = 0; i < v_size; i++)
+					temp[i] = data[i];
+				allocator.deallocate(data, v_capacity);
+				data = temp;
+				v_capacity = n;
+			}
+		}
 
 		/* <<**------------------- ELEMENT ACCESS ------------------**>> */
 
@@ -140,7 +150,7 @@ class vector
 
 		void		push_back(const value_type& val) {
 			if (v_size >= v_capacity)
-				re_size();
+				reserve(v_capacity * 2);
 			data[v_size] = val;
 			++v_size;
 		}
@@ -160,19 +170,19 @@ class vector
 		size_type			v_capacity;
 		size_type			v_size;
 
-		void	re_size() { // Only resizes up
-			// std::cout << "Resizing from: " << v_capacity << std::endl;
-			int new_capacity = v_capacity * 2;
-			if (new_capacity == 0)
-				new_capacity = 10;
-			pointer temp = allocator.allocate(new_capacity);
-			for (size_t i = 0; i < v_size; i++)
-				temp[i] = data[i];
-			allocator.deallocate(data, v_capacity); // This might be zero, see what happens
-			v_capacity = new_capacity;
-			data = temp;
-			// std::cout << "Resized to new capacity: " << new_capacity << std::endl;
-		}
+		// void	re_size() { // Only resizes up
+		// 	// std::cout << "Resizing from: " << v_capacity << std::endl;
+		// 	int new_capacity = v_capacity * 2;
+		// 	if (new_capacity == 0)
+		// 		new_capacity = 10;
+		// 	pointer temp = allocator.allocate(new_capacity);
+		// 	for (size_t i = 0; i < v_size; i++)
+		// 		temp[i] = data[i];
+		// 	allocator.deallocate(data, v_capacity); // This might be zero, see what happens
+		// 	v_capacity = new_capacity;
+		// 	data = temp;
+		// 	// std::cout << "Resized to new capacity: " << new_capacity << std::endl;
+		// }
 
 };
 
