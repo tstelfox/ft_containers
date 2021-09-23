@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 15:23:14 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 16:25:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,19 @@ class vector
 			return allocator.max_size();
 		}
 
-		// void	resize(size_type n, value_type val = value_type()) {
-		// 	while (n < v_size) {
-		// 		// Yea actually really need some modifiers for this stuff
-		// 	}
-		// 	if (n > v_size) {
-		// 		// Add n - v_size elements at the end initialised to val
-		// 	}
-		// 	// n can be larger than v_capacity which means reallocating
-		// }
+		void	resize(size_type n, value_type val = value_type()) {
+			while (n < v_size) {
+				pop_back();
+			}
+			if (n > v_size) {
+				while (n > v_capacity)
+					re_size(); // Pretty sure there must be a better way to do this but whatevs
+				for (size_type i = v_size; i < n; i++) {
+					data[i] = val;
+					++v_size;
+				}
+			}
+		}
 
 		size_type	capacity() const {
 			return v_capacity;
@@ -138,12 +142,12 @@ class vector
 			if (v_size >= v_capacity)
 				re_size();
 			data[v_size] = val;
-			v_size++;
+			++v_size;
 		}
 
 		void		pop_back() {
 			allocator.destroy(&data[v_size]);
-			v_size--;
+			--v_size;
 		}
 
 		allocator_type	get_allocator() const {
@@ -157,6 +161,7 @@ class vector
 		size_type			v_size;
 
 		void	re_size() { // Only resizes up
+			// std::cout << "Resizing from: " << v_capacity << std::endl;
 			int new_capacity = v_capacity * 2;
 			if (new_capacity == 0)
 				new_capacity = 10;
@@ -166,7 +171,9 @@ class vector
 			allocator.deallocate(data, v_capacity); // This might be zero, see what happens
 			v_capacity = new_capacity;
 			data = temp;
+			// std::cout << "Resized to new capacity: " << new_capacity << std::endl;
 		}
+
 };
 
 }

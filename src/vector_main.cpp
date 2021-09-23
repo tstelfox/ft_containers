@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 15:25:17 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 16:22:14 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,13 @@ int		main(void) {
 
 	std::cout << "The back: " << fuck.back() << std::endl;
 	std::cout << "It's size: " << fuck.size() << std::endl;
-	fuck.pop_back();
+	fuck.resize(3);
 	std::cout << "The back: " << fuck.back() << std::endl;
 	std::cout << "It's size: " << fuck.size() << std::endl;
-	// std::cout << "The front: " << fuck.front() << std::endl;
+	fuck.resize(10, 666);
+
+	for (size_t i = 0; i < fuck.size(); i++)
+		std::cout << fuck[i] << std::endl;
 	std::cout << attempt.back();
 	
 	attempt.push_back(second);
