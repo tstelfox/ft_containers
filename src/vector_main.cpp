@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 12:19:33 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 12:23:48 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ std::ostream& operator << (std::ostream &o, tester const &instance) {
 }
 
 void	test_std() {
-
 
 	std::vector<int> jesus(7, 99);
 

@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 12:17:31 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 14:41:22 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,36 @@ class vector
 			allocator.deallocate(data, v_capacity);
 		}
 
+		/* <<**------------------- CAPACITY ------------------**>> */
+
+		size_type size() const {
+			return v_size;
+		}
+
+		size_type max_size() const {
+			return allocator.max_size();
+		}
+
+		// resize
+
+		size_type capacity() const {
+			return v_capacity;
+		}
+
 		void		push_back(const value_type& val) {
 			if (v_size >= v_capacity)
 				re_size();
 			data[v_size] = val;
 			v_size++;
 		}
+
+		bool		empty() const {
+			if (v_size == 0)
+				return true;
+			return false;
+		}
+		
+		//reserve
 
 		reference	at(size_type n) {
 			if (n >= v_size) {
@@ -97,17 +121,6 @@ class vector
 			return data[v_size - 1];
 		}
 
-		size_type size() const {
-			return v_size;
-		}
-
-		size_type max_size() const {
-			return allocator.max_size();
-		}
-
-		size_type capacity() const {
-			return v_capacity;
-		}
 
 		reference	operator [](size_type n) {
 			return data[n];
@@ -129,7 +142,7 @@ class vector
 
 		void	re_size() { // Only resizes up
 			int new_capacity = v_capacity * 2;
-			if (v_capacity == 0)
+			if (new_capacity == 0)
 				new_capacity = 10;
 			T	*temp = allocator.allocate(new_capacity);
 			for (size_t i = 0; i < v_size; i++)
