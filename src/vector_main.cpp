@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 12:23:48 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 15:25:17 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,16 @@ std::ostream& operator << (std::ostream &o, tester const &instance) {
 
 void	test_std() {
 
-	std::vector<int> jesus(7, 99);
+	int		numset[5] = {69, 99, 7, 111, 47};
+	std::vector<int> jesus(2);
 
-	std::cout << "Standard's size is: " << jesus.size() << std::endl;
-	for (size_t i = 0; i < jesus.size(); i++)
-		std::cout << "Element " << i << ": " << jesus[i] << std::endl;
+	for (int i = 0; i < 5; i++)
+		jesus.push_back(numset[i]);
+	std::cout << "The back: " << jesus.back() << std::endl;
+	std::cout << "It's size: " << jesus.size() << std::endl;
+	jesus.pop_back();
+	std::cout << "The back: " << jesus.back() << std::endl;
+	std::cout << "It's size: " << jesus.size() << std::endl;
 }
 
 int		main(void) {
@@ -65,11 +70,16 @@ int		main(void) {
 	std::cout << "Checking item number 3: [" << fuck[2] << "]" << std::endl;
 
 	std::cout << "The back: " << fuck.back() << std::endl;
-	std::cout << "The front: " << fuck.front() << std::endl;
+	std::cout << "It's size: " << fuck.size() << std::endl;
+	fuck.pop_back();
+	std::cout << "The back: " << fuck.back() << std::endl;
+	std::cout << "It's size: " << fuck.size() << std::endl;
+	// std::cout << "The front: " << fuck.front() << std::endl;
 	std::cout << attempt.back();
 	
 	attempt.push_back(second);
 	std::cout << attempt.back();
+
 
 	std::cout << attempt.size() << std::endl;
 
