@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 11:02:02 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 12:17:31 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <memory>
 #include <utility>
+#include <vector>
 
 namespace ft {
 
@@ -29,14 +30,18 @@ class vector
 		typedef const		value_type&						const_reference;
 		typedef				value_type*						pointer;
 		typedef	const		value_type*						const_pointer;
-		typedef				sign_type						size_t;
+		typedef				size_t							size_type;
 
-		vector<T, Alloc>() : v_capacity(10) , v_size(0) {
+		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
 			data = allocator.allocate(10); // Set it to allocate 10 as a default for now
 		}
-		vector<T, Alloc>(unsigned int alloc_size) : v_capacity(alloc_size) , v_size(0) {
-			data = allocator.allocate(alloc_size);
+		explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
+					: allocator(alloc) , v_capacity(n) , v_size(n) {
+			data = allocator.allocate(n);
+			for (size_type i = 0; i < n; i++)
+				data[i] = val;
 		}
+		// Other constructors must still be made
 
 		// RIGHT WILL RETURN TO THE COPY CONSTRUCTOR CAUSE IT FUCKIN WITHN ME
 		
@@ -56,10 +61,10 @@ class vector
 			allocator.deallocate(data, v_capacity);
 		}
 
-		void		push_back(const T &arg) {
+		void		push_back(const value_type& val) {
 			if (v_size >= v_capacity)
 				re_size();
-			data[v_size] = arg;
+			data[v_size] = val;
 			v_size++;
 		}
 
@@ -112,18 +117,25 @@ class vector
 			return data[n];
 		}
 
+		allocator_type	get_allocator() const {
+			return allocator;
+		}
+
 	private:
-		value_type		*data;
-		allocator_type	allocator;
-		size_t			v_capacity;
-		size_t			v_size;
+		pointer				data;
+		allocator_type		allocator;
+		size_type			v_capacity;
+		size_type			v_size;
 
 		void	re_size() { // Only resizes up
-			T	*temp = allocator.allocate(v_capacity * 2);
+			int new_capacity = v_capacity * 2;
+			if (v_capacity == 0)
+				new_capacity = 10;
+			T	*temp = allocator.allocate(new_capacity);
 			for (size_t i = 0; i < v_size; i++)
 				temp[i] = data[i];
-			allocator.deallocate(data, v_capacity);
-			v_capacity *= 2;
+			allocator.deallocate(data, v_capacity); // This might be zero, see what happens
+			v_capacity = new_capacity;
 			data = temp;
 		}
 };

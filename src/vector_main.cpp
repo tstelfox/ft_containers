@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/22 21:45:53 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/23 12:19:33 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,23 @@ std::ostream& operator << (std::ostream &o, tester const &instance) {
 		return (o);
 }
 
+void	test_std() {
+
+
+	std::vector<int> jesus(7, 99);
+
+	std::cout << "Standard's size is: " << jesus.size() << std::endl;
+	for (size_t i = 0; i < jesus.size(); i++)
+		std::cout << "Element " << i << ": " << jesus[i] << std::endl;
+}
+
 int		main(void) {
 
 	int		numset[5] = {69, 99, 7, 111, 47};
 	ft::vector<int>	fuck(2);
 	ft::vector<tester>	attempt;
+
+	// test_std();
 
 	tester	testinstance;
 	tester	second(69, 3.14, "Montolivo");
