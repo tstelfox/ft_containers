@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 16:42:37 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/24 12:44:06 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ class vector
 		~vector<T, Alloc>() {
 			allocator.deallocate(data, v_capacity);
 		}
+
+		/* <<**------------------- ITERATORS ------------------**>> */
+
+		// Errything
 
 		/* <<**------------------- CAPACITY ------------------**>> */
 
@@ -148,7 +152,7 @@ class vector
 
 		// assign with iterator
 
-		void	assign(size_type n, const value_type &val) {
+		void	assign(size_type n, const value_type &val) { // Might need revisiting
 			for (size_type i = 0; i < n; i++) {
 				if (i >= v_capacity)
 					reserve(n + v_capacity);
@@ -168,6 +172,23 @@ class vector
 		void	pop_back() {
 			allocator.destroy(&data[v_size]);
 			--v_size;
+		}
+
+		// insert requires iterators
+
+		// erase does too
+
+		// void	swap(vector& x) { // Swap here needs the assignation operator overload I feel
+		// 	vector	temp(size());
+		// 	temp = *this;
+		// 	*this = x;
+		// 	x = temp;
+		// }
+
+		void	clear() {
+			for (size_type i = v_size; i > 0; i--)
+				allocator.destroy(&data[i - 1]);
+			v_size = 0;
 		}
 
 		/* <<**------------------- ALLOCATOR ------------------**>> */

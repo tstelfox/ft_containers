@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/23 16:22:14 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/24 12:46:02 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int		main(void) {
 	int		numset[5] = {69, 99, 7, 111, 47};
 	ft::vector<int>	fuck(2);
 	ft::vector<tester>	attempt;
+	// ft::vector<int> to_swap(10, 7);
 
 	// test_std();
 
@@ -83,9 +84,13 @@ int		main(void) {
 	attempt.push_back(second);
 	std::cout << attempt.back();
 
-
-	std::cout << attempt.size() << std::endl;
-
+	// std::cout << attempt.size() << std::endl;
+	
+	fuck.clear();
+	fuck.push_back(111);
+	for (size_t i = 0; i < fuck.size(); i++)
+		std::cout << fuck[i] << std::endl;
+	
 	/* ft::vector<int> copyfuck(fuck);
 	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl;
 	fuck[2] = 99999;
