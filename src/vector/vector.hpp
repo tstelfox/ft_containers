@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/24 12:44:06 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/24 13:00:01 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,16 @@ class vector
 			for (size_type i = 0; i < n; i++)
 				data[i] = val;
 		}
-		// Other constructors must still be made
+	
+		// Range constructor with Iterators
 
-		// RIGHT WILL RETURN TO THE COPY CONSTRUCTOR CAUSE IT FUCKIN WITHN ME
-		
-		// vector<T, Alloc>(const vector &other) {
-		// 	*this = other;
-		// }
-		// vector&	operator = (const vector &rhs) {
-		// 	this->data = new T[rhs.v_capacity];
-		// 	this->allocator = rhs.allocator;
-		// 	this->v_capacity = rhs.v_capacity;
-		// 	this->v_size = rhs.v_size;
-		// 	this->data = rhs.data;
-		// 	return *this;
-		// }
+		// Copy constructor
 		
 		~vector<T, Alloc>() {
 			allocator.deallocate(data, v_capacity);
 		}
+
+		// vector&	operator = (const vector& x) {}
 
 		/* <<**------------------- ITERATORS ------------------**>> */
 
