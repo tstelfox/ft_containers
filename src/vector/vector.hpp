@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/28 17:04:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/28 17:23:43 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <utility>
 #include <vector>
 #include <iterator>
+#include "random_access_iterator.hpp"
 
 namespace ft {
 
