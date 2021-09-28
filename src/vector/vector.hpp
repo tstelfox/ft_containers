@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/28 15:57:12 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/28 16:04:52 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,10 +198,7 @@ class vector
 
 template <class T, class Alloc>
 bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	if (lhs.data != rhs.data || lhs.allocator != rhs.allocator || 
-			lhs.v_capacity != rhs.v_capacity || lhs.v_size != rhs.v_size)
-		return	false;
-	return true;
+	// This shit was more complicated than I thought. Should have read cplusplus.com more attentively
 }
 
 template <class T, class Alloc>
@@ -209,6 +206,11 @@ bool	operator != (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
 	if (lhs == rhs)
 		return false;
 	return true;
+}
+
+template <class T, class Alloc>
+bool	operator < (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	// How the hell do we determine size
 }
 
 }
