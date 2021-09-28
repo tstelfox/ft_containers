@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/24 13:00:01 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/28 15:57:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,5 +195,20 @@ class vector
 		size_type			v_size;
 
 };
+
+template <class T, class Alloc>
+bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	if (lhs.data != rhs.data || lhs.allocator != rhs.allocator || 
+			lhs.v_capacity != rhs.v_capacity || lhs.v_size != rhs.v_size)
+		return	false;
+	return true;
+}
+
+template <class T, class Alloc>
+bool	operator != (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	if (lhs == rhs)
+		return false;
+	return true;
+}
 
 }
