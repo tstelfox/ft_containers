@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/28 17:23:43 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/28 17:43:56 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ class vector
 			for (size_type i = 0; i < n; i++)
 				data[i] = val;
 		}
-	
+
 		// Range constructor with Iterators
 
 		// Copy constructor
-		
+
 		~vector<T, Alloc>() {
 			allocator.deallocate(data, v_capacity);
 		}
@@ -92,7 +92,7 @@ class vector
 				return true;
 			return false;
 		}
-		
+	
 		void	reserve(size_type n) {
 			if (n > max_size())
 				throw std::length_error("Too much memory to allocate");
