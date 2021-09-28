@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/28 16:04:52 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/28 16:15:08 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,9 +196,17 @@ class vector
 
 };
 
-template <class T, class Alloc>
+template <class T, class Alloc> // Not sure this'll work
 bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	// This shit was more complicated than I thought. Should have read cplusplus.com more attentively
+	if (lhs.size() == rhs.size()) {
+		size_type i = 0;
+		size_type common_size = lhs.size();
+		while (lhs[i] == rhs[i] && i < common_size)
+			i++;
+		if (i == common_size)
+			return true;
+	}
+	return false;
 }
 
 template <class T, class Alloc>
