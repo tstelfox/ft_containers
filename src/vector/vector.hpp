@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/28 16:15:08 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/28 16:32:15 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,29 +196,31 @@ class vector
 
 };
 
-template <class T, class Alloc> // Not sure this'll work
-bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	if (lhs.size() == rhs.size()) {
-		size_type i = 0;
-		size_type common_size = lhs.size();
-		while (lhs[i] == rhs[i] && i < common_size)
-			i++;
-		if (i == common_size)
-			return true;
-	}
-	return false;
-}
+/* <<**------------------- Relational Operators ------------------**>> */
 
-template <class T, class Alloc>
-bool	operator != (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	if (lhs == rhs)
-		return false;
-	return true;
-}
+	// Honestly should write the iterators first
 
-template <class T, class Alloc>
-bool	operator < (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	// How the hell do we determine size
-}
+// template <class T, class Alloc> // Not sure this'll work
+// bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+// 	if (lhs.size() == rhs.size()) {
+// 		size_type i = 0;
+// 		size_type common_size = lhs.size();
+// 		while (lhs[i] == rhs[i] && i < common_size)
+// 			i++;
+// 		if (i == common_size)
+// 			return true;
+// 	}
+// 	return false;
+// }
+
+// template <class T, class Alloc>
+// bool	operator != (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+// 	return (!(lhs == rhs));
+// }
+
+// template <class T, class Alloc>
+// bool	operator < (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+// 	size_type i = 0;
+// }
 
 }
