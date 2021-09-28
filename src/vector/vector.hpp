@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/28 16:32:15 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/28 17:04:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <memory>
 #include <utility>
 #include <vector>
+#include <iterator>
 
 namespace ft {
 
@@ -30,6 +31,7 @@ class vector
 		typedef const		value_type&						const_reference;
 		typedef				value_type*						pointer;
 		typedef	const		value_type*						const_pointer;
+		// typedef				ft::iterator					iterator;
 		typedef				size_t							size_type;
 
 		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
