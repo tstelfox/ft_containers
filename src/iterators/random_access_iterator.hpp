@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 13:04:58 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 16:55:00 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ class v_iterator {
 		reference	operator * () const {return *m_ptr;}
 		pointer		operator -> () {return m_ptr;}
 
-		//Prefix increment
+		//Prefix increment/decrement
 		v_iterator&	operator ++ () {m_ptr++; return *this;}
-
-		//Postfix increment
+		v_iterator&	operator -- () {m_ptr--; return *this;}
+		
+		//Postfix increment/decrement
 		v_iterator	operator ++ (int) {v_iterator temp = *this; ++(*this); return temp;}
+		v_iterator	operator -- (int) {v_iterator temp = *this; --(*this); return temp;}
 
 		friend bool operator== (const v_iterator& a, const v_iterator& b) { return a.m_ptr == b.m_ptr; };
 		friend bool operator!= (const v_iterator& a, const v_iterator& b) { return a.m_ptr != b.m_ptr; };
