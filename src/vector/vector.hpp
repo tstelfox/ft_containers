@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 11:27:09 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 12:49:00 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class vector
 		typedef const		value_type&						const_reference;
 		typedef				value_type*						pointer;
 		typedef	const		value_type*						const_pointer;
-		// typedef				std::random_access_iterator_tag					iterator;
+		// typedef				v_iterator<value_type>			iterator;
 		typedef				ptrdiff_t						difference_type;
 		typedef				size_t							size_type;
 
@@ -58,6 +58,12 @@ class vector
 
 		/* <<**------------------- ITERATORS ------------------**>> */
 
+		// iterator	begin() {
+		// 	return v_iterator(&data[0]);
+		// }
+		// iterator	end() {
+		// 	return v_iterator(&data[v_size]);
+		// }
 		// Errything
 
 		/* <<**------------------- CAPACITY ------------------**>> */

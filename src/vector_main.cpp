@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/28 17:24:39 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 12:45:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ int		main(void) {
 	for (size_t i = 0; i < fuck.size(); i++)
 		std::cout << fuck[i] << std::endl;
 
+
+	std::cout << "<------Iterator time------>" << std::endl << std::endl;
+
+	// ft::vector::iterator it = fuck.begin();
+	ft::vector<int>::iterator theend = fuck.end();
+	// for (ft::vector<int>::iterator it = fuck.begin(); it != theend; ++it)
+		// std::cout << it << std::endl;
 	/* ft::vector<int> copyfuck(fuck);
 	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl;
 	fuck[2] = 99999;
