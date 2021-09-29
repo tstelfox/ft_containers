@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/28 17:43:56 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 11:27:09 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ class vector
 		typedef const		value_type&						const_reference;
 		typedef				value_type*						pointer;
 		typedef	const		value_type*						const_pointer;
-		// typedef				ft::iterator					iterator;
+		// typedef				std::random_access_iterator_tag					iterator;
+		typedef				ptrdiff_t						difference_type;
 		typedef				size_t							size_type;
 
 		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
