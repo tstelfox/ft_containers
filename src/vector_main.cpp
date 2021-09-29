@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 17:45:38 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 18:17:43 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int		main(void) {
 	std::cout << "<------Iterator time------>" << std::endl << std::endl;
 
 	// ft::vector::iterator it = fuck.begin();
-	ft::vector<int>::const_iterator theend = fuck.cend();
-	for (ft::vector<int>::const_iterator it = fuck.cbegin(); it != theend; ++it)
+	ft::vector<int>::const_iterator theend = fuck.end();
+	for (ft::vector<int>::const_iterator it = fuck.begin(); it != theend; ++it)
 		std::cout << *it << std::endl;
 
 	ft::vector<tester>::iterator woah = attempt.end();

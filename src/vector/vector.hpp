@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 17:44:16 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 18:54:17 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ class vector
 		typedef				Alloc							allocator_type;
 		typedef				T								value_type;
 		typedef				value_type&						reference;
-		typedef const		value_type&						const_reference;
+		typedef				value_type const&				const_reference;
 		typedef				value_type*						pointer;
-		typedef	const		value_type*						const_pointer;
+		typedef				value_type const*				const_pointer;
 		typedef				ptrdiff_t						difference_type;
 		typedef				size_t							size_type;
-		typedef				v_iterator<value_type, pointer, reference>			iterator;
+		typedef				v_iterator<value_type, pointer, reference>						iterator;
 		typedef				v_iterator<value_type, const_pointer, const_reference>			const_iterator;
 
 		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
@@ -62,13 +62,13 @@ class vector
 		iterator	begin() {
 			return iterator(data);
 		}
+		const_iterator	begin() const {
+			return const_iterator(data);
+		}
 		iterator	end() {
 			return iterator(data + v_size);
 		}
-		const_iterator	cbegin() const {
-			return const_iterator(data);
-		}
-		const_iterator	cend() const {
+		const_iterator	end() const {
 			return const_iterator(data + v_size);
 		}
 		// Errything
