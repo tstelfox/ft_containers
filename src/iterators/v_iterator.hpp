@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   random_access_iterator.hpp                         :+:    :+:            */
+/*   v_iterator.hpp                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 16:59:37 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 17:39:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ namespace ft {
 template <class value_type, class pointer, 
 		class reference, class iterator_category = std::random_access_iterator_tag>
 class v_iterator {
+
+	public:
+
+		typedef	v_iterator<const value_type, const pointer, const reference>	const_iterator;
 
 	public:
 		v_iterator(pointer ptr) : m_ptr(ptr) {}	
