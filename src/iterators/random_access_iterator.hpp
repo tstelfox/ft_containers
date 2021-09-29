@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 12:32:31 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 13:04:58 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 namespace ft {
 
-template <class value_type, class difference_type, 
-		class pointer, class reference, class iterator_category = std::random_access_iterator_tag>
+template <class value_type, class pointer, 
+		class reference, class iterator_category = std::random_access_iterator_tag>
 class v_iterator {
 
 	public:
