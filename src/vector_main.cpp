@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 13:06:33 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/29 17:18:31 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		main(void) {
 
 	tester	testinstance;
 	tester	second(69, 3.14, "Montolivo");
+	tester	another(99, 49.473, "Simio");
 	for (int i = 0; i < 5; i++)
 		fuck.push_back(numset[i]);
 
@@ -83,6 +84,7 @@ int		main(void) {
 	
 	attempt.push_back(second);
 	std::cout << attempt.back();
+	attempt.push_back(another);
 
 	// std::cout << attempt.size() << std::endl;
 	
@@ -97,6 +99,10 @@ int		main(void) {
 	// ft::vector::iterator it = fuck.begin();
 	ft::vector<int>::iterator theend = fuck.end();
 	for (ft::vector<int>::iterator it = fuck.begin(); it != theend; ++it)
+		std::cout << *it << std::endl;
+
+	ft::vector<tester>::iterator woah = attempt.end();
+	for (ft::vector<tester>::iterator it = attempt.begin(); it != woah; ++it)
 		std::cout << *it << std::endl;
 	/* ft::vector<int> copyfuck(fuck);
 	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl;
