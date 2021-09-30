@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 18:54:17 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/30 13:45:07 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ class vector
 		typedef				value_type const*				const_pointer;
 		typedef				ptrdiff_t						difference_type;
 		typedef				size_t							size_type;
-		typedef				v_iterator<value_type, pointer, reference>						iterator;
-		typedef				v_iterator<value_type, const_pointer, const_reference>			const_iterator;
+		typedef				v_iterator<T, T*, T&>						iterator;
+		typedef				v_iterator<T, T const*, T const&>			const_iterator;
 
 		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
 			data = allocator.allocate(10); // Set it to allocate 10 as a default for now

@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/29 19:09:02 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/30 14:05:20 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,37 @@
 
 namespace ft {
 
-template <class value_type, class pointer, 
-		class reference, class iterator_category = std::random_access_iterator_tag>
+template <typename T, typename Pointer, 
+		typename Reference, class Category = std::random_access_iterator_tag>
 class v_iterator {
 
 	public:
 
-		typedef	v_iterator<value_type, pointer, reference> 				iterator;
-		typedef	v_iterator<value_type, const value_type *, const value_type &>	const_iterator;
+		typedef	T			value_type;
+		typedef	Pointer		pointer;
+		typedef	Reference	reference;
+		typedef	Category	iterator_category;
+		typedef	v_iterator<T, Pointer, Reference> 				iterator;
+		typedef	v_iterator<T, const T*, const T&>				const_iterator;
 
 	public:
 		v_iterator() : m_ptr(NULL) {}
 		v_iterator(const pointer ptr) : m_ptr(ptr) {}
-		v_iterator(const iterator& x) : m_ptr(const_cast<pointer>(x.m_ptr)) {}
-		~v_iterator() {}
+		v_iterator(const iterator& x) { *this = x; }
+		virtual ~v_iterator() {}
+
+		iterator&	operator = (const v_iterator &x) {this->m_ptr = x.m_ptr; return *this;}
 
 		reference	operator * () const {return *m_ptr;}
 		pointer		operator -> () {return m_ptr;}
 
 		//Prefix increment/decrement
-		v_iterator&	operator ++ () {m_ptr++; return *this;}
-		v_iterator&	operator -- () {m_ptr--; return *this;}
+		iterator&	operator ++ () {m_ptr++; return *this;}
+		iterator&	operator -- () {m_ptr--; return *this;}
 		
 		//Postfix increment/decrement
-		v_iterator	operator ++ (int) {v_iterator temp = *this; ++(*this); return temp;}
-		v_iterator	operator -- (int) {v_iterator temp = *this; --(*this); return temp;}
+		iterator	operator ++ (int) {v_iterator temp = *this; ++(*this); return temp;}
+		iterator	operator -- (int) {v_iterator temp = *this; --(*this); return temp;}
 
 		//Ok I see now the requirements for the full random-access package shite
 
