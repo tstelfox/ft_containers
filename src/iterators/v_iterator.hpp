@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/30 14:32:52 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/09/30 15:19:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ class v_iterator {
 		// v_iterator(const iterator &x) : m_ptr(const_cast<pointer>(x.m_ptr)) {}
 		v_iterator(const iterator& x) { *this = x; }
 		virtual ~v_iterator() {}
-
 
 		operator const_iterator() const { return (const_iterator(m_ptr)); }
 
