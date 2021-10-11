@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 12:06:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/11 12:44:31 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,27 @@ std::ostream& operator << (std::ostream &o, tester const &instance) {
 void	test_std() {
 
 	int		numset[5] = {69, 99, 7, 111, 47};
-	std::vector<int> jesus(2);
+	std::vector<int> jesus;
+
 
 	for (int i = 0; i < 5; i++)
 		jesus.push_back(numset[i]);
-	std::cout << "The back: " << jesus.back() << std::endl;
-	std::cout << "It's size: " << jesus.size() << std::endl;
-	jesus.pop_back();
-	std::cout << "The back: " << jesus.back() << std::endl;
-	std::cout << "It's size: " << jesus.size() << std::endl;
+	
+	std::vector<int>::iterator	it = jesus.begin();
+
+	std::vector<int>::iterator	frick;
+
+	// for (std::vector<int>::iterator i = jesus.begin(); i != jesus.end(); i++)
+	// 	std::cout << "fuckin " << *i << std::endl;
+	frick = 3 + it;
+	std::cout << "The standard iterator thingy " << *frick << std::endl;
+	// for (int i = 0; i < 5; i++)
+	// 	jesus.push_back(numset[i]);
+	// std::cout << "The back: " << jesus.back() << std::endl;
+	// std::cout << "It's size: " << jesus.size() << std::endl;
+	// jesus.pop_back();
+	// std::cout << "The back: " << jesus.back() << std::endl;
+	// std::cout << "It's size: " << jesus.size() << std::endl;
 }
 
 int		main(void) {
@@ -104,8 +116,9 @@ int		main(void) {
 	ft::vector<int>::iterator it = fuck.begin();
 	ft::vector<int>::iterator	testit;
 
-	testit = it + 10;
+	testit = 10 + it;
 	std::cout << "Well here goes " << *testit << std::endl;
+	std::cout << "it hasn't changed right " << *it << std::endl;
 
 	ft::vector<tester>::iterator woah = attempt.end();
 	for (ft::vector<tester>::iterator it = attempt.begin(); it != woah; ++it)

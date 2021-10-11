@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 11:51:58 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/11 13:11:43 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class v_iterator {
 		typedef	Pointer		pointer;
 		typedef	Reference	reference;
 		typedef	Category	iterator_category;
+		typedef	ptrdiff_t	difference_type;
 		typedef	v_iterator<T, Pointer, Reference> 				iterator;
 		typedef	v_iterator<T, const T*, const T&>				const_iterator;
 
@@ -57,7 +58,12 @@ class v_iterator {
 		//Ok I see now the requirements for the full random-access package shite
 		//But how to actually implement all this shite?
 
-		iterator	operator + (int inc) { return (m_ptr + inc); }
+		iterator&	operator [] (int index) {return *(m_ptr + index);}
+
+		iterator	operator + (difference_type off) const { iterator copy = *this; copy += off; return copy; }
+		iterator&	operator += (difference_type off) { this->m_ptr += off; return *this; }
+
+		// iterator	operator - (int dec) const { return (m_ptr - dec); }
 
 		bool operator== (const v_iterator& b) const { return m_ptr == b.m_ptr; };
 		bool operator!= (const v_iterator& b) const { return m_ptr != b.m_ptr; };
@@ -65,5 +71,13 @@ class v_iterator {
 	private:
 		pointer m_ptr;
 };
+
+template <typename T, typename Pointer, 
+		typename Reference>
+v_iterator<T, Pointer, Reference>	operator +(typename	v_iterator<T, Pointer, Reference>::difference_type off,
+										const v_iterator<T, Pointer, Reference> &it)
+	{
+		return it + off;
+	}
 
 }
