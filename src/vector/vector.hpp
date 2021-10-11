@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/30 13:45:07 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/11 11:38:02 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ class vector
 		const_iterator	end() const {
 			return const_iterator(data + v_size);
 		}
-		// Errything
+		
+		// rbegin
+
+		// rend
 
 		/* <<**------------------- CAPACITY ------------------**>> */
 

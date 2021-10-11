@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/09/30 15:19:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/11 11:51:58 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ class v_iterator {
 	public:
 		v_iterator() : m_ptr(NULL) {}
 		v_iterator(const pointer ptr) : m_ptr(ptr) {}
-		// v_iterator(const iterator &x) : m_ptr(const_cast<pointer>(x.m_ptr)) {}
 		v_iterator(const iterator& x) { *this = x; }
 		virtual ~v_iterator() {}
 
@@ -56,6 +55,9 @@ class v_iterator {
 		iterator	operator -- (int) {v_iterator temp = *this; --(*this); return temp;}
 
 		//Ok I see now the requirements for the full random-access package shite
+		//But how to actually implement all this shite?
+
+		iterator	operator + (int inc) { return (m_ptr + inc); }
 
 		bool operator== (const v_iterator& b) const { return m_ptr == b.m_ptr; };
 		bool operator!= (const v_iterator& b) const { return m_ptr != b.m_ptr; };
