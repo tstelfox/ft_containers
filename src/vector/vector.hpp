@@ -6,18 +6,19 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 15:33:28 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/11 15:52:07 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <memory>
-#include <utility>
-#include <vector>
-#include <iterator>
-#include "ra_iterator.hpp"
+# include <iostream>
+# include <memory>
+# include <utility>
+# include <vector>
+# include <iterator>
+# include "ra_iterator.hpp"
+# include "rev_iterator.hpp"
 
 namespace ft {
 
@@ -36,6 +37,7 @@ class vector
 		typedef				size_t							size_type;
 		typedef				Raiterator<T, T*, T&>						iterator;
 		typedef				Raiterator<T, T const*, T const&>			const_iterator;
+		typedef				RevRai<iterator>							reverse_iterator;
 
 		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
 			data = allocator.allocate(10); // Set it to allocate 10 as a default for now
