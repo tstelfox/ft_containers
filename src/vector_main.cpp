@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 12:44:31 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/11 14:59:13 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int		main(void) {
 	std::cout << "Well here goes " << *testit << std::endl;
 	std::cout << "it hasn't changed right " << *it << std::endl;
 
+	std::cout << "Difference is now " << testit - it << std::endl;
 	ft::vector<tester>::iterator woah = attempt.end();
 	for (ft::vector<tester>::iterator it = attempt.begin(); it != woah; ++it)
 		std::cout << *it << std::endl;
