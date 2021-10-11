@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 14:58:32 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/11 15:25:37 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ class v_iterator {
 		iterator	operator ++ (int) {v_iterator temp = *this; ++(*this); return temp;}
 		iterator	operator -- (int) {v_iterator temp = *this; --(*this); return temp;}
 
-		//Ok I see now the requirements for the full random-access package shite
-		//But how to actually implement all this shite?
-
 		iterator&	operator [] (int index) {return *(m_ptr + index);}
 
 		iterator	operator + (difference_type off) const { iterator copy = *this; copy += off; return copy; }
@@ -69,9 +66,12 @@ class v_iterator {
 		difference_type	operator - (iterator const &rhs) const { return (this->m_ptr - rhs.m_ptr); }
 		
 
-
-		bool operator== (const v_iterator& b) const { return m_ptr == b.m_ptr; };
-		bool operator!= (const v_iterator& b) const { return m_ptr != b.m_ptr; };
+		bool operator== (v_iterator const& b) const { return m_ptr == b.m_ptr; }
+		bool operator!= (v_iterator const& b) const { return m_ptr != b.m_ptr; }
+		bool operator< (v_iterator const& b) const { return m_ptr < b.m_ptr; }
+		bool operator> (v_iterator const& b) const { return m_ptr > b.m_ptr; }
+		bool operator<= (v_iterator const& b) const { return m_ptr <= b.m_ptr; }
+		bool operator>= (v_iterator const& b) const { return m_ptr >= b.m_ptr; }
 
 	private:
 		pointer m_ptr;
