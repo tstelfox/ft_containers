@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 11:38:02 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/11 15:33:28 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <utility>
 #include <vector>
 #include <iterator>
-#include "v_iterator.hpp"
+#include "ra_iterator.hpp"
 
 namespace ft {
 
@@ -34,8 +34,8 @@ class vector
 		typedef				value_type const*				const_pointer;
 		typedef				ptrdiff_t						difference_type;
 		typedef				size_t							size_type;
-		typedef				v_iterator<T, T*, T&>						iterator;
-		typedef				v_iterator<T, T const*, T const&>			const_iterator;
+		typedef				Raiterator<T, T*, T&>						iterator;
+		typedef				Raiterator<T, T const*, T const&>			const_iterator;
 
 		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
 			data = allocator.allocate(10); // Set it to allocate 10 as a default for now
