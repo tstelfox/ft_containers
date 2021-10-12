@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/12 15:54:32 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/12 16:37:11 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ class vector
 		
 		reverse_iterator	rbegin() {
 			return reverse_iterator(data + v_size - 1);
+		}
+		reverse_iterator	rend() {
+			return reverse_iterator(data);
 		}
 
 		// rend

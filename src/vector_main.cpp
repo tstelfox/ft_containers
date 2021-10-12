@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/12 16:34:20 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/12 16:39:16 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ int		main(void) {
 
 	std::cout << "<------Iterator time------>" << std::endl << std::endl;
 
+	fuck.clear();
+	for (size_t i = 0; i < 10; i++)
+		fuck.push_back(i);
 	// ft::vector::iterator it = fuck.begin();
 	ft::vector<int>::iterator theend = fuck.end();
 	for (ft::vector<int>::iterator it = fuck.begin(); it != theend; ++it)
@@ -116,18 +119,21 @@ int		main(void) {
 	ft::vector<int>::iterator it = fuck.begin();
 	ft::vector<int>::iterator	testit;
 
-	testit = 10 + it;
+	testit = 6 + it;
 	std::cout << "Well here goes " << *testit << std::endl;
 	std::cout << "it hasn't changed right " << *it << std::endl;
 
 	std::cout << "Difference is now " << testit - it << std::endl;
-	ft::vector<tester>::iterator woah = attempt.end();
-	for (ft::vector<tester>::iterator it = attempt.begin(); it != woah; ++it)
-		std::cout << *it << std::endl;
+	// ft::vector<tester>::iterator woah = attempt.end();
+	// for (ft::vector<tester>::iterator it = attempt.begin(); it != woah; ++it)
+	// 	std::cout << *it << std::endl;
 	ft::vector<int>::reverse_iterator revit = fuck.rbegin();
 	std::cout << "So here is the reverse iterator's beginning: " << *revit << std::endl;
 	revit++;
-		std::cout << "Have gone one up the reverse iterator: " << *revit << std::endl;
+	std::cout << "Have gone one up the reverse iterator: " << *revit << std::endl;
+	revit = fuck.rend();
+	std::cout << "Set the reverse iterator to its end: " << *revit << std::endl;
+
 	/* ft::vector<int> copyfuck(fuck);
 	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl;
 	fuck[2] = 99999;
