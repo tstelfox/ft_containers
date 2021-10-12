@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 15:52:07 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/12 15:54:32 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class vector
 		typedef				size_t							size_type;
 		typedef				Raiterator<T, T*, T&>						iterator;
 		typedef				Raiterator<T, T const*, T const&>			const_iterator;
-		typedef				RevRai<iterator>							reverse_iterator;
+		typedef				Rev_rai<iterator>							reverse_iterator;
 
 		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
 			data = allocator.allocate(10); // Set it to allocate 10 as a default for now
@@ -74,7 +74,9 @@ class vector
 			return const_iterator(data + v_size);
 		}
 		
-		// rbegin
+		reverse_iterator	rbegin() {
+			return reverse_iterator(data + v_size - 1);
+		}
 
 		// rend
 

@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 14:59:13 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/12 15:53:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int		main(void) {
 	ft::vector<tester>::iterator woah = attempt.end();
 	for (ft::vector<tester>::iterator it = attempt.begin(); it != woah; ++it)
 		std::cout << *it << std::endl;
+	ft::vector<int>::reverse_iterator revit = fuck.rbegin();
 	/* ft::vector<int> copyfuck(fuck);
 	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl;
 	fuck[2] = 99999;
