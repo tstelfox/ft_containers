@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 13:38:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 14:59:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,25 @@ class vector
 				data[i] = val;
 		}
 
-		// Range constructor with Iterators
+		template <class InputIterator>
+		vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type()) : allocator(alloc) {
+			difference_type r_size = last - first;
+			data = allocator.allocate(r_size * 2);
+			v_capacity = r_size * 2;
+			v_size = r_size;
+			int i = 0;
+			while (first != last)
+			{
+				allocator.construct(&data[i], *first);
+				first++;
+				i++;
+			}
+		}
 
 		// Copy constructor
 
 		~vector<T, Alloc>() {
+			clear();
 			allocator.deallocate(data, v_capacity);
 		}
 

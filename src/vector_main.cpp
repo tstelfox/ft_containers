@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 13:34:59 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 15:00:08 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,25 @@ void	test_object() {
 
 int		main(void) {
 
-	// int		numset[5] = {69, 99, 7, 111, 47};
-	// ft::vector<int>	fuck(2);
+	
+	// Range constructor testing
+/* 	std::vector<int> john;
+	for (size_t i = 0; i < 10; i++)
+		john.push_back(i);
+	std::vector<int>::iterator it = john.begin();
+	std::vector<int>::iterator endit = john.end();
 
-	test_std();
+	ft::vector<int> ranged(it, endit);
+	for (ft::vector<int>::iterator it = ranged.begin(); it != ranged.end(); it++)
+		std::cout << *it << std::endl; */
+		
+
+
+	// test_std();
 	test_object();
 
+	// ft::vector<int>	fuck(2);
+	// int		numset[5] = {69, 99, 7, 111, 47};
 	
 	// for (int i = 0; i < 5; i++)
 	// 	fuck.push_back(numset[i]);
