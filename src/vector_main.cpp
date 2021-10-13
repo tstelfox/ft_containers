@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 12:50:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 13:28:29 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	test_std() {
 
 	std::vector<tester>::reverse_iterator rit_begin = attempt.rbegin();
 	std::vector<tester>::reverse_iterator rit_end = attempt.rend();
-	std::cout << "Substracting the beginning from the end " << rit_end - rit_begin << std::endl;
-
+	std::vector<tester>::const_reverse_iterator	ohjesus = rit_begin;
+	std::cout << "Substracting the beginning from the end " << rit_end - ohjesus << std::endl;
 }
 
 void	test_object() {
@@ -81,8 +81,12 @@ void	test_object() {
 	for (size_t i = 0; i < attempt.size(); i++)
 		std::cout << attempt[i];
 
-	ft::vector<tester>::reverse_iterator rit_begin = attempt.rbegin();
-	ft::vector<tester>::reverse_iterator rit_end = attempt.rend();
+	ft::vector<tester>::iterator it_begin = attempt.begin();
+	ft::vector<tester>::iterator it_end = attempt.end();
+	ft::vector<tester>::const_iterator	ohboy = it_begin;
+	ft::vector<tester>::const_reverse_iterator rit_begin = attempt.rbegin();
+	ft::vector<tester>::const_reverse_iterator rit_end = attempt.rend();
+	ft::vector<tester>::const_reverse_iterator	ohjesus = rit_begin;
 	std::cout << "Substracting the beginning from the end " << rit_end - rit_begin << std::endl;
 }
 
@@ -91,8 +95,7 @@ int		main(void) {
 	// int		numset[5] = {69, 99, 7, 111, 47};
 	// ft::vector<int>	fuck(2);
 
-	test_std();
-
+	// test_std();
 	test_object();
 
 	
