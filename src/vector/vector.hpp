@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 15:09:24 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 15:32:14 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,17 @@ class vector
 			allocator.deallocate(data, v_capacity);
 		}
 
-		// vector&	operator = (const vector& x) {}
+		vector&	operator = (const vector &other) {
+			clear();
+			v_size = other.v_size;
+			if (v_size > v_capacity) {
+				allocator.deallocate(data, v_capacity);
+				v_capacity = v_size * 2;
+				data = allocator.allocate(v_capacity);
+			}
+			for (size_t i = 0; i < v_size; i++)
+				allocator.construct(&data[i], data[i]);
+		}
 
 		/* <<**------------------- ITERATORS ------------------**>> */
 

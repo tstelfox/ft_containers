@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 15:12:05 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 15:36:59 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,31 @@ int		main(void) {
 
 	
 	// Range constructor testing
-/* 	std::vector<int> john;
+	std::vector<int> john;
 	for (size_t i = 0; i < 10; i++)
 		john.push_back(i);
 	std::vector<int>::iterator it = john.begin();
 	std::vector<int>::iterator endit = john.end();
 
-	ft::vector<int> ranged(it, endit);
+	/* ft::vector<int> ranged(it, endit);
 	for (ft::vector<int>::iterator it = ranged.begin(); it != ranged.end(); it++)
 		std::cout << *it << std::endl;
 
+	std::cout << "Copy constructing" << std::endl;
 	ft::vector<int> copied(ranged);
 	std::cout << "Let's check out copied vector: " << std::endl;
 	for (ft::vector<int>::iterator it = copied.begin(); it != copied.end(); it++)
 		std::cout << *it << std::endl;
-	std::cout << "Shit the [] overload " << copied[9] << std::endl; */
-		
+	std::cout << "Shit the [] overload " << copied[9] << std::endl;
+
+	std::cout << "Assignation overload" << std::endl;
+
+	ft::vector<int> Pilo;
+	for (size_t i = 0; i < 10; i++)
+		Pilo.push_back(i * 2);
+	ft::vector<int>	assigned = Pilo;
+	std::cout << "Right so this should be " << assigned[assigned.size() - 1] << std::endl; */
+
 
 
 	// test_std();
