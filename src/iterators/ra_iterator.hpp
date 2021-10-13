@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 11:32:25 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 11:53:17 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ class Raiterator {
 
 	public:
 
-		typedef	T			value_type;
-		typedef	Pointer		pointer;
-		typedef	Reference	reference;
-		typedef	Category	iterator_category;
-		typedef	ptrdiff_t	difference_type;
+		typedef	T												value_type;
+		typedef	Pointer											pointer;
+		typedef	Reference										reference;
+		typedef	Category										iterator_category;
+		typedef	std::ptrdiff_t									difference_type;
 		typedef	Raiterator<T, Pointer, Reference> 				iterator;
 		typedef	Raiterator<T, const T*, const T&>				const_iterator;
 

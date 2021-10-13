@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/11 15:27:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 11:31:05 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 12:16:17 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ class	Rev_rai {
 			return Rev_rai(current + n);
 		}
 
+		difference_type operator - (Rev_rai const &rhs) const {
+			return rhs.base() - this->base();
+		}
+
 		Rev_rai& operator -= (difference_type n) {
 			current += n;
 			return *this;
@@ -90,6 +94,12 @@ class	Rev_rai {
 			return *(*this + n);
 		}
 
+		bool operator== (Rev_rai const &b) const { return this->base() == b.base(); }
+		bool operator!= (Rev_rai const &b) const { return !(this->base() == b.base()); }
+		bool operator < (Rev_rai const &b) const { return this->base > b.base(); }
+		bool operator > (Rev_rai const &b) const { return this->base < b.base(); }
+		bool operator >= (Rev_rai const &b) const { return this->base <= b.base(); }
+		bool operator <= (Rev_rai const &b) const { return this->base >= b.base(); }
 
 	private:
 		Iterator		r_iterator;
@@ -97,5 +107,12 @@ class	Rev_rai {
 		Iterator	current;
 
 };
+
+template <class Iterator>
+Rev_rai<Iterator>	operator +(typename	Rev_rai<Iterator>::difference_type off,
+										const Rev_rai<Iterator> &it)
+{
+	return Rev_rai<Iterator>(it.base() - off);
+}
 
 }

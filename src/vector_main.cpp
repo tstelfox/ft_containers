@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/12 16:39:16 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 12:50:11 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,103 +40,106 @@ std::ostream& operator << (std::ostream &o, tester const &instance) {
 
 void	test_std() {
 
-	int		numset[5] = {69, 99, 7, 111, 47};
-	std::vector<int> jesus;
+	std::cout << "<-------TESTING STD::VECTOR------->" << std::endl;
 
 
-	for (int i = 0; i < 5; i++)
-		jesus.push_back(numset[i]);
+	tester	testinstance;
+	tester	second(69, 3.14, "Montolivo");
+	tester	third(99, 49.473, "Simio");
+	tester	fourth(46, 6.66, "Magico Bilan");
+	std::vector<tester>	attempt;
 	
-	std::vector<int>::iterator	it = jesus.begin();
+	attempt.push_back(testinstance);
+	attempt.push_back(second);
+	attempt.push_back(third);
+	attempt.push_back(fourth);
 
-	std::vector<int>::iterator	frick;
+	for (size_t i = 0; i < attempt.size(); i++)
+		std::cout << attempt[i];
 
-	// for (std::vector<int>::iterator i = jesus.begin(); i != jesus.end(); i++)
-	// 	std::cout << "fuckin " << *i << std::endl;
-	frick = 3 + it;
-	std::cout << "The standard iterator thingy " << *frick << std::endl;
-	// for (int i = 0; i < 5; i++)
-	// 	jesus.push_back(numset[i]);
-	// std::cout << "The back: " << jesus.back() << std::endl;
-	// std::cout << "It's size: " << jesus.size() << std::endl;
-	// jesus.pop_back();
-	// std::cout << "The back: " << jesus.back() << std::endl;
-	// std::cout << "It's size: " << jesus.size() << std::endl;
+	std::vector<tester>::reverse_iterator rit_begin = attempt.rbegin();
+	std::vector<tester>::reverse_iterator rit_end = attempt.rend();
+	std::cout << "Substracting the beginning from the end " << rit_end - rit_begin << std::endl;
+
+}
+
+void	test_object() {
+	
+	std::cout << "<-------TESTING VECTOR WITH OBJECT------->" << std::endl;
+
+	tester	testinstance;
+	tester	second(69, 3.14, "Montolivo");
+	tester	third(99, 49.473, "Simio");
+	tester	fourth(46, 6.66, "Magico Bilan");
+	ft::vector<tester>	attempt;
+	
+	attempt.push_back(testinstance);
+	attempt.push_back(second);
+	attempt.push_back(third);
+	attempt.push_back(fourth);
+
+	for (size_t i = 0; i < attempt.size(); i++)
+		std::cout << attempt[i];
+
+	ft::vector<tester>::reverse_iterator rit_begin = attempt.rbegin();
+	ft::vector<tester>::reverse_iterator rit_end = attempt.rend();
+	std::cout << "Substracting the beginning from the end " << rit_end - rit_begin << std::endl;
 }
 
 int		main(void) {
 
-	int		numset[5] = {69, 99, 7, 111, 47};
-	ft::vector<int>	fuck(2);
-	ft::vector<tester>	attempt;
-	// ft::vector<int> to_swap(10, 7);
+	// int		numset[5] = {69, 99, 7, 111, 47};
+	// ft::vector<int>	fuck(2);
 
-	// test_std();
+	test_std();
 
-	tester	testinstance;
-	tester	second(69, 3.14, "Montolivo");
-	tester	another(99, 49.473, "Simio");
-	for (int i = 0; i < 5; i++)
-		fuck.push_back(numset[i]);
+	test_object();
 
-	attempt.push_back(testinstance);
-
-	std::cout << "Checking item number 3: [" << fuck[2] << "]" << std::endl;
-
-	std::cout << "The back: " << fuck.back() << std::endl;
-	std::cout << "It's size: " << fuck.size() << std::endl;
-	fuck.resize(3);
-	std::cout << "The back: " << fuck.back() << std::endl;
-	std::cout << "It's size: " << fuck.size() << std::endl;
-	fuck.resize(10, 666);
-
-	for (size_t i = 0; i < fuck.size(); i++)
-		std::cout << fuck[i] << std::endl;
-	std::cout << attempt.back();
 	
-	attempt.push_back(second);
-	std::cout << attempt.back();
-	attempt.push_back(another);
+	// for (int i = 0; i < 5; i++)
+	// 	fuck.push_back(numset[i]);
 
-	// std::cout << attempt.size() << std::endl;
+	// std::cout << "Checking item number 3: [" << fuck[2] << "]" << std::endl;
+
+	// std::cout << "The back: " << fuck.back() << std::endl;
+	// std::cout << "It's size: " << fuck.size() << std::endl;
+	// fuck.resize(3);
+	// std::cout << "The back: " << fuck.back() << std::endl;
+	// std::cout << "It's size: " << fuck.size() << std::endl;
+	// fuck.resize(10, 666);
+
+	// for (size_t i = 0; i < fuck.size(); i++)
+	// 	std::cout << fuck[i] << std::endl;
+
 	
+	// // fuck.clear();
+	// fuck.push_back(111);
+	// for (size_t i = 0; i < fuck.size(); i++)
+	// 	std::cout << fuck[i] << std::endl;
+
+
+	// std::cout << "<------Iterator time------>" << std::endl << std::endl;
+
 	// fuck.clear();
-	fuck.push_back(111);
-	for (size_t i = 0; i < fuck.size(); i++)
-		std::cout << fuck[i] << std::endl;
-
-
-	std::cout << "<------Iterator time------>" << std::endl << std::endl;
-
-	fuck.clear();
-	for (size_t i = 0; i < 10; i++)
-		fuck.push_back(i);
-	// ft::vector::iterator it = fuck.begin();
-	ft::vector<int>::iterator theend = fuck.end();
-	for (ft::vector<int>::iterator it = fuck.begin(); it != theend; ++it)
-		std::cout << *it << std::endl;
-
-	ft::vector<int>::iterator it = fuck.begin();
-	ft::vector<int>::iterator	testit;
-
-	testit = 6 + it;
-	std::cout << "Well here goes " << *testit << std::endl;
-	std::cout << "it hasn't changed right " << *it << std::endl;
-
-	std::cout << "Difference is now " << testit - it << std::endl;
-	// ft::vector<tester>::iterator woah = attempt.end();
-	// for (ft::vector<tester>::iterator it = attempt.begin(); it != woah; ++it)
+	// for (size_t i = 0; i < 10; i++)
+	// 	fuck.push_back(i);
+	// // ft::vector::iterator it = fuck.begin();
+	// ft::vector<int>::iterator theend = fuck.end();
+	// for (ft::vector<int>::iterator it = fuck.begin(); it != theend; ++it)
 	// 	std::cout << *it << std::endl;
-	ft::vector<int>::reverse_iterator revit = fuck.rbegin();
-	std::cout << "So here is the reverse iterator's beginning: " << *revit << std::endl;
-	revit++;
-	std::cout << "Have gone one up the reverse iterator: " << *revit << std::endl;
-	revit = fuck.rend();
-	std::cout << "Set the reverse iterator to its end: " << *revit << std::endl;
 
-	/* ft::vector<int> copyfuck(fuck);
-	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl;
-	fuck[2] = 99999;
-	std::cout << "Checking fuck item number 3: [" << fuck[2] << "]" << std::endl;
-	std::cout << "Checking copyitem number 3: [" << copyfuck[2] << "]" << std::endl; */
+	// ft::vector<int>::iterator it = fuck.begin();
+	// ft::vector<int>::iterator	testit;
+
+	// testit = 6 + it;
+	// std::cout << "Well here goes " << *testit << std::endl;
+	// std::cout << "it hasn't changed right " << *it << std::endl;
+
+	// std::cout << "Difference is now " << testit - it << std::endl;
+	// ft::vector<int>::reverse_iterator revit = fuck.rbegin();
+	// std::cout << "So here is the reverse iterator's beginning: " << *revit << std::endl;
+	// revit++;
+	// std::cout << "Have gone one up the reverse iterator: " << *revit << std::endl;
+	// revit = fuck.rend();
+	// std::cout << "Set the reverse iterator to its end: " << *revit << std::endl;
 }
