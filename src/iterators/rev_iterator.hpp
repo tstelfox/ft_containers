@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/11 15:27:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/12 16:40:07 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 11:31:05 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class	Rev_rai {
 			*this = rev_it;
 		}
 		~Rev_rai () {}
+
 		Rev_rai&	operator = (const Rev_rai &rhs) {
 			if (this != &rhs)
 				this->current = rhs.base();
@@ -57,6 +58,38 @@ class	Rev_rai {
 			++(*this);
 			return temp;
 		}
+		Rev_rai&	operator -- () {
+			--current;
+			return *this;
+		}
+		Rev_rai	operator -- (int) {
+			Rev_rai temp(*this);
+			--(*this);
+			return temp;
+		}
+
+		Rev_rai	operator + (difference_type	n) const {
+			return Rev_rai(current - n);
+		}
+
+		Rev_rai& operator += (difference_type n) {
+			current -= n;
+			return *this;
+		}
+
+		Rev_rai	operator - (difference_type	n) const {
+			return Rev_rai(current + n);
+		}
+
+		Rev_rai& operator -= (difference_type n) {
+			current += n;
+			return *this;
+		}
+
+		reference	operator [] (difference_type n) const {
+			return *(*this + n);
+		}
+
 
 	private:
 		Iterator		r_iterator;

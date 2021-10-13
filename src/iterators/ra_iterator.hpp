@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/11 15:51:27 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 11:32:25 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ class Raiterator {
 		difference_type	operator - (iterator const &rhs) const { return (this->m_ptr - rhs.m_ptr); }
 		
 
+		//Is it fine to have these overloads within the class?
 		bool operator== (Raiterator const& b) const { return m_ptr == b.m_ptr; }
 		bool operator!= (Raiterator const& b) const { return m_ptr != b.m_ptr; }
 		bool operator< (Raiterator const& b) const { return m_ptr < b.m_ptr; }
