@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 13:28:29 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 13:34:59 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,17 @@ void	test_std() {
 	attempt.push_back(third);
 	attempt.push_back(fourth);
 
-	for (size_t i = 0; i < attempt.size(); i++)
-		std::cout << attempt[i];
+	std::cout << "** Iterator test **" << std::endl;
 
-	std::vector<tester>::reverse_iterator rit_begin = attempt.rbegin();
-	std::vector<tester>::reverse_iterator rit_end = attempt.rend();
-	std::vector<tester>::const_reverse_iterator	ohjesus = rit_begin;
-	std::cout << "Substracting the beginning from the end " << rit_end - ohjesus << std::endl;
+	std::vector<tester>::iterator it_begin = attempt.begin();
+	std::vector<tester>::iterator it_end = attempt.end();
+	std::cout << "Substracting the beginning from the end " << it_end - it_begin << std::endl;
+	while (it_begin != it_end)
+	{
+		std::cout << *it_begin;
+		it_begin++;
+	}
+
 }
 
 void	test_object() {
@@ -78,16 +82,17 @@ void	test_object() {
 	attempt.push_back(third);
 	attempt.push_back(fourth);
 
-	for (size_t i = 0; i < attempt.size(); i++)
-		std::cout << attempt[i];
+	std::cout << "** Iterator test **" << std::endl;
 
 	ft::vector<tester>::iterator it_begin = attempt.begin();
 	ft::vector<tester>::iterator it_end = attempt.end();
-	ft::vector<tester>::const_iterator	ohboy = it_begin;
-	ft::vector<tester>::const_reverse_iterator rit_begin = attempt.rbegin();
-	ft::vector<tester>::const_reverse_iterator rit_end = attempt.rend();
-	ft::vector<tester>::const_reverse_iterator	ohjesus = rit_begin;
-	std::cout << "Substracting the beginning from the end " << rit_end - rit_begin << std::endl;
+	std::cout << "Substracting the beginning from the end " << it_end - it_begin << std::endl;
+	while (it_begin != it_end)
+	{
+		std::cout << *it_begin;
+		it_begin++;
+	}
+
 }
 
 int		main(void) {
@@ -95,7 +100,7 @@ int		main(void) {
 	// int		numset[5] = {69, 99, 7, 111, 47};
 	// ft::vector<int>	fuck(2);
 
-	// test_std();
+	test_std();
 	test_object();
 
 	

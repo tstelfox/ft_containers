@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 13:23:35 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 13:38:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ class vector
 		const_reverse_iterator	rend() const {
 			return const_reverse_iterator(data - 1);
 		}
-
-		// rend
 
 		/* <<**------------------- CAPACITY ------------------**>> */
 
