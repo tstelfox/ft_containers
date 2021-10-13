@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 14:59:12 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 15:09:24 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,12 @@ class vector
 			}
 		}
 
-		// Copy constructor
+		vector (const vector &other) : allocator(other.allocator), v_capacity(other.v_capacity), v_size(other.v_size) {
+			// Keeps a copy of other's allocator
+			data = allocator.allocate(v_capacity);
+			for (size_t i = 0; i < v_size; i++)
+				allocator.construct(&data[i], other[i]);
+		}
 
 		~vector<T, Alloc>() {
 			clear();

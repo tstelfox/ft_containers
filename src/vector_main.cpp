@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 15:00:08 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/13 15:12:05 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,18 @@ int		main(void) {
 
 	ft::vector<int> ranged(it, endit);
 	for (ft::vector<int>::iterator it = ranged.begin(); it != ranged.end(); it++)
-		std::cout << *it << std::endl; */
+		std::cout << *it << std::endl;
+
+	ft::vector<int> copied(ranged);
+	std::cout << "Let's check out copied vector: " << std::endl;
+	for (ft::vector<int>::iterator it = copied.begin(); it != copied.end(); it++)
+		std::cout << *it << std::endl;
+	std::cout << "Shit the [] overload " << copied[9] << std::endl; */
 		
 
 
 	// test_std();
-	test_object();
+	// test_object();
 
 	// ft::vector<int>	fuck(2);
 	// int		numset[5] = {69, 99, 7, 111, 47};
