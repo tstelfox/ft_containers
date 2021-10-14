@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 15:32:14 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/14 16:23:46 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,10 @@ class vector
 		}
 
 		// insert requires iterators
+		// And there are three fucking types for faks seik
+		iterator	insert(iterator position, value_type const &val) {
+			
+		}
 
 		// erase does too
 
