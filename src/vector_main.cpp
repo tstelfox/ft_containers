@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 15:36:59 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/15 16:08:07 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	test_object() {
 	tester	second(69, 3.14, "Montolivo");
 	tester	third(99, 49.473, "Simio");
 	tester	fourth(46, 6.66, "Magico Bilan");
+	tester	swapper(27, 9.47, "Forza Napoli");
 	ft::vector<tester>	attempt;
 	
 	attempt.push_back(testinstance);
@@ -93,17 +94,25 @@ void	test_object() {
 		it_begin++;
 	}
 
+	std::cout << "** Swap test **" << std::endl;
+
+	ft::vector<tester> swapped;
+	swapped.push_back(swapper);
+
+	swapped.swap(attempt);
+	std::cout << attempt[0];
+
 }
 
 int		main(void) {
 
 	
 	// Range constructor testing
-	std::vector<int> john;
-	for (size_t i = 0; i < 10; i++)
-		john.push_back(i);
-	std::vector<int>::iterator it = john.begin();
-	std::vector<int>::iterator endit = john.end();
+	// std::vector<int> john;
+	// for (size_t i = 0; i < 10; i++)
+	// 	john.push_back(i);
+	// std::vector<int>::iterator it = john.begin();
+	// std::vector<int>::iterator endit = john.end();
 
 	/* ft::vector<int> ranged(it, endit);
 	for (ft::vector<int>::iterator it = ranged.begin(); it != ranged.end(); it++)
@@ -127,7 +136,7 @@ int		main(void) {
 
 
 	// test_std();
-	// test_object();
+	test_object();
 
 	// ft::vector<int>	fuck(2);
 	// int		numset[5] = {69, 99, 7, 111, 47};
