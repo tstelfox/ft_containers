@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/15 16:27:46 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/15 16:29:23 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,10 @@ void	test_object() {
 	ft::vector<std::string>::iterator it = string_vec.begin();
 	it += 4;
 	std::cout << *it << std::endl;
-	
+
+	std::cout << "Size is " << string_vec.size() << std::endl;
+	string_vec.resize(3);
+	std::cout << string_vec.back() << std::endl;
 }
 
 int		main(void) {
