@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/15 16:08:07 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/15 16:27:46 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,26 @@ void	test_object() {
 	swapped.push_back(swapper);
 
 	swapped.swap(attempt);
-	std::cout << attempt[0];
+	for (size_t i = 0; i < swapped.size(); i++)
+		std::cout << swapped[i];
 
+	std::cout << "<--------TESTING WITH STRINGS---------->" << std::endl;
+
+	ft::vector<std::string>	string_vec;
+	string_vec.push_back("Mother");
+	string_vec.push_back("Fucking");
+	string_vec.push_back("Hijueputa");
+	string_vec.push_back("Porqué");
+	string_vec.push_back("Has venido");
+	string_vec.push_back("Al party con los hermanos?");
+
+	for (ft::vector<std::string>::iterator it = string_vec.begin(); it != string_vec.end(); it++)
+		std::cout << *it << std::endl;
+	string_vec[4] = "la cagaste";
+	ft::vector<std::string>::iterator it = string_vec.begin();
+	it += 4;
+	std::cout << *it << std::endl;
+	
 }
 
 int		main(void) {
