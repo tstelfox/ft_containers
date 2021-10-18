@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/15 16:07:05 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/18 15:30:45 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ class vector
 				data = allocator.allocate(v_capacity);
 			}
 			for (size_t i = 0; i < v_size; i++)
-				allocator.construct(&data[i], data[i]);
+				allocator.construct(&data[i], other[i]);
 			return *this;
 		}
 
@@ -239,10 +239,9 @@ class vector
 		// }
 
 		void	swap(vector& x) { // Swap here needs the assignation operator overload I feel
-			vector	temp(size());
-			temp = *this;
-			*this = x;
-			x = temp;
+			vector	temp(x);
+			x = *this;
+			*this = temp;
 		}
 
 		void	clear() {

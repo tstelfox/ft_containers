@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/15 16:29:23 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/18 15:32:03 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void	test_object() {
 
 	swapped.swap(attempt);
 	for (size_t i = 0; i < swapped.size(); i++)
-		std::cout << swapped[i];
+		std::cout << "swapped item " << i << " " << swapped[i];
+	std::cout << "Attempt has " << attempt[0];
 
 	std::cout << "<--------TESTING WITH STRINGS---------->" << std::endl;
 
@@ -123,6 +124,24 @@ void	test_object() {
 	std::cout << "Size is " << string_vec.size() << std::endl;
 	string_vec.resize(3);
 	std::cout << string_vec.back() << std::endl;
+}
+
+void	test_int() {
+
+	ft::vector<int>	fuck;
+	int		numset[5] = {69, 99, 7, 111, 47};
+	
+	for (int i = 0; i < 5; i++)
+		fuck.push_back(numset[i]);
+
+	std::cout << "** Swap test **" << std::endl;
+
+	ft::vector<int> swapped;
+	swapped.push_back(99999);
+
+	swapped.swap(fuck);
+	for (size_t i = 0; i < swapped.size(); i++)
+		std::cout << swapped[i] << std::endl;
 }
 
 int		main(void) {
@@ -158,6 +177,7 @@ int		main(void) {
 
 	// test_std();
 	test_object();
+	// test_int();
 
 	// ft::vector<int>	fuck(2);
 	// int		numset[5] = {69, 99, 7, 111, 47};
