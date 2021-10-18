@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/18 16:08:39 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/18 16:40:51 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	test_object() {
 	tester	third(99, 49.473, "Simio");
 	tester	fourth(46, 6.66, "Magico Bilan");
 	tester	swapper(27, 9.47, "Forza Napoli");
+	tester	sixth(0, 1010, "Adriatico");
 	ft::vector<tester>	attempt;
 	
 	attempt.push_back(testinstance);
@@ -109,6 +110,13 @@ void	test_object() {
 	attempt.assign(iter, iter + 2);
 	for (size_t i = 0; i < attempt.size(); i++)
 		std::cout << "Attempt has been assigned " << swapped[i];
+
+
+	std::cout << "***** Insertion *****" << std::endl;
+	iter += 2;
+	swapped.insert(iter, sixth);
+	for (size_t i = 0; i < swapped.size(); i++)
+		std::cout << "Item no " << i << " of vector: " << swapped[i];
 
 	std::cout << "<--------TESTING WITH STRINGS---------->" << std::endl;
 
