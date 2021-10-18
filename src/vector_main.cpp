@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/18 15:32:03 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/18 16:08:39 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,12 @@ void	test_object() {
 	for (size_t i = 0; i < swapped.size(); i++)
 		std::cout << "swapped item " << i << " " << swapped[i];
 	std::cout << "Attempt has " << attempt[0];
+
+	std::cout << "***** Assignation *****" << std::endl;
+	ft::vector<tester>::iterator iter = swapped.begin();
+	attempt.assign(iter, iter + 2);
+	for (size_t i = 0; i < attempt.size(); i++)
+		std::cout << "Attempt has been assigned " << swapped[i];
 
 	std::cout << "<--------TESTING WITH STRINGS---------->" << std::endl;
 

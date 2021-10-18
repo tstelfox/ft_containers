@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/18 15:30:45 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/18 16:03:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ class vector
 			}
 			if (n > v_size) {
 				if (n > v_capacity)
-					reserve(n + v_capacity); // Pretty sure there must be a better way to do this but whatevs
+					reserve(n + v_capacity); // This may be reserving quite a lot sometimes but hmm
 				for (size_type i = v_size; i < n; i++) {
 					data[i] = val;
 					++v_size;
@@ -203,7 +203,21 @@ class vector
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
-		// assign with iterator
+		template < class InputIterator >
+		void	assign(InputIterator first, InputIterator last) {
+			clear();
+			v_size = last - first;
+			if (v_size >= v_capacity) {
+				reserve(v_size + v_capacity);
+				v_capacity += v_size;
+			}
+			int i = 0;
+			while (first != last) {
+				allocator.construct(&data[i], *first);
+				first++;
+				i++;
+			}
+		}
 
 		void	assign(size_type n, const value_type &val) { // Might need revisiting
 			for (size_type i = 0; i < n; i++) {
