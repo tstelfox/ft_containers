@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/18 16:03:12 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/18 16:19:23 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,6 @@ class vector
 			v_size = last - first;
 			if (v_size >= v_capacity) {
 				reserve(v_size + v_capacity);
-				v_capacity += v_size;
 			}
 			int i = 0;
 			while (first != last) {
@@ -243,9 +242,13 @@ class vector
 
 		// insert requires iterators
 		// And there are three fucking types for faks seik
-		// iterator	insert(iterator position, value_type const &val) {
-		// 	// Dioporco questa é una rottura di cojoni
-		// }
+		iterator	insert(iterator position, value_type const &val) {
+			// Dioporco questa é una rottura di cojoni
+			v_size++;
+			if (v_size > v_capacity)
+				reserve(v_size * 2);
+			allocator.construct()
+		}
 
 		// erase does too
 		// iterator	erase (iterator position) {
