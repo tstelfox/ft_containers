@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/18 16:51:32 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/18 16:59:24 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,16 +247,13 @@ class vector
 			v_size++;
 			if (v_size > v_capacity)
 				reserve(v_size * 2);
-			iterator	og_pos = position;
-			iterator next_pos = position + 1;
-			while (next_pos != this->end()) {
-				next_pos = position;
-				position++;
-				next_pos++;
+			iterator next_pos = this->end() - 1;
+			while (next_pos != position) {
+				allocator.construct(&(*next_pos), *(next_pos - 1));
+				next_pos--;
 			}
-			pointer og_pointer = &(*og_pos);
-			allocator.construct(og_pointer, val);
-			return og_pos;
+			allocator.construct(&(*position), val);
+			return position;
 		}
 
 		// erase does too
