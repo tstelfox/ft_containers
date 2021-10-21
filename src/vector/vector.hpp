@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 13:26:44 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 13:35:13 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,7 +317,7 @@ class vector
 			return first;
 		}
 
-		void	swap(vector& x) { // Swap here needs the assignation operator overload I feel
+		void	swap(vector& x) {
 			vector	temp(x);
 			x = *this;
 			*this = temp;
@@ -345,19 +345,9 @@ class vector
 
 /* <<**------------------- Relational Operators ------------------**>> */
 
-	// Honestly should write the iterators first
-
-// template <class T, class Alloc> // Not sure this'll work
+// template <class T, class Alloc>
 // bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-// 	if (lhs.size() == rhs.size()) {
-// 		size_type i = 0;
-// 		size_type common_size = lhs.size();
-// 		while (lhs[i] == rhs[i] && i < common_size)
-// 			i++;
-// 		if (i == common_size)
-// 			return true;
-// 	}
-// 	return false;
+// 	// As if using algorithm "equal"
 // }
 
 // template <class T, class Alloc>
