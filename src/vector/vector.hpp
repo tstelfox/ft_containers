@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 13:08:02 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 13:15:24 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,8 +289,15 @@ class vector
 		}
 
 		iterator	erase (iterator position) {
-			// Can't reduce the size just yet
-
+			allocator.destroy(&(*position));
+			iterator end_pos = this->end() - 1;
+			iterator og_pos = position;
+			while (position != end_pos) {
+				allocator.construct(&(*position), *(position + 1));
+				position++;
+			}
+			v_size--;
+			return og_pos;
 		}
 
 		void	swap(vector& x) { // Swap here needs the assignation operator overload I feel
