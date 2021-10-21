@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/18 16:59:24 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 12:38:07 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,10 +240,7 @@ class vector
 			--v_size;
 		}
 
-		// insert requires iterators
-		// And there are three fucking types for faks seik
 		iterator	insert(iterator position, value_type const &val) {
-			// Dioporco questa é una rottura di cojoni
 			v_size++;
 			if (v_size > v_capacity)
 				reserve(v_size * 2);
@@ -254,6 +251,13 @@ class vector
 			}
 			allocator.construct(&(*position), val);
 			return position;
+		}
+
+		void		insert(iterator position, size_type n, value_type const &val) {
+			v_size += n;
+			if (v_size > v_capacity)
+				reserve(v_size * 2);
+			iterator next_pos = this->end() - 1;
 		}
 
 		// erase does too
