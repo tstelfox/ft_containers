@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 12:38:07 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 12:50:15 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,15 @@ class vector
 			if (v_size > v_capacity)
 				reserve(v_size * 2);
 			iterator next_pos = this->end() - 1;
+			iterator final_pos = position + n;
+			while (next_pos + 1 != final_pos) {
+				allocator.construct(&(*next_pos), *(next_pos - n));
+				next_pos--;
+			}
+			while (position != final_pos) {
+				allocator.construct(&(*position), val);
+				position++;
+			}
 		}
 
 		// erase does too

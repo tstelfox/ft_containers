@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/18 16:57:58 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 12:44:20 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,14 @@ void	test_object() {
 	std::cout << "***** Insertion *****" << std::endl;
 	iter += 2;
 	swapped.insert(iter, sixth);
+	std::cout << "*Single*" << std::endl;
 	for (size_t i = 0; i < swapped.size(); i++)
 		std::cout << "Item no " << i << " of vector: " << swapped[i];
-
+	std::cout << "*Ranged*" << std::endl;
+	swapped.insert(iter, 5, swapper);
+	for (size_t i = 0; i < swapped.size(); i++)
+		std::cout << "Item no " << i << " of vector: " << swapped[i];
+	
 	std::cout << "<--------TESTING WITH STRINGS---------->" << std::endl;
 
 	ft::vector<std::string>	string_vec;
