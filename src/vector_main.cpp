@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 16:23:37 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 16:41:18 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,8 +251,8 @@ void	test_int() {
 int		main(void) {
 
 
-	test_std();
-	// test_object();
+	// test_std();
+	test_object();
 	// test_int();
 
 	return 0;
