@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 15:24:07 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 16:18:11 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,8 +363,32 @@ bool	operator != (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
 
 template <class T, class Alloc>
 bool	operator < (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	// What the shit is going on here?
-	size_type i = 0;
+	size_t i = 0;
+	while (i < lhs.size() || i < rhs.size()) {
+		if (i >= lhs.size())
+			return true;
+		if (i >= rhs.size())
+			return false;
+		if (lhs[i] < rhs[i] && rhs[i] > lhs[i])
+			return true;
+		i++;
+	}
+	return false;
+}
+
+template <class T, class Alloc>
+bool	operator > (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	return (rhs < lhs);
+}
+
+template <class T, class Alloc>
+bool	operator <= (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	return !(rhs < lhs);
+}
+
+template <class T, class Alloc>
+bool	operator >= (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	return !(lhs < rhs);
 }
 
 }
