@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 12:55:05 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 13:08:02 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,10 +288,10 @@ class vector
 			}
 		}
 
-		// erase does too
-		// iterator	erase (iterator position) {
-		// 	// For fucks sake this has to relocate everything in the array jesus christ my god che palle
-		// }
+		iterator	erase (iterator position) {
+			// Can't reduce the size just yet
+
+		}
 
 		void	swap(vector& x) { // Swap here needs the assignation operator overload I feel
 			vector	temp(x);
