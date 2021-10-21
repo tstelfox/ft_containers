@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 12:44:20 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 12:58:31 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,14 @@ void	test_object() {
 	swapped.insert(iter, 5, swapper);
 	for (size_t i = 0; i < swapped.size(); i++)
 		std::cout << "Item no " << i << " of vector: " << swapped[i];
+	std::cout << "*With Iterators*" << std::endl;
+	for (size_t i = 0; i < attempt.size(); i++)
+		std::cout << "Item no " << i << " of attempt vector BEFORE: " << attempt[i];
+	ft::vector<tester>::iterator first = swapped.begin() + 1;
+	ft::vector<tester>::iterator last = first + 7;
+	attempt.insert(attempt.begin() + attempt.size(), first, last);
+	for (size_t i = 0; i < attempt.size(); i++)
+		std::cout << "Item no " << i << " of attempt vector AFTER: " << attempt[i];
 	
 	std::cout << "<--------TESTING WITH STRINGS---------->" << std::endl;
 

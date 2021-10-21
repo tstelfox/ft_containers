@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 12:50:15 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 12:55:05 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,25 @@ class vector
 			while (position != final_pos) {
 				allocator.construct(&(*position), val);
 				position++;
+			}
+		}
+
+		template < class InputIterator >
+		void		insert(iterator position, InputIterator first, InputIterator last) {
+			difference_type	n = last - first;
+			v_size += n;
+			if (v_size > v_capacity)
+				reserve(v_size * 2);
+			iterator next_pos = this->end() - 1;
+			iterator final_pos = position + n;
+			while (next_pos + 1 != final_pos) {
+				allocator.construct(&(*next_pos), *(next_pos - n));
+				next_pos--;
+			}
+			while (position != final_pos) {
+				allocator.construct(&(*position), *(first));
+				position++;
+				first++;
 			}
 		}
 
