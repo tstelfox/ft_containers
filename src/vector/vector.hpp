@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 13:35:13 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 15:24:07 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,19 +345,26 @@ class vector
 
 /* <<**------------------- Relational Operators ------------------**>> */
 
-// template <class T, class Alloc>
-// bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-// 	// As if using algorithm "equal"
-// }
+template <class T, class Alloc>
+bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	if (lhs.size() != rhs.size())
+		return false;
+	for (size_t i = 0; i < lhs.size(); i++) {
+		if (!(lhs[i] == rhs[i]))
+			return false;
+	}
+	return true;
+}
 
-// template <class T, class Alloc>
-// bool	operator != (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-// 	return (!(lhs == rhs));
-// }
+template <class T, class Alloc>
+bool	operator != (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	return (!(lhs == rhs));
+}
 
-// template <class T, class Alloc>
-// bool	operator < (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-// 	size_type i = 0;
-// }
+template <class T, class Alloc>
+bool	operator < (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	// What the shit is going on here?
+	size_type i = 0;
+}
 
 }
