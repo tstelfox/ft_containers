@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 13:17:47 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/21 13:28:03 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,11 @@ void	test_object() {
 	std::cout << "*Single*" << std::endl;
 	attempt.erase(attempt.begin() + 2);
 	for (size_t i = 0; i < attempt.size(); i++)
-		std::cout << "Item no " << i << " of attempt vector AFTER: " << attempt[i];
+		std::cout << "Item no " << i << " of attempt vector: " << attempt[i];
 	std::cout << "*Ranged*" << std::endl;
-	
+	attempt.erase(attempt.begin() + 1, attempt.begin() + 6);
+	for (size_t i = 0; i < attempt.size(); i++)
+		std::cout << "Item no " << i << " of attempt vector: " << attempt[i];
 	std::cout << "<--------TESTING WITH STRINGS---------->" << std::endl;
 
 	ft::vector<std::string>	string_vec;
