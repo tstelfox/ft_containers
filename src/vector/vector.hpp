@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/25 11:39:14 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/25 11:42:25 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,6 +394,11 @@ bool	operator <= (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
 template <class T, class Alloc>
 bool	operator >= (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
 	return !(lhs < rhs);
+}
+
+template < class T, class Alloc >
+void	swap (vector<T, Alloc> &x, vector<T, Alloc> &y) {
+	x.swap(y);
 }
 
 }
