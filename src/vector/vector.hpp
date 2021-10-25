@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 16:18:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/25 11:39:14 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <iterator>
 # include "ra_iterator.hpp"
 # include "rev_iterator.hpp"
+# include "equal_lexographical_compare.h"
 
 namespace ft {
 
@@ -347,13 +348,15 @@ class vector
 
 template <class T, class Alloc>
 bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+	
 	if (lhs.size() != rhs.size())
 		return false;
-	for (size_t i = 0; i < lhs.size(); i++) {
-		if (!(lhs[i] == rhs[i]))
-			return false;
-	}
-	return true;
+	return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+	// for (size_t i = 0; i < lhs.size(); i++) {
+	// 	if (!(lhs[i] == rhs[i]))
+	// 		return false;
+	// }
+	// return true;
 }
 
 template <class T, class Alloc>
@@ -363,17 +366,19 @@ bool	operator != (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
 
 template <class T, class Alloc>
 bool	operator < (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-	size_t i = 0;
-	while (i < lhs.size() || i < rhs.size()) {
-		if (i >= lhs.size())
-			return true;
-		if (i >= rhs.size())
-			return false;
-		if (lhs[i] < rhs[i] && rhs[i] > lhs[i])
-			return true;
-		i++;
-	}
-	return false;
+	
+	return (ft::lexographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+	// size_t i = 0;
+	// while (i < lhs.size() || i < rhs.size()) {
+	// 	if (i >= lhs.size())
+	// 		return true;
+	// 	if (i >= rhs.size())
+	// 		return false;
+	// 	if (lhs[i] < rhs[i] && rhs[i] > lhs[i])
+	// 		return true;
+	// 	i++;
+	// }
+	// return false;
 }
 
 template <class T, class Alloc>

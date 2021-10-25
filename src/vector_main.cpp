@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/21 16:41:18 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/25 11:10:40 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,53 +257,4 @@ int		main(void) {
 
 	return 0;
 
-	// ft::vector<int>	fuck(2);
-	// int		numset[5] = {69, 99, 7, 111, 47};
-	
-	// for (int i = 0; i < 5; i++)
-	// 	fuck.push_back(numset[i]);
-
-	// std::cout << "Checking item number 3: [" << fuck[2] << "]" << std::endl;
-
-	// std::cout << "The back: " << fuck.back() << std::endl;
-	// std::cout << "It's size: " << fuck.size() << std::endl;
-	// fuck.resize(3);
-	// std::cout << "The back: " << fuck.back() << std::endl;
-	// std::cout << "It's size: " << fuck.size() << std::endl;
-	// fuck.resize(10, 666);
-
-	// for (size_t i = 0; i < fuck.size(); i++)
-	// 	std::cout << fuck[i] << std::endl;
-
-	
-	// // fuck.clear();
-	// fuck.push_back(111);
-	// for (size_t i = 0; i < fuck.size(); i++)
-	// 	std::cout << fuck[i] << std::endl;
-
-
-	// std::cout << "<------Iterator time------>" << std::endl << std::endl;
-
-	// fuck.clear();
-	// for (size_t i = 0; i < 10; i++)
-	// 	fuck.push_back(i);
-	// // ft::vector::iterator it = fuck.begin();
-	// ft::vector<int>::iterator theend = fuck.end();
-	// for (ft::vector<int>::iterator it = fuck.begin(); it != theend; ++it)
-	// 	std::cout << *it << std::endl;
-
-	// ft::vector<int>::iterator it = fuck.begin();
-	// ft::vector<int>::iterator	testit;
-
-	// testit = 6 + it;
-	// std::cout << "Well here goes " << *testit << std::endl;
-	// std::cout << "it hasn't changed right " << *it << std::endl;
-
-	// std::cout << "Difference is now " << testit - it << std::endl;
-	// ft::vector<int>::reverse_iterator revit = fuck.rbegin();
-	// std::cout << "So here is the reverse iterator's beginning: " << *revit << std::endl;
-	// revit++;
-	// std::cout << "Have gone one up the reverse iterator: " << *revit << std::endl;
-	// revit = fuck.rend();
-	// std::cout << "Set the reverse iterator to its end: " << *revit << std::endl;
 }
