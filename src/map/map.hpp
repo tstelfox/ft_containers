@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/25 16:32:44 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/25 17:45:21 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ class map
 		typedef	size_t									size_type;
 		typedef	ptrdiff_t								difference_type;
 
+		class	value_compare {
+			protected:
+				Compare comp;
+				value_compare (Compare c) : comp(c) {}
+			public:
+				typedef bool 		result_type;
+				typedef value_type	first_argument_type;
+				typedef	value_type	second_argument_type;
+				bool operator () (value_type const &x, value_type const &y) const {
+					return comp(x.first, y.first);
+				}
+		}
 		// Somehow have to build this value_compare
 
 		map() {}
@@ -40,7 +52,8 @@ class map
 	private:
 		allocator_type	m_allocator;
 		key_compare		_comp;
-		
+		size_type		m_size;
+		pointer			data; //Is it a pointer?
 		
 
 };
