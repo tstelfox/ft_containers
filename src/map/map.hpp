@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/25 17:45:21 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/25 18:27:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,14 @@ class map
 		}
 		// Somehow have to build this value_compare
 
-		map() {}
+		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type()) {
+			// Construct somehow
+		}
+
+
 		~map() {}
+
+
 	private:
 		allocator_type	m_allocator;
 		key_compare		_comp;
