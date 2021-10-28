@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/25 18:27:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/28 09:25:52 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <iostream>
 #include <memory>
 #include <map>
+
+namespace ft {
+
 
 template < class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator< std::pair<const Key, T> > >
 class map
@@ -44,11 +47,13 @@ class map
 				bool operator () (value_type const &x, value_type const &y) const {
 					return comp(x.first, y.first);
 				}
-		}
+		};
 		// Somehow have to build this value_compare
 
-		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type()) {
-			// Construct somehow
+		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
+				: m_allocator(alloc) , _comp(comp) , m_size(0) {
+			data = NULL;
+			std::cout << "Here is a map with whatever type" << std::endl;
 		}
 
 
@@ -63,3 +68,5 @@ class map
 		
 
 };
+
+}
