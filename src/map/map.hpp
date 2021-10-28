@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/28 14:03:45 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/28 14:39:50 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ class map
 {
 	public:
 
-		typedef	Key										key_type;
-		typedef	T										mapped_type;
-		typedef std::pair<const key_type, mapped_type>	value_type;
-		typedef	Compare									key_compare;
-		typedef	Alloc									allocator_type;
-		typedef	value_type&								reference;
-		typedef	const value_type&						const_reference;
-		typedef value_type*								pointer;
-		typedef const value_type*						const_pointer;
+		typedef	Key											key_type;
+		typedef	T											mapped_type;
+		typedef std::pair<const key_type, mapped_type>		value_type;
+		typedef	Compare										key_compare;
+		typedef	Alloc										allocator_type;
+		typedef	value_type&									reference;
+		typedef	const value_type&							const_reference;
+		typedef value_type*									pointer;
+		typedef const value_type*							const_pointer;
 		typedef	Biditerator<value_type, pointer, reference>	iterator;
-		typedef	size_t									size_type;
-		typedef	ptrdiff_t								difference_type;
+		typedef	size_t										size_type;
+		typedef	ptrdiff_t									difference_type;
 
 		class	value_compare : binary_function<value_type, value_type, bool> {
 			protected:
