@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/28 09:25:52 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/28 12:09:59 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,24 @@ class map
 
 
 		~map() {}
+
+		/* <<**------------------- ITERATORS ------------------**>> */
+
+		/* <<**------------------- CAPACITY ------------------**>> */
+
+		/* <<**------------------- ELEMENT ACCESS ------------------**>> */
+
+		// mapped_type&	operator[] (key_type const &k) {
+		// 	//Requires insert I believe - But now I'm not so sure
+		// 	//In any case I perhaps need to crack std::pair first
+		// }
+
+		/* <<**------------------- MODIFIERS ------------------**>> */
+
+		// std::pair<iterator, bool>	insert (const value_type& val) {
+			
+		// }	
+
 
 
 	private:
