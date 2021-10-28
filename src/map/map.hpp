@@ -6,14 +6,16 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/28 12:09:59 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/28 12:50:45 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
 #include <iostream>
 #include <memory>
 #include <map>
+#include "bi_iterator.hpp"
 
 namespace ft {
 
@@ -32,7 +34,7 @@ class map
 		typedef	const value_type&						const_reference;
 		typedef value_type*								pointer;
 		typedef const value_type*						const_pointer;
-		// Iterator stuff
+		typedef	Biditerator<value_type, pointer, reference>	iterator;
 		typedef	size_t									size_type;
 		typedef	ptrdiff_t								difference_type;
 
@@ -48,7 +50,6 @@ class map
 					return comp(x.first, y.first);
 				}
 		};
-		// Somehow have to build this value_compare
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
 				: m_allocator(alloc) , _comp(comp) , m_size(0) {
@@ -61,6 +62,10 @@ class map
 
 		/* <<**------------------- ITERATORS ------------------**>> */
 
+		iterator	begin() {
+			return iterator(data);
+		}
+
 		/* <<**------------------- CAPACITY ------------------**>> */
 
 		/* <<**------------------- ELEMENT ACCESS ------------------**>> */
@@ -72,9 +77,15 @@ class map
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
-		// std::pair<iterator, bool>	insert (const value_type& val) {
-			
-		// }	
+		std::pair<iterator, bool>	insert (const value_type& val) {
+			data = m_allocator.allocate(m_size + 1);
+			m_size++;
+			std::make_pair(val.first, val.second);
+
+			iterator it = begin();
+
+			return std::make_pair(it, true);
+		}
 
 
 
