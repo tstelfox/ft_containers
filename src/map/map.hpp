@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/28 12:50:45 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/28 12:57:52 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ class map
 		std::pair<iterator, bool>	insert (const value_type& val) {
 			data = m_allocator.allocate(m_size + 1);
 			m_size++;
-			std::make_pair(val.first, val.second);
-
+			value_type dave = std::make_pair(val.first, val.second);
+			m_allocator.construct(&(*data), dave);
 			iterator it = begin();
 
 			return std::make_pair(it, true);
