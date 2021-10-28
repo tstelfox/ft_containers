@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/28 12:57:52 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/28 14:03:45 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class map
 		typedef	size_t									size_type;
 		typedef	ptrdiff_t								difference_type;
 
-		class	value_compare {
+		class	value_compare : binary_function<value_type, value_type, bool> {
 			protected:
 				Compare comp;
 				value_compare (Compare c) : comp(c) {}
@@ -78,7 +78,7 @@ class map
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
 		std::pair<iterator, bool>	insert (const value_type& val) {
-			data = m_allocator.allocate(m_size + 1);
+			data = m_allocator.allocate(m_size + 1); // Allocation is gonna have to be managed
 			m_size++;
 			value_type dave = std::make_pair(val.first, val.second);
 			m_allocator.construct(&(*data), dave);
@@ -94,6 +94,7 @@ class map
 		key_compare		_comp;
 		size_type		m_size;
 		pointer			data; //Is it a pointer?
+		// Have to make a binary tree then
 		
 
 };
