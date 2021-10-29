@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/29 13:30:56 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/29 13:55:17 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <memory>
 #include <map>
 #include "bi_iterator.hpp"
+#include "tree_node.hpp"
 
 namespace ft {
 
@@ -93,9 +94,9 @@ class map
 		allocator_type	m_allocator;
 		key_compare		_comp;
 		size_type		m_size;
-		pointer			data; //Is it a pointer?
-		// Have to make a binary tree then
-		// Some kind of struct
+		pointer			data; //This has to be replaced by the binary tree nodes
+
+		// Have to make a binary tree node class then
 		
 
 };
