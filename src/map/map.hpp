@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/28 14:39:50 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/10/29 13:30:56 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ class map
 		size_type		m_size;
 		pointer			data; //Is it a pointer?
 		// Have to make a binary tree then
+		// Some kind of struct
 		
 
 };
