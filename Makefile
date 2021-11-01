@@ -6,7 +6,7 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2021/10/25 11:37:55 by tmullan       ########   odam.nl          #
+#    Updated: 2021/11/01 16:34:38 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 FLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDES = -Isrc/vector -Isrc/map -Isrc/iterators -Isrc/utils
 
-vector map:
+map vector:
 	@echo Compiling $@
 	@$(CXX) src/$@_main.cpp $(FLAGS) $(INCLUDES) -o $(NAME)
 

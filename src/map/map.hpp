@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/01 16:08:45 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/01 16:53:42 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <memory>
 #include <map>
-#include "bi_iterator.hpp"
+#include "bimap_iterator.hpp"
 #include "tree_node.hpp"
 
 namespace ft {
@@ -38,8 +38,9 @@ class map
 		typedef	Biditerator<value_type, pointer, reference>	iterator;
 		typedef	size_t										size_type;
 		typedef	ptrdiff_t									difference_type;
+		typedef	node<value_type>							mapnode;
 
-		class	value_compare : binary_function<value_type, value_type, bool> {
+		class	value_compare : std::binary_function<value_type, value_type, bool> {
 			protected:
 				Compare comp;
 				value_compare (Compare c) : comp(c) {}
@@ -54,7 +55,7 @@ class map
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
 				: m_allocator(alloc) , _comp(comp) , m_size(0) {
-			data = NULL;
+			tree = new node<value_type>;
 			std::cout << "Here is a map with whatever type" << std::endl;
 		}
 
@@ -64,7 +65,7 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
-			return iterator(data);
+			return iterator(first);
 		}
 
 		/* <<**------------------- CAPACITY ------------------**>> */
@@ -79,10 +80,10 @@ class map
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
 		std::pair<iterator, bool>	insert (const value_type& val) {
-			data = m_allocator.allocate(m_size + 1); // Allocation is gonna have to be managed
+			tree.object = m_allocator.allocate(m_size + 1); // Allocation is gonna have to be managed
 			m_size++;
 			value_type dave = std::make_pair(val.first, val.second);
-			m_allocator.construct(&(*data), dave);
+			m_allocator.construct(&(tree.object), dave);
 			iterator it = begin();
 
 			return std::make_pair(it, true);
@@ -94,7 +95,10 @@ class map
 		allocator_type		m_allocator;
 		key_compare			_comp;
 		size_type			m_size;
-		node<value_type>		tree;
+		mapnode				first;
+		mapnode				last;
+		mapnode				tree;
+		
 		// pointer			data; //This has to be replaced by the binary tree nodes
 
 		// Have to make a binary tree node class then
