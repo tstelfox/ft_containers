@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/29 13:55:17 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/01 16:08:45 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,11 @@ class map
 
 
 	private:
-		allocator_type	m_allocator;
-		key_compare		_comp;
-		size_type		m_size;
-		pointer			data; //This has to be replaced by the binary tree nodes
+		allocator_type		m_allocator;
+		key_compare			_comp;
+		size_type			m_size;
+		node<value_type>		tree;
+		// pointer			data; //This has to be replaced by the binary tree nodes
 
 		// Have to make a binary tree node class then
 		
