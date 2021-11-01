@@ -6,13 +6,14 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:10:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/01 16:53:31 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/01 17:07:56 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iterator>
+#include "tree_node.hpp"
 
 namespace ft {
 
@@ -27,9 +28,9 @@ class Bimapiterator {
 		typedef	Reference										reference;
 		typedef	Category										iterator_category;
 		typedef	std::ptrdiff_t									difference_type;
-		typedef	node<value_type>								node_ptr;
-		typedef	Bimapiterator<T, Pointer, Reference> 				iterator;
-		typedef	Bimapiterator<T, const T*, const T&>				const_iterator;
+		typedef node<value_type>								node_ptr;
+		typedef	Bimapiterator<T, Pointer, Reference> 			iterator;
+		typedef	Bimapiterator<T, const T*, const T&>			const_iterator;
 
 	public:
 		Bimapiterator() : m_ptr(NULL) {}
