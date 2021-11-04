@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/01 17:15:41 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/04 13:18:06 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ class map
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
 				: m_allocator(alloc) , _comp(comp) , m_size(0) {
-			first = new node<value_type>;
+			node<value_type>	temp;
+			this->first = temp;
 			// tree = 0;
 			// last = 0;
 			std::cout << "Here is a map with whatever type" << std::endl;
