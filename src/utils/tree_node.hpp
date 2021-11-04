@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/01 17:19:31 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/04 13:32:33 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ class node {
 		explicit node(value_type const &val = value_type()) : object(val) , parent(0), left(0), right(0)  {}
 
 		~node() {}
+
+
+		node&	operator = (const node &other) {
+			
+			if (this != &other) {
+				object = other.object;
+				parent = other.parent;
+				left = other.left;
+				right = other.right;
+			}
+			return *this;
+		}
 		
 	private: // Maybe (?)
 		value_type	object;
