@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:10:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/01 17:07:56 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/04 14:18:22 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ class Bimapiterator {
 		typedef	Reference										reference;
 		typedef	Category										iterator_category;
 		typedef	std::ptrdiff_t									difference_type;
-		typedef node<value_type>								node_ptr;
+		typedef node<value_type>*								node_ptr;
 		typedef	Bimapiterator<T, Pointer, Reference> 			iterator;
 		typedef	Bimapiterator<T, const T*, const T&>			const_iterator;
+		// typedef	node<value_type>*								node_pointer;
 
 	public:
 		Bimapiterator() : m_ptr(NULL) {}
-		Bimapiterator(const pointer ptr) : m_ptr(ptr) {}
+		Bimapiterator(const node_ptr ptr) : m_ptr(ptr) {}
 		Bimapiterator(const iterator& x) { *this = x; }
 		virtual ~Bimapiterator() {}
 
@@ -47,7 +48,7 @@ class Bimapiterator {
 		}
 
 		reference	operator * () const {return *m_ptr;}
-		pointer		operator -> () {return m_ptr;}
+		node_ptr	operator -> () {return m_ptr;}
 
 		//Prefix increment/decrement
 		iterator&	operator ++ () {m_ptr++; return *this;}
@@ -66,12 +67,12 @@ class Bimapiterator {
 		node_ptr m_ptr;
 };
 
-template <typename T, typename Pointer, 
-		typename Reference>
-Bimapiterator<T, Pointer, Reference>	operator +(typename	Bimapiterator<T, Pointer, Reference>::difference_type off,
-										const Bimapiterator<T, Pointer, Reference> &it)
-	{
-		return it + off;
-	}
+// template <typename T, typename Pointer, 
+// 		typename Reference>
+// Bimapiterator<T, Pointer, Reference>	operator +(typename	Bimapiterator<T, Pointer, Reference>::difference_type off,
+// 										const Bimapiterator<T, Pointer, Reference> &it)
+// 	{
+// 		return it + off;
+// 	}
 
 }
