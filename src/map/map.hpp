@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/04 13:38:42 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/04 14:02:24 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class map
 		typedef	size_t										size_type;
 		typedef	ptrdiff_t									difference_type;
 		typedef node<value_type>							mapnode;
+		// typedef	node<value_type>*							mapnode_pointer;
 
 		class	value_compare : std::binary_function<value_type, value_type, bool> {
 			protected:
@@ -53,9 +54,13 @@ class map
 		};
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
-				: m_allocator(alloc) , _comp(comp) , m_size(0) {
-			node<value_type>	temp(std::make_pair(key_type(), mapped_type()));
-			this->first = temp;
+				: m_allocator(alloc) , _comp(comp) , m_size(0), first() {
+			// value_type temp = value_type(0, 0);
+			// first.object = m_allocator.allocate(1);
+			// node<value_type> fuck(temp);
+			// first = fuck;
+			// node<value_type>	temp(std::make_pair(key_type(), mapped_type()));
+			// this->first = temp;
 			// tree = 0;
 			// last = 0;
 			std::cout << "Here is a map with whatever type" << std::endl;
@@ -82,11 +87,11 @@ class map
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
 		std::pair<iterator, bool>	insert (const value_type& val) {
-			first.object = m_allocator.allocate(m_size + 1); // Allocation is gonna have to be managed
+			// first->object = m_allocator.allocate(1); // Allocation is gonna have to be managed
 			m_size++;
 			value_type dave = std::make_pair(val.first, val.second);
-			first(dave);
-			// m_allocator.construct(&(first.object), dave);
+			// *first(dave);
+			m_allocator.construct(&(first->object), dave);
 			iterator it = begin();
 
 			return std::make_pair(it, true);
@@ -98,7 +103,7 @@ class map
 		allocator_type		m_allocator;
 		key_compare			_comp;
 		size_type			m_size;
-		mapnode				first;
+		mapnode				*first;
 		// mapnode				last;
 		// mapnode				tree;
 		

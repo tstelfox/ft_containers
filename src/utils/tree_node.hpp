@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/04 13:32:33 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/04 13:50:26 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ class node {
 			return *this;
 		}
 		
-	private: // Maybe (?)
 		value_type	object;
 		node*		parent;
 		node*		left;
 		node*		right;
+	private: // Maybe (?)
 		
 };
