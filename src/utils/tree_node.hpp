@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/04 14:38:41 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/11 16:13:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ class node {
 			}
 			return *this;
 		}
-
-		// void	insert_pair(value_type const &val) {
-		// 	object = val;
-		// }
 		
 		// value_type	*object; // For allocator
 		value_type	object;
