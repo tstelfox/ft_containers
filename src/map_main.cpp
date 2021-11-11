@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/11 16:06:47 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/11 17:44:06 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ void	test_basic() {
 	
 	ft::map<int, std::string> first_v;
 
-	std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(99, "Mazzarri"));
-	ft::map<int, std::string>::iterator it = deh.first;
+	// std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(99, "Mazzarri"));
+	first_v.insert(std::pair<int, std::string>(99, "Mazzarri"));
+	std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));
+	ft::map<int, std::string>::iterator it = first_v.begin();
+
+	std::cout << it->object.second << std::endl;
+	// it = deh.first;
+	it++;
 	std::cout << it->object.second << std::endl;
 	
 }
