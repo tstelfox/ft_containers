@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/11 16:23:00 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/11/12 11:01:45 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class node {
 			}
 			return *this;
 		}
+
+		// Get next node
 		
 		// value_type	*object; // For allocator
 		value_type	object;
