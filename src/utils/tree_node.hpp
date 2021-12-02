@@ -32,7 +32,9 @@ class node {
 			return *this;
 		}
 
-		// Get next node
+		// node*	get_next_node() {
+		// 	// Has to find the next largest node (parent if it has no children.)
+		// }
 		
 		// value_type	*object; // For allocator
 		value_type	object;

@@ -24,7 +24,7 @@ void	test_basic() {
 	std::cout << it->object.second << std::endl;
 	// it++; // This requires the nodes and iterators to go up the tree
 
-	//The following isn't working diobe:
+	// The following isn't working diobe:
 	// node<std::pair<const int, std::string> > next = *it->left;
 	// it = it->right;
 	// std::cout << next.object.second << std::endl;
