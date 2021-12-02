@@ -67,7 +67,6 @@ class map
 			// std::cout << "Here is a map with whatever type" << std::endl;
 		}
 
-
 		~map() {}
 
 		/* <<**------------------- ITERATORS ------------------**>> */
