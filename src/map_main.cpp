@@ -17,7 +17,7 @@ void	test_basic() {
 	ft::map<int, std::string> first_v;
 
 	// std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(99, "Mazzarri"));
-	first_v.insert(std::pair<int, std::string>(99, "Mazzarri"));
+	first_v.insert(std::pair<int, std::string>(99, "Fuoco"));
 	// std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));
 	ft::map<int, std::string>::iterator it = first_v.begin();
 
