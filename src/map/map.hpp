@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/11 17:43:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/13 20:10:56 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
-			return iterator(root);
+			return iterator(last); // Should begin at left-most leaf
 		}
 
 		/* <<**------------------- CAPACITY ------------------**>> */
