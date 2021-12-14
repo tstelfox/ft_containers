@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/13 20:10:56 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/14 15:33:50 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ class map
 
 		// So currently I can get a single node in there. Now need to start the structure of nodes and the comparison
 		std::pair<iterator, bool>	insert (const value_type& val) {
-			if (m_size == 1)
+			if (m_size >= 1)
 			{
 				last = m_allocator.allocate(1);
 				m_size++;
