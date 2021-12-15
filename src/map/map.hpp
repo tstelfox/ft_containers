@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/15 17:13:00 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/15 17:40:31 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
-			while (root->left) // There must be a cleaner way of doing this - like a smallest() function
-				root = root->left;
-			first_node = root;
+			mapnode *temp = root;
+			while (temp->left) // There must be a cleaner way of doing this - like a smallest() function
+				temp = temp->left;
+			first_node = temp;
 			return iterator(first_node); // Should begin at left-most leaf
 		}
 
