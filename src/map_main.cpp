@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/14 15:34:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/15 12:48:08 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ void	test_basic() {
 	first_v.insert(std::pair<int, std::string>(96, "Kali"));
 	first_v.insert(std::pair<int, std::string>(69, "Uchis"));
 	first_v.insert(std::pair<int, std::string>(37, "Colombia"));
+	first_v.insert(std::pair<int, std::string>(100, "Shakira Shakira"));
 	// std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));
 	ft::map<int, std::string>::iterator it = first_v.begin();
 
 	// it++; // This requires the nodes and iterators to go up the tree
-	std::cout << it->object.second << std::endl;
+	// std::cout << it->object.second << std::endl;
 
 	// The following isn't working diobe:
 	// node<std::pair<const int, std::string> > next = *it->left;
