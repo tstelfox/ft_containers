@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/15 16:35:05 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/15 16:57:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ class map
 		};
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
-				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), last() {
+				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node() {
 			// value_type temp = value_type(0, 0);
 			// first.object = m_allocator.allocate(1);
 			// node<value_type> fuck(temp);
@@ -63,7 +63,7 @@ class map
 			// node<value_type>	temp(std::make_pair(key_type(), mapped_type()));
 			// this->first = temp;
 			// tree = 0;
-			// last = 0;
+			// first_node = 0;
 			// std::cout << "Here is a map with whatever type" << std::endl;
 		}
 
@@ -72,8 +72,15 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
-			return iterator(last); // Should begin at left-most leaf
+			while (root->left) // There must be a cleaner way of doing this - like a smallest() function
+				root = root->left;
+			first_node = root;
+			return iterator(first_node); // Should begin at left-most leaf
 		}
+
+		// iterator	end() { // Bruh how do I even find the item PAST the end of the BST?
+
+		// }
 
 		/* <<**------------------- CAPACITY ------------------**>> */
 
@@ -86,7 +93,6 @@ class map
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
-		// So currently I can get a single node in there. Now need to start the structure of nodes and the comparison
 		// std::pair<iterator, bool>	insert (const value_type& val) {
 		void		insert (const value_type& val) {
 			if (m_size >= 1)
@@ -96,19 +102,17 @@ class map
 				mapnode *saved = root;
 				m_size++;
 				m_allocator.construct(temp, val);
-				std::cout << "\nTree branch after insertion currently" << std::endl;
-				std::cout << "Root node: " << root->object.first << std::endl;
+				// std::cout << "\nTree branch after insertion currently" << std::endl;
+				// std::cout << "Root node: " << root->object.first << std::endl;
 				while (root) {
 					if (!value_compare(_comp)(root->object, temp->object)) {
 						if (root->left) {
 							root = root->left;
-							std::cout << "node: " << root->object.first << std::endl;
+							// std::cout << "node: " << root->object.first << std::endl;
 						}
 						else {
-							root->left = temp; 
-							// m_allocator.allocate(1);
-							// m_allocator.construct(root->left, val);
-							std::cout << "Inserted object: " << root->left->object.first << std::endl;
+							root->left = temp;
+							// std::cout << "Inserted object: " << root->left->object.first << std::endl;
 							root = saved;
 							break;
 						}
@@ -116,39 +120,17 @@ class map
 					else {
 						if (root->right) {
 							root = root->right;
-							std::cout << "node: " << root->object.first << std::endl;
+							// std::cout << "node: " << root->object.first << std::endl;
 						}
 						else {
 							root->right = temp;
-							// root->right = m_allocator.allocate(1);
-							// m_allocator.construct(root->right, val);
-							std::cout << "Inserted object: " << root->right->object.first << std::endl;
+							// std::cout << "Inserted object: " << root->right->object.first << std::endl;
 							root = saved;
 							break;
 						}
 					}
 				}
-				// while (iter->right || iter->left) {
-				// 	// if (value_compare(_comp)(iter->object, temp->object))
-				// }
-				// if (value_compare(_comp)(root->object, temp->object))
-				// 	root->left = temp;
-				// else
-				// 	root->right = temp;
-				// iterator it = begin()++;
-				// return std::make_pair(it, true);
 			}
-			// else if (m_size > 1) {
-			// 	last = m_allocator.allocate(1);
-			// 	m_size++;
-			// 	m_allocator.construct(last, val);
-			// 	if (value_compare(_comp)(root->object, last->object))
-			// 		root->left = last;
-			// 	else
-			// 		root->right = last;
-			// 	iterator it = begin()++;
-			// 	return std::make_pair(it, true);
-			// }
 			else {
 				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
 				m_size++;
@@ -156,25 +138,28 @@ class map
 				m_allocator.construct(root, val);
 			}
 			// iterator it = begin(); // This needs fixed to point to the correct thing
-
 			// return std::make_pair(it, true);
 		}
 
 		/* <<**------------------- TEEEEEEESTING ------------------**>> */
 
-		void	contents(mapnode *root) { //In no fucking particular order
+		void	contents(mapnode *root, int i) { //In no fucking particular order
 			mapnode *temp = root;
 			
+			std::cout << "Level of branch: " << i << std::endl;
 			std::cout << temp->object.first << " " << temp->object.second <<  std::endl;
 			if (temp->left && temp->right) {
-				contents(temp->left);
-				contents(temp->right);
+				i++;
+				contents(temp->left, i);
+				contents(temp->right, i);
 			}
 			else if (temp->left){
-				contents(temp->left);
+				i++;
+				contents(temp->left, i);
 			}
 			else if (temp->right) {
-				contents(temp->right);
+				i++;
+				contents(temp->right, i);
 			}
 		}
 
@@ -188,7 +173,7 @@ class map
 		key_compare			_comp;
 		size_type			m_size;
 		mapnode				*root;
-		mapnode				*last;
+		mapnode				*first_node;
 		// mapnode				tree;
 		
 		// pointer			data; //This has to be replaced by the binary tree nodes
