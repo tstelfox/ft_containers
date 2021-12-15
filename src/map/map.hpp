@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/15 12:40:55 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/15 13:26:43 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,14 +162,27 @@ class map
 
 		/* <<**------------------- TEEEEEEESTING ------------------**>> */
 
-		// void	contents() {
-		// 	while (root != last) {
-		// 		std::cout << root->object->second << std::endl;
-		// 		if ()
-		// 	}
-		// }
+		void	contents(mapnode *root) {
+			mapnode *temp = root;
+			
+			// std::cout << temp->object.first << " " << temp->object.second <<  std::endl;
+			while (temp) {
+				if (value_compare(_comp)(root->object, temp->object)){
+					temp = temp->left;
+					std::cout << temp->object.first << " " << temp->object.second << std::endl;
+					contents(temp);
+				}
+				else if (!value_compare(_comp)(root->object, temp->object)) {
+					temp = temp->right;
+					std::cout << temp->object.first << " " << temp->object.second << std::endl;
+					contents(temp);
+				}
+			}
+		}
 
-
+		mapnode*	get_root() {
+			return root;
+		}
 
 	private:
 		// allocator_type		m_allocator;
