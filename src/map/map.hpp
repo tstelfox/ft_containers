@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/15 13:26:43 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/15 16:35:05 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ class map
 				mapnode *saved = root;
 				m_size++;
 				m_allocator.construct(temp, val);
-				std::cout << "\nTree structure currently" << std::endl;
+				std::cout << "\nTree branch after insertion currently" << std::endl;
 				std::cout << "Root node: " << root->object.first << std::endl;
 				while (root) {
-					if (value_compare(_comp)(root->object, temp->object)) {
+					if (!value_compare(_comp)(root->object, temp->object)) {
 						if (root->left) {
 							root = root->left;
 							std::cout << "node: " << root->object.first << std::endl;
@@ -162,21 +162,19 @@ class map
 
 		/* <<**------------------- TEEEEEEESTING ------------------**>> */
 
-		void	contents(mapnode *root) {
+		void	contents(mapnode *root) { //In no fucking particular order
 			mapnode *temp = root;
 			
-			// std::cout << temp->object.first << " " << temp->object.second <<  std::endl;
-			while (temp) {
-				if (value_compare(_comp)(root->object, temp->object)){
-					temp = temp->left;
-					std::cout << temp->object.first << " " << temp->object.second << std::endl;
-					contents(temp);
-				}
-				else if (!value_compare(_comp)(root->object, temp->object)) {
-					temp = temp->right;
-					std::cout << temp->object.first << " " << temp->object.second << std::endl;
-					contents(temp);
-				}
+			std::cout << temp->object.first << " " << temp->object.second <<  std::endl;
+			if (temp->left && temp->right) {
+				contents(temp->left);
+				contents(temp->right);
+			}
+			else if (temp->left){
+				contents(temp->left);
+			}
+			else if (temp->right) {
+				contents(temp->right);
 			}
 		}
 

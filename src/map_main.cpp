@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/15 13:27:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/15 16:33:28 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	test_basic() {
 	ft::map<int, std::string>::iterator it = first_v.begin();
 
 	std::cout << "\nTree CONTENTS TIME" << std::endl;
-	std::cout << first_v.get_root()->object.first << " " << first_v.get_root()->object.second <<  std::endl;
+	// std::cout << first_v.get_root()->object.first << " " << first_v.get_root()->object.second <<  std::endl;
 	first_v.contents(first_v.get_root());
 	// it++; // This requires the nodes and iterators to go up the tree
 	// std::cout << it->object.second << std::endl;
