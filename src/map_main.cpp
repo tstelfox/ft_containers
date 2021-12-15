@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/15 16:49:02 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/15 17:13:25 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	test_basic() {
 	first_v.insert(std::pair<int, std::string>(11, "Shakira Shakira"));
 	// std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));
 	ft::map<int, std::string>::iterator it = first_v.begin();
-	std::cout << it->object.second << std::endl;
+	std::cout << "Value at beginning: " << it->object.second << std::endl;
 
 	std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << first_v.get_root()->object.first << " " << first_v.get_root()->object.second <<  std::endl;

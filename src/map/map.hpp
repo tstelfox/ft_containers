@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/15 16:57:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/15 17:13:00 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ class map
 {
 	public:
 
-		typedef	Key											key_type;
-		typedef	T											mapped_type;
-		typedef std::pair<const key_type, mapped_type>		value_type;
-		typedef	Compare										key_compare;
-		typedef	Alloc										allocator_type;
-		typedef	value_type&									reference;
-		typedef	const value_type&							const_reference;
-		typedef value_type*									pointer;
-		typedef const value_type*							const_pointer;
-		typedef	Bimapiterator<value_type, pointer, reference>	iterator;
-		typedef	size_t										size_type;
-		typedef	ptrdiff_t									difference_type;
-		typedef node<value_type>							mapnode;
-		typedef	typename Alloc::template rebind<mapnode>::other					node_alloc;
+		typedef	Key													key_type;
+		typedef	T													mapped_type;
+		typedef std::pair<const key_type, mapped_type>				value_type;
+		typedef	Compare												key_compare;
+		typedef	Alloc												allocator_type;
+		typedef	value_type&											reference;
+		typedef	const value_type&									const_reference;
+		typedef value_type*											pointer;
+		typedef const value_type*									const_pointer;
+		typedef	Bimapiterator<value_type, pointer, reference>		iterator;
+		typedef	size_t												size_type;
+		typedef	ptrdiff_t											difference_type;
+		typedef node<value_type>									mapnode;
+		typedef	typename Alloc::template rebind<mapnode>::other		node_alloc;
 
 		class	value_compare : std::binary_function<value_type, value_type, bool> {
 			friend class map;
@@ -55,17 +55,9 @@ class map
 		};
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
-				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node() {
-			// value_type temp = value_type(0, 0);
-			// first.object = m_allocator.allocate(1);
-			// node<value_type> fuck(temp);
-			// first = fuck;
-			// node<value_type>	temp(std::make_pair(key_type(), mapped_type()));
-			// this->first = temp;
-			// tree = 0;
-			// first_node = 0;
-			// std::cout << "Here is a map with whatever type" << std::endl;
-		}
+				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node() {}
+
+		// map(const map& x) {} // Dunno how the copy constructor is gonna look and may need iterators or may be able to just use insert()?
 
 		~map() {}
 
@@ -83,6 +75,20 @@ class map
 		// }
 
 		/* <<**------------------- CAPACITY ------------------**>> */
+
+		bool		empty() const {
+			if (m_size == 0)
+				return true;
+			return false;
+		}
+
+		size_type	size() const {
+			return m_size;
+		}
+
+		size_type	max_size() const {
+			return m_allocator.max_size();
+		}
 
 		/* <<**------------------- ELEMENT ACCESS ------------------**>> */
 
@@ -168,17 +174,13 @@ class map
 		}
 
 	private:
-		// allocator_type		m_allocator;
 		node_alloc			m_allocator;
 		key_compare			_comp;
 		size_type			m_size;
 		mapnode				*root;
 		mapnode				*first_node;
-		// mapnode				tree;
+		// mapnode				*last_node;
 		
-		// pointer			data; //This has to be replaced by the binary tree nodes
-
-		// Have to make a binary tree node class then
 		
 
 };
