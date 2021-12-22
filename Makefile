@@ -6,7 +6,7 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2021/11/17 02:14:07 by tmullan       ########   odam.nl          #
+#    Updated: 2021/12/22 12:26:50 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,11 @@ OBJ_DIR = obj
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 FLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDES = -Isrc/vector -Isrc/map -Isrc/iterators -Isrc/utils
+
+ifdef SEGS
+	FLAGS += -fsanitize=address -g
+endif
+
 
 map vector:
 	@echo Compiling $@

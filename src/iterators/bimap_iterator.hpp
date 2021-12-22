@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:10:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/11 17:45:15 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/14 15:29:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class Bimapiterator {
 		node_ptr	operator -> () {return m_ptr;}
 
 		//Prefix increment/decrement
-		iterator&	operator ++ () {m_ptr++; return *this;}
+		iterator&	operator ++ () {m_ptr->get_next_node(); return *this;}
 		// Need to implement get_next_node or some shit
 		iterator&	operator -- () {m_ptr--; return *this;}
 		
