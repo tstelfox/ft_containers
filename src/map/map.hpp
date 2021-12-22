@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/11/11 17:43:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 12:26:03 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ class map
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
 		// So currently I can get a single node in there. Now need to start the structure of nodes and the comparison
+		// Moreover, if something with the same key is passed to insert, it will not be inserted.
 		std::pair<iterator, bool>	insert (const value_type& val) {
 			if (m_size == 1)
 			{
