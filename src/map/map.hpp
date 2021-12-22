@@ -6,13 +6,14 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 16:49:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 18:01:11 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <iomanip>
 #include <memory>
 #include <map>
 #include "bimap_iterator.hpp"
@@ -37,7 +38,7 @@ class map
 		typedef	Bimapiterator<value_type, pointer, reference>		iterator;
 		typedef	size_t												size_type;
 		typedef	ptrdiff_t											difference_type;
-		typedef node<value_type>									mapnode;
+		typedef node<value_type>						mapnode;
 		typedef	typename Alloc::template rebind<mapnode>::other		node_alloc;
 
 		class	value_compare : std::binary_function<value_type, value_type, bool> {
@@ -163,13 +164,13 @@ class map
 			mapnode *temp = root;
 
 			if (both) {
-				std::cout << std::endl << std::cout.width(i - 10) << temp->left->object.first << std::cout.width(20) << temp->right->object.first << std::endl;
+				std::cout << std::endl << std::setw(i - 10) << temp->left->object.first << std::setw(20) << temp->right->object.first << std::endl;
 				print_next_nodes(temp->left, i - 10);
 				print_next_nodes(temp->right, i + 10);
 			}
 			else
 			{
-				std::cout << std::endl << std::cout.width(i) << temp->object.first << std::endl;
+				std::cout << std::endl << std::setw(i) << temp->object.first << std::endl;
 				if (temp->left && temp->right)
 					print_next_nodes(temp, i);
 				else if (temp->left)

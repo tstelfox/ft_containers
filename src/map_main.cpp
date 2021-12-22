@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 16:51:36 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 17:53:22 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	test_basic() {
 	test.insert(std::pair<int, std::string>(6, "Colombia"));
 	test.insert(std::pair<int, std::string>(15, "Gran Colombia"));
 	test.insert(std::pair<int, std::string>(4, "Shakira Shakira"));
-	test.insert(std::pair<int, std::string>(5, "Aiuto Shakira"));
-	test.insert(std::pair<int, std::string>(2, "dio cane"));
-	test.insert(std::pair<int, std::string>(99, "dio bastardo"));
-	test.insert(std::pair<int, std::string>(47, "dio porco"));
-	test.insert(std::pair<int, std::string>(16, "dio stronzo"));
+	// test.insert(std::pair<int, std::string>(5, "Aiuto Shakira"));
+	// test.insert(std::pair<int, std::string>(2, "dio cane"));
+	// test.insert(std::pair<int, std::string>(99, "dio bastardo"));
+	// test.insert(std::pair<int, std::string>(47, "dio porco"));
+	// test.insert(std::pair<int, std::string>(16, "dio stronzo"));
 
 
 	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));

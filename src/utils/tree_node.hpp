@@ -6,12 +6,12 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 14:36:48 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 17:50:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-template < class value_type >
+template < class value_type > // Have to add the comp here, maybe (?)
 class node {
 
 	public:
@@ -32,13 +32,20 @@ class node {
 			return *this;
 		}
 
-		node*	get_next_node() {
-			if (!left and !right) {
-				return parent;
-			}
-			return right;
-			// Has to find the next largest node (parent if it has no children.)
-		}
+		// void	insert_node(node *new_node) {
+		// 	if (key_compare(this->object.first, new_node.first)) {
+		// 		std::cout << "It's larger" << std::endl;
+
+		// 	}
+		// }
+
+		// node*	get_next_node() {
+		// 	if (!left and !right) {
+		// 		return parent;
+		// 	}
+		// 	return right;
+		// 	// Has to find the next largest node (parent if it has no children.)
+		// }
 
 		// value_type	*object; // For allocator
 		value_type	object;
