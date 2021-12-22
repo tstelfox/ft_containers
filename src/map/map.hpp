@@ -6,11 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-<<<<<<< HEAD
-/*   Updated: 2021/12/22 12:26:03 by tmullan       ########   odam.nl         */
-=======
-/*   Updated: 2021/12/15 17:40:31 by tmullan       ########   odam.nl         */
->>>>>>> 778758c977806fdb94cce7adda664ed390b15793
+/*   Updated: 2021/12/22 15:29:41 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +114,11 @@ class map
 				// std::cout << "Root node: " << root->object.first << std::endl;
 				while (root) {
 					if (!value_compare(_comp)(root->object, temp->object)) {
-						if (root->left) {
+						if (root->left)
 							root = root->left;
-							// std::cout << "node: " << root->object.first << std::endl;
-						}
 						else {
 							root->left = temp;
-							// std::cout << "Inserted object: " << root->left->object.first << std::endl;
+							root->left->parent = root;
 							root = saved;
 							break;
 						}
@@ -132,11 +126,10 @@ class map
 					else {
 						if (root->right) {
 							root = root->right;
-							// std::cout << "node: " << root->object.first << std::endl;
 						}
 						else {
 							root->right = temp;
-							// std::cout << "Inserted object: " << root->right->object.first << std::endl;
+							root->right->parent = root;
 							root = saved;
 							break;
 						}

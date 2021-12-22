@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/14 15:28:01 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 14:36:48 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ class node {
 
 	public:
 
-		explicit node(value_type const &val = value_type()) : object(val) , parent(0), left(0), right(0)  {}
+		explicit node(value_type const &val = value_type()) :
+			object(val) , parent(0), left(0), right(0), colour('p')  {}
 
 		~node() {}
 
 
-		node&	operator = (const node &other) {
-			
+		node&	operator = (const node &other) {	
 			if (this != &other) {
 				object = other.object;
 				parent = other.parent;
@@ -39,12 +39,13 @@ class node {
 			return right;
 			// Has to find the next largest node (parent if it has no children.)
 		}
-		
+
 		// value_type	*object; // For allocator
 		value_type	object;
 		node*		parent;
 		node*		left;
 		node*		right;
+		char		colour;
 	private: // Maybe (?)
 		
 };
