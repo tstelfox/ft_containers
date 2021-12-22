@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 15:29:41 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 16:42:59 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,23 +148,37 @@ class map
 
 		/* <<**------------------- TEEEEEEESTING ------------------**>> */
 
-		void	contents(mapnode *root, int i) { //In no fucking particular order
+		void	print_next_nodes(mapnode *node, int i) {
+
+			mapnode *temp_node = node;
+			if (temp_node->left && temp_node->right)
+				contents(temp_node, i, true);
+			else if (temp_node->left)
+				contents(temp_node->left, i - 10, false);
+			else if (temp_node->right)
+				contents(temp_node->right, i + 10, false);
+		}
+
+		void	contents(mapnode *root, int i, bool both) { //In no fucking particular order
 			mapnode *temp = root;
-			
-			std::cout << "Level of branch: " << i << std::endl;
-			std::cout << temp->object.first << " " << temp->object.second <<  std::endl;
-			if (temp->left && temp->right) {
-				i++;
-				contents(temp->left, i);
-				contents(temp->right, i);
+
+			// h += 5;
+			if (both) {
+				std::cout << std::endl << std::cout.width(i - 10) << temp->left->object.first << std::cout.width(20) << temp->right->object.first << std::endl;
+				print_next_nodes(temp->left, i - 10);
+				print_next_nodes(temp->right, i + 10);
 			}
-			else if (temp->left){
-				i++;
-				contents(temp->left, i);
-			}
-			else if (temp->right) {
-				i++;
-				contents(temp->right, i);
+			else
+			{
+				std::cout << std::endl << std::cout.width(i) << temp->object.first << std::endl;
+
+				// std::cout << temp->object.first << " " << temp->object.second <<  std::endl;
+				if (temp->left && temp->right)
+					print_next_nodes(temp, i);
+				else if (temp->left)
+					contents(temp->left, i - 10, false);
+				else if (temp->right)
+					contents(temp->right, i + 10, false);
 			}
 		}
 
