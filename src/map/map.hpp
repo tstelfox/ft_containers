@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 16:48:42 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 16:49:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ class map
 				contents(temp_node->right, i + 10, false);
 		}
 
-		void	contents(mapnode *root, int i, bool both) { //In no fucking particular order
+		void	contents(mapnode *root, int i, bool both) { // Now it prints out the tree as a diagram kinda
 			mapnode *temp = root;
 
 			if (both) {

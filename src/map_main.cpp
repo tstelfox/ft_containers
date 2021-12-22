@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 16:39:41 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 16:51:36 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 void	test_basic() {
 	
-	ft::map<int, std::string> first_v;
+	ft::map<int, std::string> test;
 
-	// std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(99, "Mazzarri"));
-	first_v.insert(std::pair<int, std::string>(10, "Fuoco"));
-	first_v.insert(std::pair<int, std::string>(12, "Kali"));
-	first_v.insert(std::pair<int, std::string>(17, "Uchis"));
-	first_v.insert(std::pair<int, std::string>(6, "Colombia"));
-	first_v.insert(std::pair<int, std::string>(16, "Gran Colombia"));
-	first_v.insert(std::pair<int, std::string>(4, "Shakira Shakira"));
+	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(99, "Mazzarri"));
+	test.insert(std::pair<int, std::string>(10, "Fuoco"));
+	test.insert(std::pair<int, std::string>(12, "Kali"));
+	test.insert(std::pair<int, std::string>(17, "Uchis"));
+	test.insert(std::pair<int, std::string>(6, "Colombia"));
+	test.insert(std::pair<int, std::string>(15, "Gran Colombia"));
+	test.insert(std::pair<int, std::string>(4, "Shakira Shakira"));
+	test.insert(std::pair<int, std::string>(5, "Aiuto Shakira"));
+	test.insert(std::pair<int, std::string>(2, "dio cane"));
+	test.insert(std::pair<int, std::string>(99, "dio bastardo"));
+	test.insert(std::pair<int, std::string>(47, "dio porco"));
+	test.insert(std::pair<int, std::string>(16, "dio stronzo"));
 
-	// std::pair<ft::map<int, std::string>::iterator, bool> deh = first_v.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));
-	ft::map<int, std::string>::iterator it = first_v.begin();
+
+	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));
+	ft::map<int, std::string>::iterator it = test.begin();
 	std::cout << "Value at beginning: " << it->object.second << std::endl;
 
 	std::cout << "\nTree CONTENTS TIME" << std::endl;
-	// std::cout << first_v.get_root()->object.first << " " << first_v.get_root()->object.second <<  std::endl;
-	first_v.contents(first_v.get_root(), 50, false);
+	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
+	test.contents(test.get_root(), 50, false);
 	// it++; // This requires the nodes and iterators to go up the tree
 
 	// The following isn't working diobe:
