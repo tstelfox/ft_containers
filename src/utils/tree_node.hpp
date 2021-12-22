@@ -6,18 +6,20 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 17:50:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 18:18:29 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+// https://www.geeksforgeeks.org/red-black-tree-set-2-insert/
 
 template < class value_type > // Have to add the comp here, maybe (?)
 class node {
 
 	public:
 
+		// Create nodes as red/vermelho but have to figure out how to turn it black/preto if it's the root
 		explicit node(value_type const &val = value_type()) :
-			object(val) , parent(0), left(0), right(0), colour('p')  {}
+			object(val) , parent(0), left(0), right(0), colour('v')  {} 
 
 		~node() {}
 

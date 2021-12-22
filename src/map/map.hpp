@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 18:13:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 18:18:43 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ class map
 				mapnode *saved = root;
 				m_size++;
 				m_allocator.construct(temp, val);
-				std::cout << "\nTree branch after insertion currently" << std::endl;
-				std::cout << "Root node: " << temp->object.first << std::endl;
+				// std::cout << "\nTree branch after insertion currently" << std::endl;
+				// std::cout << "Root node: " << temp->object.first << std::endl;
 				// if (temp->parent)
 				// 	std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 				while (root) {
@@ -145,6 +145,7 @@ class map
 				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
 				m_size++;
 				m_allocator.construct(root, val);
+				root->colour = 'p';
 			}
 			// iterator it = begin(); // This needs fixed to point to the correct thing
 			// return std::make_pair(it, true);
