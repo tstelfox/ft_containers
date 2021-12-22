@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 18:01:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 18:13:11 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,18 @@ class map
 				mapnode *saved = root;
 				m_size++;
 				m_allocator.construct(temp, val);
-				// std::cout << "\nTree branch after insertion currently" << std::endl;
-				// std::cout << "Root node: " << root->object.first << std::endl;
+				std::cout << "\nTree branch after insertion currently" << std::endl;
+				std::cout << "Root node: " << temp->object.first << std::endl;
+				// if (temp->parent)
+				// 	std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 				while (root) {
 					if (!value_compare(_comp)(root->object, temp->object)) {
 						if (root->left)
 							root = root->left;
 						else {
+							temp->parent = root;
 							root->left = temp;
-							root->left->parent = root;
+							// std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 							root = saved;
 							break;
 						}
@@ -129,8 +132,9 @@ class map
 							root = root->right;
 						}
 						else {
+							temp->parent = root;
 							root->right = temp;
-							root->right->parent = root;
+							// std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 							root = saved;
 							break;
 						}
@@ -140,7 +144,6 @@ class map
 			else {
 				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
 				m_size++;
-				// value_type dave = std::make_pair(val.root, val.second);
 				m_allocator.construct(root, val);
 			}
 			// iterator it = begin(); // This needs fixed to point to the correct thing
@@ -173,8 +176,10 @@ class map
 				std::cout << std::endl << std::setw(i) << temp->object.first << std::endl;
 				if (temp->left && temp->right)
 					print_next_nodes(temp, i);
-				else if (temp->left)
+				else if (temp->left) {
+					// std::cout << temp->parent->object.second << " please work" << std::endl;
 					contents(temp->left, i - 10, false);
+				}
 				else if (temp->right)
 					contents(temp->right, i + 10, false);
 			}
