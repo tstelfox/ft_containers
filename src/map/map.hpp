@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 16:42:59 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 16:48:42 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ class map
 		void	contents(mapnode *root, int i, bool both) { //In no fucking particular order
 			mapnode *temp = root;
 
-			// h += 5;
 			if (both) {
 				std::cout << std::endl << std::cout.width(i - 10) << temp->left->object.first << std::cout.width(20) << temp->right->object.first << std::endl;
 				print_next_nodes(temp->left, i - 10);
@@ -171,8 +170,6 @@ class map
 			else
 			{
 				std::cout << std::endl << std::cout.width(i) << temp->object.first << std::endl;
-
-				// std::cout << temp->object.first << " " << temp->object.second <<  std::endl;
 				if (temp->left && temp->right)
 					print_next_nodes(temp, i);
 				else if (temp->left)
