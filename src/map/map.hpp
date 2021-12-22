@@ -104,6 +104,7 @@ class map
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
+		// If we attempt to pass something with same key to insert, it will not insert it.
 		// std::pair<iterator, bool>	insert (const value_type& val) {
 		void		insert (const value_type& val) {
 			if (m_size >= 1)
