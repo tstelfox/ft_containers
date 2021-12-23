@@ -6,11 +6,12 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 18:18:29 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/22 18:39:54 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 // https://www.geeksforgeeks.org/red-black-tree-set-2-insert/
+// https://proprogramming.org/red-black-treerb-tree-implementation-in-c/
 
 template < class value_type > // Have to add the comp here, maybe (?)
 class node {
