@@ -103,7 +103,11 @@ class map
 
 		// If we attempt to pass something with same key to insert, it will not insert it.
 		// std::pair<iterator, bool>	insert (const value_type& val) {
-		void		insert (const value_type& val) {
+
+		// It inserts normally and then runs the fix_violations function
+		// void		fix_violations(mapnode *&root, mapnode *&newnode) {}
+
+		void		insert (const value_type& val) { // Could divide this up and make one part properly recursive
 			if (m_size >= 1)
 			{
 				mapnode *temp = NULL;

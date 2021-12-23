@@ -12,6 +12,7 @@
 
 // https://www.geeksforgeeks.org/red-black-tree-set-2-insert/
 // https://proprogramming.org/red-black-treerb-tree-implementation-in-c/
+// https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
 
 template < class value_type > // Have to add the comp here, maybe (?)
 class node {
