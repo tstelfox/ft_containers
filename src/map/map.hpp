@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 18:18:43 by tmullan       ########   odam.nl         */
+/*   Updated: 2021/12/28 18:13:48 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,12 @@ class map
 		// std::pair<iterator, bool>	insert (const value_type& val) {
 
 		// It inserts normally and then runs the fix_violations function
-		// void		fix_violations(mapnode *&root, mapnode *&newnode) {}
+		// void		fix_violations(mapnode *&root, mapnode *&newnode) {
+		// 	mapnode parent_node = NULL;
+		// 	mapnode	grand_parent_node = NULL;
+
+		// 	while ((newnode != root) && ())
+		// }
 
 		void		insert (const value_type& val) { // Could divide this up and make one part properly recursive
 			if (m_size >= 1)
@@ -151,6 +156,7 @@ class map
 				m_allocator.construct(root, val);
 				root->colour = 'p';
 			}
+			// fix_violations(root, temp);
 			// iterator it = begin(); // This needs fixed to point to the correct thing
 			// return std::make_pair(it, true);
 		}
