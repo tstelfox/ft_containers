@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 16:27:35 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 17:15:36 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,6 +351,15 @@ class map
 		// 			contents(temp->right, i + 10, false);
 		// 	}
 		// }
+
+		void	inorder(mapnode *root) {
+			if (root == NULL)
+				return ;
+
+			inorder(root->left);
+			std::cout << root->object.first << std::endl;
+			inorder(root->right);
+		}
 
 		void printBT() const {
 			printBT("", this->root, false);

@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 12:15:30 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 17:14:20 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ class node {
 		// }
 
 		// node*	get_next_node() {
-		// 	if (!left and !right) {
-		// 		return parent;
-		// 	}
-		// 	return right;
+
 		// 	// Has to find the next largest node (parent if it has no children.)
 		// }
 
