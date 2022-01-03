@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 18:45:59 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 18:46:48 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	test_basic() {
 	std::cout << "\nTESTIN ITERATORS" << std::endl;
 	ft::map<int, std::string>::iterator it = test.begin();
 	std::cout << "Value at beginning: " << it->object.second << std::endl;
-	while (it->object.first) {
+	while (it->object.first) { // This segfaults at the end ofc.
 		it++;
 		std::cout << "Value at next iteration: " << it->object.second << std::endl;
 	}
