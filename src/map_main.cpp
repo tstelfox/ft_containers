@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 12:59:01 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 16:17:35 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	test_basic() {
 	test.insert(std::pair<int, std::string>(15, "Gran Colombia"));
 	test.insert(std::pair<int, std::string>(4, "Shakira Shakira"));
 	test.insert(std::pair<int, std::string>(5, "Aiuto Shakira"));
-	test.insert(std::pair<int, std::string>(2, "dio cane"));
+	test.insert(std::pair<int, std::string>(2, "Dio cane"));
 	test.insert(std::pair<int, std::string>(99, "dio bastardo"));
 	test.insert(std::pair<int, std::string>(47, "dio porco"));
 	test.insert(std::pair<int, std::string>(16, "dio stronzo"));

@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 13:36:39 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 16:17:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ class map
 		// If we attempt to pass something with same key to insert, it will not insert it.
 		// std::pair<iterator, bool>	insert (const value_type& val) {
 
-		// It inserts normally and then runs the fix_violations function
+		// Something is wrong because it's forgetting half the tree lol
 
 		void		right_rotate(mapnode *&root, mapnode *&newnode)
 		{
@@ -238,7 +238,7 @@ class map
 		}
 
 
-		void		first_and_last(mapnode *root) {
+		void		first_and_last() {
 			mapnode *temp = root;
 
 			while (temp->left)
@@ -248,6 +248,8 @@ class map
 			while (temp->right)
 				temp = temp->right;
 			last_node = temp;
+			// last_node->parent = first_node;
+			// first_node->parent = last_node;
 		}
 
 		void		insert(const value_type& val) { // Could divide this up and make one part properly recursive
@@ -289,13 +291,18 @@ class map
 				}
 				// std::cout << temp->colour << std::endl;
 				fix_violations(root, temp);
-				first_and_last(root);
+				first_and_last();
 			}
 			else {
 				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
+				first_node = m_allocator.allocate(1);
+				last_node = m_allocator.allocate(1);
 				m_size++;
 				m_allocator.construct(root, val);
 				root->colour = BLACK;
+				// first_node->parent = last_node->parent = root;
+				// root->left = first_node;
+				// root->right = last_node;
 			}
 			// iterator it = begin(); // This needs fixed to point to the correct thing
 			// return std::make_pair(it, true);
@@ -304,7 +311,6 @@ class map
 		/* <<**------------------- TEEEEEEESTING ------------------**>> */
 
 		// void	print_next_nodes(mapnode *node, int i) {
-
 		// 	mapnode *temp_node = node;
 		// 	if (temp_node->left && temp_node->right)
 		// 		contents(temp_node, i, true);
@@ -342,7 +348,11 @@ class map
 		}
 		
 		void printBT(const std::string& prefix, const mapnode* trav, bool isLeft) const {
-			if (trav && trav != first_node && trav != last_node) {
+			// std::cout << last_node->object.first << std::endl;
+			// std::cout << first_node->object.first << std::endl;
+			// Hmmmm
+			// if (trav && trav != first_node && trav != last_node) {
+			if (trav) {
 					std::cerr << prefix;
 					std::cerr << (isLeft ? "├L─" : "└R-" );
 					// print the value of the node
