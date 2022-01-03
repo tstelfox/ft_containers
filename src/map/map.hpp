@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 13:34:09 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 13:36:39 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@
 #include <memory>
 #include <map>
 #include "bimap_iterator.hpp"
+#include "colours.hpp"
 
 
-#define _IWHITE "\x1b[47m"
-#define ROSSO 	"\x1b[31m"
-#define END		"\x1b[0m"
-#define GREY	"\x1b[30m"
+
 #define	BLACK	'b'
 #define	RED		'r'
 
