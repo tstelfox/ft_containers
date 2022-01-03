@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 12:51:58 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 13:08:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 #include <map>
 #include "bimap_iterator.hpp"
 
+
+#define _IWHITE "x1b[47m"
+#define ROSSO 	"\x1b[31m"
+#define END		"\x1b[0m"
+#define GREY	"\x1b[30m"
 #define	BLACK	'b'
 #define	RED		'r'
 
@@ -108,15 +113,16 @@ class map
 		// std::pair<iterator, bool>	insert (const value_type& val) {
 
 		// It inserts normally and then runs the fix_violations function
-		void		fix_violations(mapnode *&root, mapnode *&newnode) {
-			mapnode p_node = NULL;
-			mapnode	gp_node = NULL;
+		void		fix_violations(mapnode *&root, mapnode *&newnode) 
+		{
+			// mapnode p_node;
+			// mapnode	gp_node;
 
 			while ((newnode != root) && (newnode->colour != BLACK) &&
 					(newnode->parent->colour == RED))
 			{
-				p_node = newnode->parent;
-				gp_node = newnode->parent->parent;
+				mapnode p_node = newnode->parent;
+				mapnode gp_node = newnode->parent->parent;
 				/* Case A
 					Parent of newnode is left-child of grandparent of newnode */
 				if (p_node == gp_node->left)
@@ -242,39 +248,60 @@ class map
 
 		/* <<**------------------- TEEEEEEESTING ------------------**>> */
 
-		void	print_next_nodes(mapnode *node, int i) {
+		// void	print_next_nodes(mapnode *node, int i) {
 
-			mapnode *temp_node = node;
-			if (temp_node->left && temp_node->right)
-				contents(temp_node, i, true);
-			else if (temp_node->left)
-				contents(temp_node->left, i - 10, false);
-			else if (temp_node->right)
-				contents(temp_node->right, i + 10, false);
+		// 	mapnode *temp_node = node;
+		// 	if (temp_node->left && temp_node->right)
+		// 		contents(temp_node, i, true);
+		// 	else if (temp_node->left)
+		// 		contents(temp_node->left, i - 10, false);
+		// 	else if (temp_node->right)
+		// 		contents(temp_node->right, i + 10, false);
+		// }
+
+		// void	contents(mapnode *root, int i, bool both) { // Now it prints out the tree as a diagram kinda
+		// 	mapnode *temp = root;
+
+		// 	if (both) {
+		// 		std::cout << std::endl << std::setw(i - 10) << temp->left->object.first << std::setw(20) << temp->right->object.first << std::endl;
+		// 		print_next_nodes(temp->left, i - 10);
+		// 		print_next_nodes(temp->right, i + 10);
+		// 	}
+		// 	else
+		// 	{
+		// 		std::cout << std::endl << std::setw(i) << temp->object.first << std::endl;
+		// 		if (temp->left && temp->right)
+		// 			print_next_nodes(temp, i);
+		// 		else if (temp->left) {
+		// 			// std::cout << temp->parent->object.second << " please work" << std::endl;
+		// 			contents(temp->left, i - 10, false);
+		// 		}
+		// 		else if (temp->right)
+		// 			contents(temp->right, i + 10, false);
+		// 	}
+		// }
+
+		void printBT() const {
+			printBT("", this->root, false);
+			std::cerr << std::endl;
 		}
-
-		void	contents(mapnode *root, int i, bool both) { // Now it prints out the tree as a diagram kinda
-			mapnode *temp = root;
-
-			if (both) {
-				std::cout << std::endl << std::setw(i - 10) << temp->left->object.first << std::setw(20) << temp->right->object.first << std::endl;
-				print_next_nodes(temp->left, i - 10);
-				print_next_nodes(temp->right, i + 10);
-			}
-			else
-			{
-				std::cout << std::endl << std::setw(i) << temp->object.first << std::endl;
-				if (temp->left && temp->right)
-					print_next_nodes(temp, i);
-				else if (temp->left) {
-					// std::cout << temp->parent->object.second << " please work" << std::endl;
-					contents(temp->left, i - 10, false);
-				}
-				else if (temp->right)
-					contents(temp->right, i + 10, false);
+		
+		void printBT(const std::string& prefix, const mapnode* trav, bool isLeft) const {
+			if (trav && trav != first_node && trav != _last) {
+					std::cerr << prefix;
+					std::cerr << (isLeft ? "├L─" : "└R-" );
+					// print the value of the node
+					if (trav->colour == RED)
+						std::cerr << ROSSO;
+					else if (trav->colour == BLACK)
+						std::cerr << _IWHITE << GREY;
+					std::cerr << trav->data.first << END << std::endl ;
+					// enter the next tree level - left and right branch
+					printBT( prefix + (isLeft ? "│   " : "    "), trav->left, true);
+					printBT( prefix + (isLeft ? "│   " : "    "), trav->right, false);
 			}
 		}
-
+		
 		mapnode*	get_root() {
 			return root;
 		}
@@ -284,8 +311,10 @@ class map
 		key_compare			_comp;
 		size_type			m_size;
 		mapnode				*root;
+
+		// How in the name of hell am I to keep track of these fuckers without being super OTT?
 		mapnode				*first_node;
-		// mapnode				*last_node;
+		mapnode				*last_node;
 		
 		
 

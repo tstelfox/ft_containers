@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 18:34:54 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 12:59:01 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	test_basic() {
 
 	std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
-	test.contents(test.get_root(), 50, false);
+	// test.contents(test.get_root(), 50, false);
+	test.printBT();
 	// it++; // This requires the nodes and iterators to go up the tree
 
 	// The following isn't working diobe:
