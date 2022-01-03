@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 13:08:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 13:34:09 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "bimap_iterator.hpp"
 
 
-#define _IWHITE "x1b[47m"
+#define _IWHITE "\x1b[47m"
 #define ROSSO 	"\x1b[31m"
 #define END		"\x1b[0m"
 #define GREY	"\x1b[30m"
@@ -113,21 +113,64 @@ class map
 		// std::pair<iterator, bool>	insert (const value_type& val) {
 
 		// It inserts normally and then runs the fix_violations function
+
+		void		right_rotate(mapnode *&root, mapnode *&newnode)
+		{
+			mapnode *left_child = newnode->left;
+
+			newnode->left = left_child->right;
+			if (newnode->left != NULL)
+				newnode->left->parent = newnode;
+			
+			left_child->parent = newnode->parent;
+
+			if (newnode->parent == NULL)
+				root = left_child;
+			else if (newnode == newnode->parent->left)
+				newnode->parent->left = left_child;
+			else
+				newnode->parent->right = left_child;
+			left_child->right = newnode;
+			newnode->parent = left_child;
+		}
+
+		void		left_rotate(mapnode *&root, mapnode *&newnode)
+		{
+			mapnode *right_child = newnode->right;
+
+			newnode->right = right_child->left;
+
+			if (newnode->right != NULL)
+				newnode->right->parent = newnode;
+			
+			right_child->parent = newnode->parent;
+
+			if (newnode->parent == NULL)
+				root = right_child;
+			else if (newnode == newnode->parent->left)
+				newnode->parent->left = right_child;
+			else
+				newnode->parent->right = right_child;
+
+			right_child->left = newnode;
+			newnode->parent = right_child;
+		}
+
 		void		fix_violations(mapnode *&root, mapnode *&newnode) 
 		{
-			// mapnode p_node;
-			// mapnode	gp_node;
+			mapnode *p_node = NULL;
+			mapnode	*gp_node = NULL;
 
 			while ((newnode != root) && (newnode->colour != BLACK) &&
 					(newnode->parent->colour == RED))
 			{
-				mapnode p_node = newnode->parent;
-				mapnode gp_node = newnode->parent->parent;
+				p_node = newnode->parent;
+				gp_node = newnode->parent->parent;
 				/* Case A
 					Parent of newnode is left-child of grandparent of newnode */
 				if (p_node == gp_node->left)
 				{
-					mapnode uncle_node = gp_node->right;
+					mapnode *uncle_node = gp_node->right;
 					/* Case alpha
 						Uncle of node is also RED
 						Only recolouring required */
@@ -161,7 +204,7 @@ class map
 					Parent of newnode is right child of grandparent */
 				else
 				{
-					mapnode uncle_node = gp_node->left;
+					mapnode *uncle_node = gp_node->left;
 					/* Case alpha
 						Uncle of node is also RED
 						Only recolouring required */
@@ -196,7 +239,20 @@ class map
 			root->colour = BLACK;
 		}
 
-		void		insert (const value_type& val) { // Could divide this up and make one part properly recursive
+
+		void		first_and_last(mapnode *root) {
+			mapnode *temp = root;
+
+			while (temp->left)
+				temp = temp->left;
+			first_node = temp;
+			temp = root;
+			while (temp->right)
+				temp = temp->right;
+			last_node = temp;
+		}
+
+		void		insert(const value_type& val) { // Could divide this up and make one part properly recursive
 			if (m_size >= 1)
 			{
 				mapnode *temp = NULL;
@@ -235,6 +291,7 @@ class map
 				}
 				// std::cout << temp->colour << std::endl;
 				fix_violations(root, temp);
+				first_and_last(root);
 			}
 			else {
 				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
@@ -287,7 +344,7 @@ class map
 		}
 		
 		void printBT(const std::string& prefix, const mapnode* trav, bool isLeft) const {
-			if (trav && trav != first_node && trav != _last) {
+			if (trav && trav != first_node && trav != last_node) {
 					std::cerr << prefix;
 					std::cerr << (isLeft ? "├L─" : "└R-" );
 					// print the value of the node
@@ -295,7 +352,7 @@ class map
 						std::cerr << ROSSO;
 					else if (trav->colour == BLACK)
 						std::cerr << _IWHITE << GREY;
-					std::cerr << trav->data.first << END << std::endl ;
+					std::cerr << trav->object.first << END << std::endl ;
 					// enter the next tree level - left and right branch
 					printBT( prefix + (isLeft ? "│   " : "    "), trav->left, true);
 					printBT( prefix + (isLeft ? "│   " : "    "), trav->right, false);
