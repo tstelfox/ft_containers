@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 17:16:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 18:45:59 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,19 @@ void	test_basic() {
 
 
 	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));
-	ft::map<int, std::string>::iterator it = test.begin();
-	std::cout << "Value at beginning: " << it->object.second << std::endl;
 
 	std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
 	// test.contents(test.get_root(), 50, false);
 	test.printBT();
+	
+	std::cout << "\nTESTIN ITERATORS" << std::endl;
+	ft::map<int, std::string>::iterator it = test.begin();
+	std::cout << "Value at beginning: " << it->object.second << std::endl;
+	while (it->object.first) {
+		it++;
+		std::cout << "Value at next iteration: " << it->object.second << std::endl;
+	}
 	// test.inorder(test.get_root());
 	// it++; // This requires the nodes and iterators to go up the tree
 

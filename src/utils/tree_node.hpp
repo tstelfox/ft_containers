@@ -6,12 +6,10 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 17:14:20 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 18:43:23 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// https://www.geeksforgeeks.org/red-black-tree-set-2-insert/
-// https://proprogramming.org/red-black-treerb-tree-implementation-in-c/
 // https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
 
 template < class value_type > // Have to add the comp here, maybe (?)
@@ -23,6 +21,8 @@ class node {
 		explicit node(value_type const &val = value_type()) :
 			object(val) , parent(0), left(0), right(0), colour('r')  {} 
 
+		node(const node& x) : object(x.object) , parent(x.parent) , left(x.left) , right(x.right) , colour(x.colour) {}
+
 		~node() {}
 
 
@@ -32,21 +32,34 @@ class node {
 				parent = other.parent;
 				left = other.left;
 				right = other.right;
+				colour = other.colour;
 			}
 			return *this;
 		}
 
-		// void	insert_node(node *new_node) {
-		// 	if (key_compare(this->object.first, new_node.first)) {
-		// 		std::cout << "It's larger" << std::endl;
+		// https://courses.cs.vt.edu/~cs3114/Fall17/barnette/notes/Tree-Iterators.pdf
+		node*	get_next_node() {
 
-		// 	}
-		// }
+			node *it(this);
 
-		// node*	get_next_node() {
-
-		// 	// Has to find the next largest node (parent if it has no children.)
-		// }
+			// std::cout << "Hello??" << std::endl;
+			if (it->right) {
+				it = it->right;
+				while (it->left) {
+					it = it->left;
+				}
+			}
+			else {
+				node *temp = it;
+				it = it->parent;
+				while (temp != it->left) {
+					temp = it;
+					it = it->parent;
+				}
+			}
+			std::cout << "Hello?? " << it->object.first << " " << it->object.second << std::endl;
+			return (it);
+		}
 
 		// value_type	*object; // For allocator
 		value_type	object;
