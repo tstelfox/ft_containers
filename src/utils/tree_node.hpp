@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/22 18:39:54 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 12:15:30 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class node {
 
 		// Create nodes as red/vermelho but have to figure out how to turn it black/preto if it's the root
 		explicit node(value_type const &val = value_type()) :
-			object(val) , parent(0), left(0), right(0), colour('v')  {} 
+			object(val) , parent(0), left(0), right(0), colour('r')  {} 
 
 		~node() {}
 

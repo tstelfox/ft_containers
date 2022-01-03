@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/12/28 18:13:48 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 12:30:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include <memory>
 #include <map>
 #include "bimap_iterator.hpp"
+
+#define	BLACK	'b'
+#define	RED		'r'
 
 namespace ft {
 
@@ -105,12 +108,24 @@ class map
 		// std::pair<iterator, bool>	insert (const value_type& val) {
 
 		// It inserts normally and then runs the fix_violations function
-		// void		fix_violations(mapnode *&root, mapnode *&newnode) {
-		// 	mapnode parent_node = NULL;
-		// 	mapnode	grand_parent_node = NULL;
+		void		fix_violations(mapnode *&root, mapnode *&newnode) {
+			mapnode p_node = NULL;
+			mapnode	gp_node = NULL;
 
-		// 	while ((newnode != root) && ())
-		// }
+			while ((newnode != root) && (newnode->colour != BLACK) &&
+					(newnode->parent->colour == RED))
+			{
+				p_node = newnode->parent;
+				gp_node = newnode->parent->parent;
+				// Case A
+				if (p_node == gp_node->left)
+				{
+					mapnode uncle_node = gp_node->right;
+					
+				}
+				
+			}
+		}
 
 		void		insert (const value_type& val) { // Could divide this up and make one part properly recursive
 			if (m_size >= 1)
@@ -149,14 +164,15 @@ class map
 						}
 					}
 				}
+				// std::cout << temp->colour << std::endl;
+				// fix_violations(root, temp);
 			}
 			else {
 				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
 				m_size++;
 				m_allocator.construct(root, val);
-				root->colour = 'p';
+				root->colour = BLACK;
 			}
-			// fix_violations(root, temp);
 			// iterator it = begin(); // This needs fixed to point to the correct thing
 			// return std::make_pair(it, true);
 		}
