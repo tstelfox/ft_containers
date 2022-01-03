@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 16:17:12 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 16:27:35 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
-			mapnode *temp = root;
-			while (temp->left) // There must be a cleaner way of doing this - like a smallest() function
-				temp = temp->left;
-			first_node = temp;
+			// mapnode *temp = root;
+			// while (temp->left) // There must be a cleaner way of doing this - like a smallest() function
+			// 	temp = temp->left;
+			// first_node = temp;
 			return iterator(first_node); // Should begin at left-most leaf
 		}
 
@@ -307,6 +307,16 @@ class map
 			// iterator it = begin(); // This needs fixed to point to the correct thing
 			// return std::make_pair(it, true);
 		}
+
+		/* <<**------------------- OBSERVERS ------------------**>> */
+
+		key_compare		key_comp() const { return (_comp); }
+
+		value_compare	value_comp() const { return (value_compare(_comp)); }
+
+		/* <<**------------------- OPERATIONS ------------------**>> */
+
+		// Gonna almost certainly need iterators for this
 
 		/* <<**------------------- TEEEEEEESTING ------------------**>> */
 
