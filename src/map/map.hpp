@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 12:30:12 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/03 12:51:58 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,77 @@ class map
 			{
 				p_node = newnode->parent;
 				gp_node = newnode->parent->parent;
-				// Case A
+				/* Case A
+					Parent of newnode is left-child of grandparent of newnode */
 				if (p_node == gp_node->left)
 				{
 					mapnode uncle_node = gp_node->right;
-					
+					/* Case alpha
+						Uncle of node is also RED
+						Only recolouring required */
+					if (uncle_node != NULL && uncle_node->colour == RED)
+					{
+						gp_node->colour = RED;
+						p_node->colour = BLACK;
+						uncle_node->colour = BLACK;
+						newnode = gp_node;
+					}
+					else
+					{
+						/* Case Beta
+							newnode is right child of its parent
+							left-rotation required */
+						if (newnode == p_node->right)
+						{
+							left_rotate(root, p_node);
+							newnode = p_node;
+							p_node = newnode->parent;
+						}
+						/* case Gamma
+							newnode is left child of its parent
+							right-rotation required */
+						right_rotate(root, gp_node);
+						std::swap(p_node->colour, gp_node->colour);
+						newnode = p_node;
+					}
+				}
+				/* Case B
+					Parent of newnode is right child of grandparent */
+				else
+				{
+					mapnode uncle_node = gp_node->left;
+					/* Case alpha
+						Uncle of node is also RED
+						Only recolouring required */
+					if (uncle_node != NULL && uncle_node->colour == RED)
+					{
+						gp_node->colour = RED;
+						p_node->colour = BLACK;
+						uncle_node->colour = BLACK;
+						newnode = gp_node;
+					}
+					else
+					{
+						/* case Gamma
+							newnode is left child of its parent
+							right-rotation required */
+						if (newnode == p_node->left)
+						{
+							right_rotate(root, p_node);
+							newnode = p_node;
+							p_node = newnode->parent;
+						}
+						/* Case Beta
+							newnode is right child of its parent
+							left-rotation required */
+						left_rotate(root, gp_node);
+						std::swap(p_node->colour, gp_node->colour);
+						newnode = p_node;
+					}
 				}
 				
 			}
+			root->colour = BLACK;
 		}
 
 		void		insert (const value_type& val) { // Could divide this up and make one part properly recursive
@@ -165,7 +228,7 @@ class map
 					}
 				}
 				// std::cout << temp->colour << std::endl;
-				// fix_violations(root, temp);
+				fix_violations(root, temp);
 			}
 			else {
 				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
