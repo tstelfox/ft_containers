@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 16:13:29 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 17:31:01 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ void	test_basic() {
 	std::cout << "\nTESTIN ITERATORS" << std::endl;
 	ft::map<int, std::string>::iterator it = test.begin();
 	std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
-	for (size_t i = 0; i < (test.size() - 1); i++) { // This segfaults at the end ofc.
-		it++;
+	while (it != test.end()) {
+		std::cout << "Testin testin" << std::endl;
 		std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
+		it++;
 	}
 	std::cout << "NOW BACKWARDS" << std::endl;
 	std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
-	for (size_t i = 0; i < (test.size() - 1); i++) { // This segfaults at the end ofc.
+	for (size_t i = 0; i < (test.size() - 1); i++) {
 		it--;
 		std::cout << "Value at previous iteration: " << it->first << " " << it->second << std::endl;
 	}
@@ -60,6 +61,7 @@ void	test_basic() {
 	std::cout << "Attempting to *iterate: " << it->first << " " << it->second << std::endl;
 
 	ft::map<int, std::string>::const_iterator const_it = test.begin();
+
 
 	// std::pair<int, std::string> yonks(94784, "Don't do it maaaan");
 	// *const_it = yonks;

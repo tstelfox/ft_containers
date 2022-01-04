@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 16:07:04 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 17:28:53 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ class map
 		};
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
-				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node() {}
+				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node(), last_node() {
+					init_first_last();
+				}
 
 		// map(const map& x) {} // Dunno how the copy constructor is gonna look and may need iterators or may be able to just use insert()?
 
@@ -79,9 +81,9 @@ class map
 			return const_iterator(first_node);
 		}
 
-		// iterator	end() { // Bruh how do I even find the item PAST the end of the BST?
-
-		// }
+		iterator	end() {
+			return iterator(last_node);
+		}
 
 		/* <<**------------------- CAPACITY ------------------**>> */
 
@@ -239,20 +241,6 @@ class map
 		}
 
 
-		void		first_and_last() {
-			mapnode *temp = root;
-
-			while (temp->left)
-				temp = temp->left;
-			first_node = temp;
-			temp = root;
-			while (temp->right)
-				temp = temp->right;
-			last_node = temp;
-			// last_node->parent = first_node;
-			// first_node->parent = last_node;
-		}
-
 		void		insert(const value_type& val) { // Could divide this up and make one part properly recursive
 			if (m_size >= 1)
 			{
@@ -352,6 +340,26 @@ class map
 		// 			contents(temp->right, i + 10, false);
 		// 	}
 		// }
+		void		first_and_last() {
+			mapnode *temp = root;
+
+			while (temp->left)
+				temp = temp->left;
+			first_node = temp;
+			temp = root;
+			while (temp->right)
+				temp = temp->right;
+			last_node = temp;
+			// m_allocator.construct(last_node);
+			// last_node->parent = root;
+			// temp->right = last_node;
+			// last_node->parent = first_node;
+			// first_node->parent = last_node;
+		}
+
+		void	init_first_last() {
+			last_node = m_allocator.allocate(1);
+		}
 
 		void	inorder(mapnode *root) {
 			if (root == NULL)
