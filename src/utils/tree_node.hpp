@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 18:43:23 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 12:29:27 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ class node {
 					it = it->parent;
 				}
 			}
-			std::cout << "Hello?? " << it->object.first << " " << it->object.second << std::endl;
+			// std::cout << "Hello?? " << it->object.first << " " << it->object.second << std::endl;
 			return (it);
 		}
 
