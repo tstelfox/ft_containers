@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 18:23:09 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 18:46:15 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,8 +284,8 @@ class map
 			}
 			else {
 				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
-				first_node = m_allocator.allocate(1);
-				last_node = m_allocator.allocate(1);
+				// first_node = m_allocator.allocate(1);
+				// last_node = m_allocator.allocate(1);
 				m_size++;
 				m_allocator.construct(root, val);
 				root->colour = BLACK;
@@ -350,8 +350,13 @@ class map
 			while (temp->right)
 				temp = temp->right;
 			last_node = temp;
-			// _end->parent = last_node;
+
+			/* THIS SHIT RIGHT HERE
+				FUCKING FUCKI FUCK */
+			// _end = m_allocator.allocate(1);
+			// m_allocator.construct(_end, true);
 			// last_node->right = _end;
+			// _end->parent = last_node;
 			// _end->_final = true;
 			// m_allocator.construct(last_node);
 			// last_node->parent = root;
@@ -361,8 +366,10 @@ class map
 		}
 
 		void	init_first_last() {
-			_end = m_allocator.allocate(1);
-			m_allocator.construct(_end, true);
+			// _end = m_allocator.allocate(1);
+			// m_allocator.construct(_end, true);
+			// // std::cout << _end->_final << std::endl;
+			// first_node = m_allocator.allocate(1);
 			// _end->parent = first_node;
 			// first_node->parent = _end;
 		}

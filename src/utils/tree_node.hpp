@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 18:21:40 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 18:33:33 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ class node {
 			node *it(this);
 
 			// std::cout << "Henlo?" << std::endl;
+			// if (it->right->_final)
+			// 	return (it->right);
 			if (it->right) {
-				if (it->right->_final)
-					return (it->right);
 				it = it->right;
 				while (it->left) {
 					it = it->left;
