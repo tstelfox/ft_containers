@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:10:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 14:54:47 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 16:01:00 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ class Bimapiterator {
 			return *this;
 		}
 
-		reference	operator * () const {return *m_ptr;}
-		node_ptr	operator -> () {return m_ptr;}
+		reference	operator * () const {return m_ptr->object;}
+		pointer		operator -> () {return &(m_ptr->object);}
 
 		//Prefix increment/decrement
 		iterator&	operator ++ () {m_ptr = m_ptr->get_next_node(); return *this;}
@@ -58,11 +58,11 @@ class Bimapiterator {
 		//Postfix increment/decrement
 		iterator	operator ++ (int) {Bimapiterator temp = *this; ++(*this); return temp;}
 		iterator	operator -- (int) {Bimapiterator temp = *this; --(*this); return temp;}
-		
 
 		//Is it fine to have these overloads within the class?
 		bool operator== (Bimapiterator const& b) const { return m_ptr == b.m_ptr; }
 		bool operator!= (Bimapiterator const& b) const { return m_ptr != b.m_ptr; }
+
 
 	private:
 		node_ptr m_ptr;

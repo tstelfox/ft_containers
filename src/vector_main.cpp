@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/25 11:10:40 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 15:56:53 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,8 @@ void	test_object() {
 	ft::vector<std::string>::iterator it = string_vec.begin();
 	it += 4;
 	std::cout << "After overwriting it, at begin() + 4 we find: " << *it << std::endl;
+	*it++;
+	std::cout << "Quick test of *it++: " << *it << std::endl;
 
 	std::cout << "Size is " << string_vec.size() << std::endl;
 	string_vec.resize(3);
