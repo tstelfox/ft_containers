@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 17:16:59 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 18:21:40 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ class node {
 
 		// Create nodes as red/vermelho
 		explicit node(value_type const &val = value_type()) :
-			object(val) , parent(0), left(0), right(0), colour('r')  {} 
+			object(val) , parent(0), left(0), right(0), colour('r') , _final(false) {} 
+
+		node(bool empty) : object() , parent(0), left(0), right(0), colour('r') , _final(empty) {}
 
 		node(const node& x) : object(x.object) , parent(x.parent) , left(x.left) , right(x.right) , colour(x.colour) {}
 
@@ -41,7 +43,10 @@ class node {
 		node*	get_next_node() {
 			node *it(this);
 
+			// std::cout << "Henlo?" << std::endl;
 			if (it->right) {
+				if (it->right->_final)
+					return (it->right);
 				it = it->right;
 				while (it->left) {
 					it = it->left;
@@ -83,6 +88,7 @@ class node {
 		node*		left;
 		node*		right;
 		char		colour;
+		bool		_final;
 	private: // Maybe (?)
 		
 };

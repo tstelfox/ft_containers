@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 17:31:01 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 17:53:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	test_basic() {
 	ft::map<int, std::string>::iterator it = test.begin();
 	std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
 	while (it != test.end()) {
-		std::cout << "Testin testin" << std::endl;
+		// std::cout << "Testin testin" << std::endl;
 		std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
 		it++;
 	}

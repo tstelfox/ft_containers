@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 17:28:53 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 18:23:09 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ class map
 		}
 
 		iterator	end() {
-			return iterator(last_node);
+			return iterator(_end);
 		}
 
 		/* <<**------------------- CAPACITY ------------------**>> */
@@ -350,6 +350,9 @@ class map
 			while (temp->right)
 				temp = temp->right;
 			last_node = temp;
+			// _end->parent = last_node;
+			// last_node->right = _end;
+			// _end->_final = true;
 			// m_allocator.construct(last_node);
 			// last_node->parent = root;
 			// temp->right = last_node;
@@ -358,7 +361,10 @@ class map
 		}
 
 		void	init_first_last() {
-			last_node = m_allocator.allocate(1);
+			_end = m_allocator.allocate(1);
+			m_allocator.construct(_end, true);
+			// _end->parent = first_node;
+			// first_node->parent = _end;
 		}
 
 		void	inorder(mapnode *root) {
@@ -408,6 +414,7 @@ class map
 		// How in the name of hell am I to keep track of these fuckers without being super OTT?
 		mapnode				*first_node;
 		mapnode				*last_node;
+		mapnode				*_end;
 		
 		
 
