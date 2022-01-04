@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/03 17:15:36 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 16:07:04 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ class map
 		typedef value_type*											pointer;
 		typedef const value_type*									const_pointer;
 		typedef	Bimapiterator<value_type, pointer, reference>		iterator;
+		typedef	Bimapiterator<value_type, const_pointer, const_reference>	const_iterator;
 		typedef	size_t												size_type;
 		typedef	ptrdiff_t											difference_type;
 		typedef node<value_type>						mapnode;
@@ -71,11 +72,11 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
-			// mapnode *temp = root;
-			// while (temp->left) // There must be a cleaner way of doing this - like a smallest() function
-			// 	temp = temp->left;
-			// first_node = temp;
-			return iterator(first_node); // Should begin at left-most leaf
+			return iterator(first_node);
+		}
+
+		iterator begin() const {
+			return const_iterator(first_node);
 		}
 
 		// iterator	end() { // Bruh how do I even find the item PAST the end of the BST?

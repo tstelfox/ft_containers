@@ -6,11 +6,16 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 16:01:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/04 16:13:29 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
+
+// template <typename T>
+// void	not_consty(T object) {
+// 	object.second = "newthing";
+// }
 
 void	test_basic() {
 	
@@ -53,6 +58,13 @@ void	test_basic() {
 
 	*it++;
 	std::cout << "Attempting to *iterate: " << it->first << " " << it->second << std::endl;
+
+	ft::map<int, std::string>::const_iterator const_it = test.begin();
+
+	// std::pair<int, std::string> yonks(94784, "Don't do it maaaan");
+	// *const_it = yonks;
+	// *it = yonks;
+
 	// test.inorder(test.get_root());
 	// it++; // This requires the nodes and iterators to go up the tree
 
