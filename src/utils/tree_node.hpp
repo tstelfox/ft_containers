@@ -43,9 +43,7 @@ class node {
 		node*	get_next_node() {
 			node *it(this);
 
-			// std::cout << "Henlo?" << std::endl;
-			// if (it->right->_final)
-			// 	return (it->right);
+			// There is an issue somewhere between here and the rotations
 			if (it->right) {
 				it = it->right;
 				while (it->left) {

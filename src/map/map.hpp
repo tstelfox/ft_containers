@@ -374,14 +374,14 @@ class map
 			// first_node->parent = _end;
 		}
 
-		void	inorder(mapnode *root) {
-			if (root == NULL)
-				return ;
+		// void	inorder(mapnode *root) {
+		// 	if (root == NULL)
+		// 		return ;
 
-			inorder(root->left);
-			std::cout << root->object.first << std::endl;
-			inorder(root->right);
-		}
+		// 	inorder(root->left);
+		// 	std::cout << root->object.first << std::endl;
+		// 	inorder(root->right);
+		// }
 
 		void printBT() const {
 			printBT("", this->root, false);
