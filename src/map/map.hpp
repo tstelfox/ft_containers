@@ -350,13 +350,13 @@ class map
 			while (temp->right)
 				temp = temp->right;
 			last_node = temp;
-
 			/* THIS SHIT RIGHT HERE
 				FUCKING FUCKI FUCK */
 			// _end = m_allocator.allocate(1);
 			// m_allocator.construct(_end, true);
 			// last_node->right = _end;
 			// _end->parent = last_node;
+			// std::cout << last_node->right->_final << std::endl;
 			// _end->_final = true;
 			// m_allocator.construct(last_node);
 			// last_node->parent = root;
@@ -366,8 +366,8 @@ class map
 		}
 
 		void	init_first_last() {
-			// _end = m_allocator.allocate(1);
-			// m_allocator.construct(_end, true);
+			_end = m_allocator.allocate(1);
+			m_allocator.construct(_end, true);
 			// // std::cout << _end->_final << std::endl;
 			// first_node = m_allocator.allocate(1);
 			// _end->parent = first_node;
