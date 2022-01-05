@@ -165,6 +165,7 @@ class map
 			while ((newnode != root) && (newnode->colour != BLACK) &&
 					(newnode->parent->colour == RED))
 			{
+				std::cout << "Here in FV?" << std::endl;
 				p_node = newnode->parent;
 				gp_node = newnode->parent->parent;
 				/* Case A
@@ -254,7 +255,8 @@ class map
 				// if (temp->parent)
 				// 	std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 				while (root) {
-					if (!value_compare(_comp)(root->object, temp->object)) {
+					// std::cout << "Here in insert?" << std::endl;
+ 					if (!value_compare(_comp)(root->object, temp->object)) {
 						if (root->left)
 							root = root->left;
 						else {
@@ -280,6 +282,7 @@ class map
 				}
 				// std::cout << temp->colour << std::endl;
 				fix_violations(root, temp);
+				std::cout << "Where the shit" << std::endl;
 				first_and_last();
 			}
 			else {
@@ -347,15 +350,24 @@ class map
 				temp = temp->left;
 			first_node = temp;
 			temp = root;
+			/* The infite loop is generated here. May need to place this entire function
+			elsewhere in the code and create a solution for when only the root has been inserted */
 			while (temp->right)
+			{
+				// if (temp->right->_final) {
+				// 	// std::cout << "Diocane" << temp->object.first << std::endl;
+				// 	break;
+				// }
+				std::cout << "Here or somethin stupid?" << std::endl;
 				temp = temp->right;
+			}
 			last_node = temp;
+			last_node->right = _end;
+			_end->parent = last_node;
 			/* THIS SHIT RIGHT HERE
 				FUCKING FUCKI FUCK */
 			// _end = m_allocator.allocate(1);
 			// m_allocator.construct(_end, true);
-			// last_node->right = _end;
-			// _end->parent = last_node;
 			// std::cout << last_node->right->_final << std::endl;
 			// _end->_final = true;
 			// m_allocator.construct(last_node);

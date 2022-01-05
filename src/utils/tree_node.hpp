@@ -46,6 +46,7 @@ class node {
 			// There is an issue somewhere between here and the rotations
 			// if (it->right->_final)
 			// 	return it->right;
+			std::cout << "Here?" << std::endl;
 			if (it->right) {
 				it = it->right;
 				while (it->left) {
