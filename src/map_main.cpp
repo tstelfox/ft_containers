@@ -6,22 +6,52 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 18:45:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/06 17:29:28 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
 
-// template <typename T>
-// void	not_consty(T object) {
-// 	object.second = "newthing";
-// }
+void	std_test() {
+
+	std::map<int, std::string> test;
+
+	std::cout << "<<<------STANDARD TESTIN BOYSSSS------>>>" << std::endl << std::endl;
+	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(99, "Mazzarri"));
+	test.insert(std::pair<int, std::string>(10, "Fuoco"));
+	test.insert(std::pair<int, std::string>(12, "Kali"));
+	test.insert(std::pair<int, std::string>(17, "Uchis"));
+	test.insert(std::pair<int, std::string>(6, "Colombia"));
+	test.insert(std::pair<int, std::string>(15, "Gran Colombia"));
+	test.insert(std::pair<int, std::string>(4, "Shakira Shakira"));
+	test.insert(std::pair<int, std::string>(5, "Aiuto Shakira"));
+	test.insert(std::pair<int, std::string>(2, "Dio cane"));
+	test.insert(std::pair<int, std::string>(99, "dio bastardo"));
+	test.insert(std::pair<int, std::string>(47, "dio porco"));
+	test.insert(std::pair<int, std::string>(16, "dio stronzo"));
+
+	// test.printBT();
+
+	std::cout << "\nTESTIN ITERATORS" << std::endl;
+	std::map<int, std::string>::iterator it = test.begin();
+	// std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
+	while (it != test.end()) {
+		// std::cout << "Testin testin" << std::endl;
+		std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
+		it++;
+	}
+	std::cout << "NOW BACKWARDS" << std::endl;
+	// std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
+	for (size_t i = 0; i < (test.size()); i++) {
+		it--;
+		std::cout << "Value at previous iteration: " << it->first << " " << it->second << std::endl;
+	}
+}
 
 void	test_basic() {
-	
+
 	ft::map<int, std::string> test;
 
-	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(99, "Mazzarri"));
 	test.insert(std::pair<int, std::string>(10, "Fuoco"));
 	test.insert(std::pair<int, std::string>(12, "Kali"));
 	test.insert(std::pair<int, std::string>(17, "Uchis"));
@@ -51,16 +81,15 @@ void	test_basic() {
 		it++;
 	}
 	std::cout << "NOW BACKWARDS" << std::endl;
-	std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
-	for (size_t i = 0; i < (test.size() - 1); i++) {
+	for (size_t i = 0; i < (test.size()); i++) {
 		it--;
 		std::cout << "Value at previous iteration: " << it->first << " " << it->second << std::endl;
 	}
 
-	*it++;
-	std::cout << "Attempting to *iterate: " << it->first << " " << it->second << std::endl;
+	// *it++;
+	// std::cout << "Attempting to *iterate: " << it->first << " " << it->second << std::endl;
 
-	ft::map<int, std::string>::const_iterator const_it = test.begin();
+	// ft::map<int, std::string>::const_iterator const_it = test.begin();
 
 
 	// std::pair<int, std::string> yonks(94784, "Don't do it maaaan");
@@ -80,6 +109,6 @@ void	test_basic() {
 int		main() {
 
 	test_basic();
-
+	std_test();
 	return 0;
 }

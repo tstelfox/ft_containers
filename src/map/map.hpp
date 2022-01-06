@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 18:46:15 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/06 17:22:55 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,7 @@ class map
 				// if (temp->parent)
 				// 	std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 				while (root) {
+					// std::cout << root->object.first << std::endl;
 					// std::cout << "Here in insert?" << std::endl;
  					if (!value_compare(_comp)(root->object, temp->object)) {
 						if (root->left)
@@ -268,7 +269,9 @@ class map
 						}
 					}
 					else {
-						if (root->right) {
+						if (root->right && !root->right->_final) {
+							std::cout << root->right->_final << std::endl;
+							std::cout << root->right->object.first << std::endl;
 							root = root->right;
 						}
 						else {
@@ -282,7 +285,7 @@ class map
 				}
 				// std::cout << temp->colour << std::endl;
 				fix_violations(root, temp);
-				std::cout << "Where the shit" << std::endl;
+				// std::cout << "Where the shit" << std::endl;
 				first_and_last();
 			}
 			else {
@@ -292,6 +295,11 @@ class map
 				m_size++;
 				m_allocator.construct(root, val);
 				root->colour = BLACK;
+				// last_node = root;
+				// first_node = root;
+				// root->right = _end;
+				// _end->parent = root;
+				// first_and_last();
 				// first_node->parent = last_node->parent = root;
 				// root->left = first_node;
 				// root->right = last_node;
@@ -352,29 +360,22 @@ class map
 			temp = root;
 			/* The infite loop is generated here. May need to place this entire function
 			elsewhere in the code and create a solution for when only the root has been inserted */
-			while (temp->right)
+			while (temp->right && !temp->right->_final)
 			{
-				// if (temp->right->_final) {
-				// 	// std::cout << "Diocane" << temp->object.first << std::endl;
-				// 	break;
-				// }
-				std::cout << "Here or somethin stupid?" << std::endl;
 				temp = temp->right;
+				// std::cout << "In heeeeeere huh" << std::endl;
 			}
 			last_node = temp;
-			last_node->right = _end;
+
+			// temp = root;
+			// while (temp->right) {
+			// 	// std::cout << "In here huh" << std::endl;
+			// 	temp = temp->right;
+			// }
+			// _end = temp;
 			_end->parent = last_node;
-			/* THIS SHIT RIGHT HERE
-				FUCKING FUCKI FUCK */
-			// _end = m_allocator.allocate(1);
-			// m_allocator.construct(_end, true);
-			// std::cout << last_node->right->_final << std::endl;
-			// _end->_final = true;
-			// m_allocator.construct(last_node);
-			// last_node->parent = root;
-			// temp->right = last_node;
-			// last_node->parent = first_node;
-			// first_node->parent = last_node;
+			last_node->right = _end;
+			// _end->right = first_node;
 		}
 
 		void	init_first_last() {
@@ -405,7 +406,7 @@ class map
 			// std::cout << first_node->object.first << std::endl;
 			// Hmmmm
 			// if (trav && trav != first_node && trav != last_node) {
-			if (trav) {
+			if (trav && trav != _end) {
 					std::cerr << prefix;
 					std::cerr << (isLeft ? "├L─" : "└R-" );
 					// print the value of the node

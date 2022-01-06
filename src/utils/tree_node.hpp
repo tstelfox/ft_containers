@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 18:33:33 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/06 17:22:13 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ class node {
 			node *it(this);
 
 			// There is an issue somewhere between here and the rotations
-			// if (it->right->_final)
-			// 	return it->right;
-			std::cout << "Here?" << std::endl;
+			// if (it->_final)
+			// 	return first_node;
+			// std::cout << "Here?" << std::endl;
 			if (it->right) {
 				it = it->right;
 				while (it->left) {
