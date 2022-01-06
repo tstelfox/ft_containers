@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/06 17:22:55 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/06 17:33:51 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,6 @@ class map
 			while ((newnode != root) && (newnode->colour != BLACK) &&
 					(newnode->parent->colour == RED))
 			{
-				std::cout << "Here in FV?" << std::endl;
 				p_node = newnode->parent;
 				gp_node = newnode->parent->parent;
 				/* Case A
@@ -250,59 +249,38 @@ class map
 				mapnode *saved = root;
 				m_size++;
 				m_allocator.construct(temp, val);
-				// std::cout << "\nTree branch after insertion currently" << std::endl;
-				// std::cout << "Root node: " << temp->object.first << std::endl;
-				// if (temp->parent)
-				// 	std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 				while (root) {
-					// std::cout << root->object.first << std::endl;
-					// std::cout << "Here in insert?" << std::endl;
  					if (!value_compare(_comp)(root->object, temp->object)) {
 						if (root->left)
 							root = root->left;
 						else {
 							temp->parent = root;
 							root->left = temp;
-							// std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 							root = saved;
 							break;
 						}
 					}
 					else {
 						if (root->right && !root->right->_final) {
-							std::cout << root->right->_final << std::endl;
-							std::cout << root->right->object.first << std::endl;
 							root = root->right;
 						}
 						else {
 							temp->parent = root;
 							root->right = temp;
-							// std::cout << "And the parent is: " << temp->parent->object.first << std::endl;
 							root = saved;
 							break;
 						}
 					}
 				}
-				// std::cout << temp->colour << std::endl;
 				fix_violations(root, temp);
-				// std::cout << "Where the shit" << std::endl;
 				first_and_last();
 			}
 			else {
-				root = m_allocator.allocate(1); // Allocation is gonna have to be managed
-				// first_node = m_allocator.allocate(1);
-				// last_node = m_allocator.allocate(1);
+				root = m_allocator.allocate(1);
 				m_size++;
 				m_allocator.construct(root, val);
 				root->colour = BLACK;
-				// last_node = root;
-				// first_node = root;
-				// root->right = _end;
-				// _end->parent = root;
-				// first_and_last();
-				// first_node->parent = last_node->parent = root;
-				// root->left = first_node;
-				// root->right = last_node;
+				// Boh, need to check first_node and last_node in this situation
 			}
 			// iterator it = begin(); // This needs fixed to point to the correct thing
 			// return std::make_pair(it, true);
@@ -351,6 +329,7 @@ class map
 		// 			contents(temp->right, i + 10, false);
 		// 	}
 		// }
+
 		void		first_and_last() {
 			mapnode *temp = root;
 
@@ -358,24 +337,11 @@ class map
 				temp = temp->left;
 			first_node = temp;
 			temp = root;
-			/* The infite loop is generated here. May need to place this entire function
-			elsewhere in the code and create a solution for when only the root has been inserted */
 			while (temp->right && !temp->right->_final)
-			{
 				temp = temp->right;
-				// std::cout << "In heeeeeere huh" << std::endl;
-			}
 			last_node = temp;
-
-			// temp = root;
-			// while (temp->right) {
-			// 	// std::cout << "In here huh" << std::endl;
-			// 	temp = temp->right;
-			// }
-			// _end = temp;
 			_end->parent = last_node;
 			last_node->right = _end;
-			// _end->right = first_node;
 		}
 
 		void	init_first_last() {
@@ -386,15 +352,6 @@ class map
 			// _end->parent = first_node;
 			// first_node->parent = _end;
 		}
-
-		// void	inorder(mapnode *root) {
-		// 	if (root == NULL)
-		// 		return ;
-
-		// 	inorder(root->left);
-		// 	std::cout << root->object.first << std::endl;
-		// 	inorder(root->right);
-		// }
 
 		void printBT() const {
 			printBT("", this->root, false);

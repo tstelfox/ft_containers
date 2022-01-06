@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/06 17:29:28 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/06 17:34:13 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	std_test() {
 
 	std::map<int, std::string> test;
 
-	std::cout << "<<<------STANDARD TESTIN BOYSSSS------>>>" << std::endl << std::endl;
+	std::cout << "<<<------STANDARD TESTIN BOYSSSS------>>>" << std::endl;
 	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(99, "Mazzarri"));
 	test.insert(std::pair<int, std::string>(10, "Fuoco"));
 	test.insert(std::pair<int, std::string>(12, "Kali"));
@@ -50,6 +50,8 @@ void	std_test() {
 
 void	test_basic() {
 
+
+	std::cout << "<<<------THESE ARE MY BOYZZZZZZZZ------>>>" << std::endl;
 	ft::map<int, std::string> test;
 
 	test.insert(std::pair<int, std::string>(10, "Fuoco"));
