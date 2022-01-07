@@ -68,12 +68,66 @@ class Bimapiterator {
 		node_ptr m_ptr;
 };
 
-// template <typename T, typename Pointer, 
-// 		typename Reference>
-// Bimapiterator<T, Pointer, Reference>	operator +(typename	Bimapiterator<T, Pointer, Reference>::difference_type off,
-// 										const Bimapiterator<T, Pointer, Reference> &it)
-// 	{
-// 		return it + off;
-// 	}
+
+template < class Iterator >
+class	Rev_bi {
+
+	public:
+		typedef				Iterator					iterator_type;
+		typedef typename	iterator_type::difference_type	difference_type;
+		typedef typename 	iterator_type::reference		reference;
+		typedef typename 	iterator_type::pointer			pointer;
+
+		//Constructors, = overload and base()
+		Rev_bi() : current() {}
+		
+		explicit Rev_bi(iterator_type it) : current(it) {}
+
+		template < class Iter >
+		Rev_bi (Rev_bi<Iter> const &rev_it) : current(rev_it.base()) {}
+		~Rev_bi () {}
+
+		Rev_bi&	operator = (const Rev_bi &rhs) {
+			if (this != &rhs)
+				this->current = rhs.base();
+			return *this;
+		}
+		Iterator	base() const {
+			return current;
+		}
+
+		//Operators
+		reference	operator * () const {
+			Iterator temp = current;
+			return *temp--;
+		}
+		pointer		operator -> () const {
+			return &operator*();
+		}
+		Rev_bi&	operator ++ () {
+			--current; 
+			return *this;
+		}
+		Rev_bi		operator ++ (int) {
+			Rev_bi temp(*this);
+			++(*this);
+			return temp;
+		}
+		Rev_bi&	operator -- () {
+			--current;
+			return *this;
+		}
+		Rev_bi		operator -- (int) {
+			Rev_bi temp(*this);
+			--(*this);
+			return temp;
+		}
+
+		bool operator== (Rev_bi const &b) const { return this->base() == b.base(); }
+		bool operator!= (Rev_bi const &b) const { return !(this->base() == b.base()); }
+
+	protected:
+		Iterator	current;
+};
 
 }
