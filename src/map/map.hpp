@@ -280,6 +280,8 @@ class map
 				m_size++;
 				m_allocator.construct(root, val);
 				root->colour = BLACK;
+				first_node = root;
+				root->right = _end;
 				// Boh, need to check first_node and last_node in this situation
 			}
 			// iterator it = begin(); // This needs fixed to point to the correct thing
@@ -347,6 +349,9 @@ class map
 		void	init_first_last() {
 			_end = m_allocator.allocate(1);
 			m_allocator.construct(_end, true);
+			first_node = m_allocator.allocate(1);
+			first_node = _end;
+
 			// // std::cout << _end->_final << std::endl;
 			// first_node = m_allocator.allocate(1);
 			// _end->parent = first_node;

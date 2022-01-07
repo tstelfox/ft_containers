@@ -12,12 +12,24 @@
 
 #include "map.hpp"
 
+template < class T, class iter>
+void	small_map(T small, iter it) {
+	// small.insert(std::pair<int, std::string>(1, "Root"));
+	it = small.begin();
+	
+	std::cout << it->first << " " << it->second << std::endl;
+}
+
+
 void	std_test() {
+
+	std::map<int, std::string> small;
+	std::map<int, std::string>::iterator	small_iter;
+	small_map(small, small_iter);
 
 	std::map<int, std::string> test;
 
 	std::cout << "<<<------STANDARD TESTIN BOYSSSS------>>>" << std::endl;
-	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(99, "Mazzarri"));
 	test.insert(std::pair<int, std::string>(10, "Fuoco"));
 	test.insert(std::pair<int, std::string>(12, "Kali"));
 	test.insert(std::pair<int, std::string>(17, "Uchis"));
@@ -48,9 +60,12 @@ void	std_test() {
 	}
 }
 
+
 void	test_basic() {
 
-
+	ft::map<int, std::string> small;
+	ft::map<int, std::string>::iterator	small_iter;
+	small_map(small, small_iter);
 	std::cout << "<<<------THESE ARE MY BOYZZZZZZZZ------>>>" << std::endl;
 	ft::map<int, std::string> test;
 
@@ -69,6 +84,7 @@ void	test_basic() {
 
 	// std::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(std::pair<int, std::string>(47, "Dio Vigliacco"));
 
+	// Main testing here
 	std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
 	// test.contents(test.get_root(), 50, false);
@@ -95,19 +111,6 @@ void	test_basic() {
 	// std::cout << "Attempting to *iterate: " << it->first << " " << it->second << std::endl;
 
 	// ft::map<int, std::string>::const_iterator const_it = test.begin();
-
-
-	// std::pair<int, std::string> yonks(94784, "Don't do it maaaan");
-	// *const_it = yonks;
-	// *it = yonks;
-
-	// test.inorder(test.get_root());
-	// it++; // This requires the nodes and iterators to go up the tree
-
-	// The following isn't working diobe:
-	// node<std::pair<const int, std::string> > next = *it->left;
-	// it = it->right;
-	// std::cout << next.object.second << std::endl;
 	
 }
 
