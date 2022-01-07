@@ -82,7 +82,10 @@ void	test_basic() {
 		std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
 		it++;
 	}
+	it--;
+	std::cout << "This should be the last item: " << it->first << " " << it->second << std::endl;
 	std::cout << "NOW BACKWARDS" << std::endl;
+	it++;
 	for (size_t i = 0; i < (test.size()); i++) {
 		it--;
 		std::cout << "Value at previous iteration: " << it->first << " " << it->second << std::endl;
@@ -111,6 +114,6 @@ void	test_basic() {
 int		main() {
 
 	test_basic();
-	std_test();
+	// std_test();
 	return 0;
 }
