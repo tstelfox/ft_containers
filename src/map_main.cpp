@@ -52,20 +52,25 @@ void	std_test() {
 		std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
 		it++;
 	}
-	std::cout << "NOW BACKWARDS" << std::endl;
-	// std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
-	for (size_t i = 0; i < (test.size()); i++) {
-		it--;
-		std::cout << "Value at previous iteration: " << it->first << " " << it->second << std::endl;
+	std::cout << "NOW BACKWARDS with rev" << std::endl;
+	std::map<int, std::string>::reverse_iterator rev_it = test.rbegin();
+	// rev
+	// it++;
+	while (rev_it != test.rend()) {
+		std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
+		rev_it++;
 	}
+	// Eh ma diobe
+	rev_it--;
+	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
 }
 
 
 void	test_basic() {
 
-	ft::map<int, std::string> small;
-	ft::map<int, std::string>::iterator	small_iter;
-	small_map(small, small_iter);
+	// ft::map<int, std::string> small;
+	// ft::map<int, std::string>::iterator	small_iter;
+	// small_map(small, small_iter);
 	std::cout << "<<<------THESE ARE MY BOYZZZZZZZZ------>>>" << std::endl;
 	ft::map<int, std::string> test;
 
@@ -104,11 +109,16 @@ void	test_basic() {
 	ft::map<int, std::string>::reverse_iterator rev_it = test.rbegin();
 	// rev
 	// it++;
-	for (size_t i = 0; i < (test.size()); i++) {
-		rev_it++;
+	while (rev_it != test.rend()) {
 		std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
+		rev_it++;
 	}
-
+	// Eh ma diobe
+	rev_it--;
+	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
+	// for (size_t i = 0; i < (test.size()); i++) {
+	// }
+	// std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
 	// *it++;
 	// std::cout << "Attempting to *iterate: " << it->first << " " << it->second << std::endl;
 
@@ -118,6 +128,7 @@ void	test_basic() {
 
 int		main() {
 
+	// I could build in some variable so that I could compile it as standard or as ft
 	test_basic();
 	// std_test();
 	return 0;

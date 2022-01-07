@@ -83,11 +83,15 @@ class map
 		}
 
 		reverse_iterator	rbegin() {
-			return reverse_iterator(last_node);
+			return reverse_iterator(_end->parent);
 		}
 
 		iterator	end() {
 			return iterator(_end);
+		}
+
+		reverse_iterator	rend() {
+			return reverse_iterator(first_node->get_prev_node());
 		}
 
 		/* <<**------------------- CAPACITY ------------------**>> */
@@ -255,8 +259,9 @@ class map
 				m_size++;
 				m_allocator.construct(temp, val);
 				while (root) {
+					std::cout << "PRESUME here?" << std::endl;
  					if (!value_compare(_comp)(root->object, temp->object)) {
-						if (root->left)
+						if (root->left && !root->left->_final)
 							root = root->left;
 						else {
 							temp->parent = root;
@@ -341,13 +346,14 @@ class map
 		void		first_and_last() {
 			mapnode *temp = root;
 
-			while (temp->left)
+			while (temp->left && !temp->left->_final)
 				temp = temp->left;
 			first_node = temp;
 			temp = root;
 			while (temp->right && !temp->right->_final)
 				temp = temp->right;
 			last_node = temp;
+			first_node->left = _end;
 			_end->parent = last_node;
 			last_node->right = _end;
 		}
@@ -357,6 +363,7 @@ class map
 			m_allocator.construct(_end, true);
 			first_node = m_allocator.allocate(1);
 			first_node = _end;
+			// first_node->parent = _end;
 
 			// // std::cout << _end->_final << std::endl;
 			// first_node = m_allocator.allocate(1);

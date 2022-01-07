@@ -99,7 +99,7 @@ class	Rev_bi {
 		//Operators
 		reference	operator * () const {
 			Iterator temp = current;
-			return *temp--;
+			return *temp;
 		}
 		pointer		operator -> () const {
 			return &operator*();

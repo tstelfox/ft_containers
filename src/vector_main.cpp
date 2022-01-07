@@ -190,6 +190,8 @@ void	test_object() {
 	other_vec.push_back("darkaufhayyyybung is kind of annoying");
 	other_vec.push_back("Whiney, I'd say");
 
+	for (ft::vector<std::string>::reverse_iterator rev_it = string_vec.rbegin(); rev_it != string_vec.rend(); rev_it++)
+		std::cout << "In reverse order: " << *rev_it << std::endl;
 	for (ft::vector<std::string>::iterator it = string_vec.begin(); it != string_vec.end(); it++)
 		std::cout << "Elements of string_vec: " << *it << std::endl;
 	string_vec[4] = "la cagaste";

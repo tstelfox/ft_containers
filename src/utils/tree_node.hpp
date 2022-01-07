@@ -63,6 +63,8 @@ class node {
 		node*	get_prev_node() {
 			node *it(this);
 
+			// if (it->parent->_final)
+			// 	return (it->parent);
 			if (it->left) {
 				it = it->left;
 				while (it->right)
@@ -76,7 +78,7 @@ class node {
 					it = it->parent;
 				}
 			}
-			return (it);		
+			return (it);
 		}
 
 		// value_type	*object; // For allocator
