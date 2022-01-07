@@ -100,11 +100,13 @@ void	test_basic() {
 	}
 	it--;
 	std::cout << "This should be the last item: " << it->first << " " << it->second << std::endl;
-	std::cout << "NOW BACKWARDS" << std::endl;
-	it++;
+	std::cout << "NOW BACKWARDS WITH REVERSE_ITERATOR" << std::endl;
+	ft::map<int, std::string>::reverse_iterator rev_it = test.rbegin();
+	// rev
+	// it++;
 	for (size_t i = 0; i < (test.size()); i++) {
-		it--;
-		std::cout << "Value at previous iteration: " << it->first << " " << it->second << std::endl;
+		rev_it++;
+		std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
 	}
 
 	// *it++;

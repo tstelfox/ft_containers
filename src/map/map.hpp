@@ -43,6 +43,7 @@ class map
 		typedef const value_type*									const_pointer;
 		typedef	Bimapiterator<value_type, pointer, reference>		iterator;
 		typedef	Bimapiterator<value_type, const_pointer, const_reference>	const_iterator;
+		typedef Rev_bi<iterator>									reverse_iterator;
 		typedef	size_t												size_type;
 		typedef	ptrdiff_t											difference_type;
 		typedef node<value_type>						mapnode;
@@ -79,6 +80,10 @@ class map
 
 		iterator begin() const {
 			return const_iterator(first_node);
+		}
+
+		reverse_iterator	rbegin() {
+			return reverse_iterator(last_node);
 		}
 
 		iterator	end() {
@@ -281,6 +286,7 @@ class map
 				m_allocator.construct(root, val);
 				root->colour = BLACK;
 				first_node = root;
+				last_node = root;
 				root->right = _end;
 				// Boh, need to check first_node and last_node in this situation
 			}
