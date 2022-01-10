@@ -73,6 +73,10 @@ class map
 
 		~map() {}
 
+		map&	operator = (const map &x) {
+			// Will probably need to use this->erase() and stuff to reassign;
+		}
+
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
@@ -424,7 +428,6 @@ class map
 		size_type			m_size;
 		mapnode				*root;
 
-		// How in the name of hell am I to keep track of these fuckers without being super OTT?
 		mapnode				*first_node;
 		mapnode				*last_node;
 		mapnode				*_end;
