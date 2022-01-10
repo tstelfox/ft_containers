@@ -91,7 +91,7 @@ class map
 		}
 
 		reverse_iterator	rend() {
-			return reverse_iterator(first_node->get_prev_node());
+			return reverse_iterator(_begin);
 		}
 
 		/* <<**------------------- CAPACITY ------------------**>> */
@@ -349,11 +349,12 @@ class map
 			while (temp->left && !temp->left->_delimit)
 				temp = temp->left;
 			first_node = temp;
+			first_node->left = _begin;
+			_begin->parent = first_node;
 			temp = root;
 			while (temp->right && !temp->right->_delimit)
 				temp = temp->right;
 			last_node = temp;
-			first_node->left = _end;
 			_end->parent = last_node;
 			last_node->right = _end;
 		}
@@ -361,7 +362,9 @@ class map
 		void	init_first_last() {
 			_end = m_allocator.allocate(1);
 			m_allocator.construct(_end, true);
-			first_node = m_allocator.allocate(1);
+			_begin = m_allocator.allocate(1);
+			m_allocator.construct(_begin, true);
+			// first_node = m_allocator.allocate(1);
 			first_node = _end;
 			// first_node->parent = _end;
 
@@ -381,7 +384,7 @@ class map
 			// std::cout << first_node->object.first << std::endl;
 			// Hmmmm
 			// if (trav && trav != first_node && trav != last_node) {
-			if (trav && trav != _end) {
+			if (trav && trav != _end && trav != _begin) {
 					std::cerr << prefix;
 					std::cerr << (isLeft ? "├L─" : "└R-" );
 					// print the value of the node
@@ -410,6 +413,7 @@ class map
 		mapnode				*first_node;
 		mapnode				*last_node;
 		mapnode				*_end;
+		mapnode				*_begin;
 		
 		
 

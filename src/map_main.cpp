@@ -14,7 +14,7 @@
 
 template < class T, class iter>
 void	small_map(T small, iter it) {
-	// small.insert(std::pair<int, std::string>(1, "Root"));
+	small.insert(std::pair<int, std::string>(1, "Root"));
 	it = small.begin();
 	
 	std::cout << it->first << " " << it->second << std::endl;
@@ -114,7 +114,6 @@ void	test_basic() {
 		std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
 		rev_it++;
 	}
-	// Eh ma diobe
 	rev_it--;
 	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
 	// for (size_t i = 0; i < (test.size()); i++) {

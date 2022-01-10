@@ -61,7 +61,7 @@ class	Rev_rai {
 			return temp;
 		}
 		Rev_rai&	operator -- () {
-			--current;
+			++current;
 			return *this;
 		}
 		Rev_rai		operator -- (int) {

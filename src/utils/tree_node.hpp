@@ -66,6 +66,7 @@ class node {
 			// if (it->parent->_delimit)
 			// 	return (it->parent);
 			if (it->left) {
+				// std::cout << it->left->_delimit << std::endl;
 				it = it->left;
 				while (it->right)
 					it = it->right;

@@ -114,7 +114,7 @@ class	Rev_bi {
 			return temp;
 		}
 		Rev_bi&	operator -- () {
-			--current;
+			++current;
 			return *this;
 		}
 		Rev_bi		operator -- (int) {
