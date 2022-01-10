@@ -116,6 +116,7 @@ void	test_basic() {
 	}
 	rev_it--;
 	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
+	std::cout << "ayyy" << std::endl;
 	// for (size_t i = 0; i < (test.size()); i++) {
 	// }
 	// std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
