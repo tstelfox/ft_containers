@@ -184,7 +184,7 @@ class map
 					/* Case alpha
 						Uncle of node is also RED
 						Only recolouring required */
-					if (uncle_node != NULL && uncle_node->colour == RED)
+					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_final)
 					{
 						gp_node->colour = RED;
 						p_node->colour = BLACK;
@@ -218,7 +218,7 @@ class map
 					/* Case alpha
 						Uncle of node is also RED
 						Only recolouring required */
-					if (uncle_node != NULL && uncle_node->colour == RED)
+					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_final)
 					{
 						gp_node->colour = RED;
 						p_node->colour = BLACK;
