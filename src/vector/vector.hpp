@@ -34,7 +34,7 @@ class vector
 		typedef				value_type const&				const_reference;
 		typedef				value_type*						pointer;
 		typedef				value_type const*				const_pointer;
-		typedef				ptrdiff_t						difference_type;
+		typedef				std::ptrdiff_t					difference_type;
 		typedef				size_t							size_type;
 		typedef				Raiterator<T, T*, T&>						iterator;
 		typedef				Raiterator<T, T const*, T const&>			const_iterator;
