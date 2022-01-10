@@ -184,7 +184,7 @@ class map
 					/* Case alpha
 						Uncle of node is also RED
 						Only recolouring required */
-					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_final)
+					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_delimit)
 					{
 						gp_node->colour = RED;
 						p_node->colour = BLACK;
@@ -218,7 +218,7 @@ class map
 					/* Case alpha
 						Uncle of node is also RED
 						Only recolouring required */
-					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_final)
+					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_delimit)
 					{
 						gp_node->colour = RED;
 						p_node->colour = BLACK;
@@ -261,7 +261,7 @@ class map
 				while (root) {
 					// std::cout << "PRESUME here?" << std::endl;
  					if (!value_compare(_comp)(root->object, temp->object)) {
-						if (root->left && !root->left->_final)
+						if (root->left && !root->left->_delimit)
 							root = root->left;
 						else {
 							temp->parent = root;
@@ -271,7 +271,7 @@ class map
 						}
 					}
 					else {
-						if (root->right && !root->right->_final) {
+						if (root->right && !root->right->_delimit) {
 							root = root->right;
 						}
 						else {
@@ -346,11 +346,11 @@ class map
 		void		first_and_last() {
 			mapnode *temp = root;
 
-			while (temp->left && !temp->left->_final)
+			while (temp->left && !temp->left->_delimit)
 				temp = temp->left;
 			first_node = temp;
 			temp = root;
-			while (temp->right && !temp->right->_final)
+			while (temp->right && !temp->right->_delimit)
 				temp = temp->right;
 			last_node = temp;
 			first_node->left = _end;
@@ -365,7 +365,7 @@ class map
 			first_node = _end;
 			// first_node->parent = _end;
 
-			// // std::cout << _end->_final << std::endl;
+			// // std::cout << _end->_delimit << std::endl;
 			// first_node = m_allocator.allocate(1);
 			// _end->parent = first_node;
 			// first_node->parent = _end;

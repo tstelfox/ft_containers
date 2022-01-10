@@ -19,9 +19,9 @@ class node {
 
 		// Create nodes as red/vermelho
 		explicit node(value_type const &val = value_type()) :
-			object(val) , parent(0), left(0), right(0), colour('r') , _final(false) {} 
+			object(val) , parent(0), left(0), right(0), colour('r') , _delimit(false) {} 
 
-		node(bool empty) : object() , parent(0), left(0), right(0), colour('r') , _final(empty) {}
+		node(bool empty) : object() , parent(0), left(0), right(0), colour('r') , _delimit(empty) {}
 
 		node(const node& x) : object(x.object) , parent(x.parent) , left(x.left) , right(x.right) , colour(x.colour) {}
 
@@ -63,7 +63,7 @@ class node {
 		node*	get_prev_node() {
 			node *it(this);
 
-			// if (it->parent->_final)
+			// if (it->parent->_delimit)
 			// 	return (it->parent);
 			if (it->left) {
 				it = it->left;
@@ -87,7 +87,7 @@ class node {
 		node*		left;
 		node*		right;
 		char		colour;
-		bool		_final;
+		bool		_delimit;
 	private: // Maybe (?)
 		
 };
