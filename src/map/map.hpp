@@ -263,7 +263,7 @@ class map
 		}
 
 
-		void		insert(const value_type& val) { // Could divide this up and make one part properly recursive
+		std::pair<iterator, bool>	insert(const value_type& val) { // Could divide this up and make one part properly recursive
 			if (m_size >= 1)
 			{
 				mapnode *temp = NULL;
@@ -273,6 +273,12 @@ class map
 				m_allocator.construct(temp, val);
 				while (root) {
 					// std::cout << "PRESUME here?" << std::endl;
+					if (root->object.first == temp->object.first) {
+						m_allocator.deallocate(temp, 1);
+						std::pair<iterator, bool> ret = std::make_pair(iterator(root), false);
+						root = saved;
+						return ret;
+					}
  					if (!value_compare(_comp)(root->object, temp->object)) {
 						if (root->left && !root->left->_delimit)
 							root = root->left;
@@ -307,9 +313,8 @@ class map
 				last_node = root;
 				root->right = _end;
 				// Boh, need to check first_node and last_node in this situation
-			}
-			// iterator it = begin(); // This needs fixed to point to the correct thing
-			// return std::make_pair(it, true);
+			}// This needs fixed to point to the correct thing
+			return std::make_pair(iterator(root), true);
 		}
 
 		/* <<**------------------- OBSERVERS ------------------**>> */

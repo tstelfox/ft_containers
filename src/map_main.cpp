@@ -100,7 +100,6 @@ void	test_basic() {
 	ft::map<int, std::string>::iterator it = test.begin();
 	// std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
 	while (it != test.end()) {
-		// std::cout << "Testin testin" << std::endl;
 		std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
 		it++;
 	}
@@ -118,6 +117,12 @@ void	test_basic() {
 	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
 	test.insert(std::pair<int, std::string>(4, "This shouldn't exist"));
 	test.printBT();
+
+	// it = test.begin();
+	// while (it != test.end()) {
+	// 	std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
+	// 	it++;
+	// }
 	// for (size_t i = 0; i < (test.size()); i++) {
 	// }
 	// std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
