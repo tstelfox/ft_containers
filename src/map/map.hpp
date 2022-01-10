@@ -318,6 +318,12 @@ class map
 
 		// Gonna almost certainly need iterators for this
 
+		/* <<**------------------- ALLOCATOR ------------------**>> */
+
+		allocator_type	get_allocator() const {
+			return m_allocator;
+		}
+
 		/* <<**------------------- TEEEEEEESTING ------------------**>> */
 
 		// void	print_next_nodes(mapnode *node, int i) {
