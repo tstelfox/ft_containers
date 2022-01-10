@@ -116,6 +116,8 @@ void	test_basic() {
 	}
 	rev_it--;
 	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
+	test.insert(std::pair<int, std::string>(4, "This shouldn't exist"));
+	test.printBT();
 	// for (size_t i = 0; i < (test.size()); i++) {
 	// }
 	// std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;

@@ -73,9 +73,9 @@ class map
 
 		~map() {}
 
-		map&	operator = (const map &x) {
-			// Will probably need to use this->erase() and stuff to reassign;
-		}
+		// map&	operator = (const map &x) {
+		// 	// Will probably need to use this->erase() and stuff to reassign;
+		// }
 
 		/* <<**------------------- ITERATORS ------------------**>> */
 
@@ -127,7 +127,7 @@ class map
 
 		// mapped_type&	operator[] (key_type const &k) {
 		// 	//Requires insert I believe - But now I'm not so sure
-		// 	//In any case I perhaps need to crack std::pair first
+		// 	// Time to fuckin gooooooo
 		// }
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
