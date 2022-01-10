@@ -93,6 +93,7 @@ void	test_basic() {
 	std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
 	// test.contents(test.get_root(), 50, false);
+	// Fuck why is the tree not balanced?
 	test.printBT();
 
 	std::cout << "\nTESTIN ITERATORS" << std::endl;

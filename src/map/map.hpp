@@ -259,7 +259,7 @@ class map
 				m_size++;
 				m_allocator.construct(temp, val);
 				while (root) {
-					std::cout << "PRESUME here?" << std::endl;
+					// std::cout << "PRESUME here?" << std::endl;
  					if (!value_compare(_comp)(root->object, temp->object)) {
 						if (root->left && !root->left->_final)
 							root = root->left;
