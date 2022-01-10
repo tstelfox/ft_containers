@@ -31,7 +31,6 @@ class Bimapiterator {
 		typedef node<value_type>*								node_ptr;
 		typedef	Bimapiterator<T, Pointer, Reference> 			iterator;
 		typedef	Bimapiterator<T, const T*, const T&>			const_iterator;
-		// typedef	node<value_type>*								node_pointer;
 
 	public:
 		Bimapiterator() : m_ptr(NULL) {}

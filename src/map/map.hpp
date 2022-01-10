@@ -44,6 +44,7 @@ class map
 		typedef	Bimapiterator<value_type, pointer, reference>		iterator;
 		typedef	Bimapiterator<value_type, const_pointer, const_reference>	const_iterator;
 		typedef Rev_bi<iterator>									reverse_iterator;
+		typedef	Rev_bi<const_iterator>								const_reverse_iterator;
 		typedef	size_t												size_type;
 		typedef	ptrdiff_t											difference_type;
 		typedef node<value_type>						mapnode;
@@ -86,12 +87,20 @@ class map
 			return reverse_iterator(_end->parent);
 		}
 
+		const_reverse_iterator	rbegin() const {
+			return const_reverse_iterator(_end->parent);
+		}
+
 		iterator	end() {
 			return iterator(_end);
 		}
 
 		reverse_iterator	rend() {
 			return reverse_iterator(_begin);
+		}
+
+		const_reverse_iterator	rend() const {
+			return const_reverse_iterator(_end->parent);
 		}
 
 		/* <<**------------------- CAPACITY ------------------**>> */
