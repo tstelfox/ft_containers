@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/06 17:34:13 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/11 15:24:27 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ void	test_basic() {
 	test.insert(std::pair<int, std::string>(4, "This shouldn't exist"));
 	test.printBT();
 
+
+	// Bianchi positivo iolai
 	// it = test.begin();
 	// while (it != test.end()) {
 	// 	std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
