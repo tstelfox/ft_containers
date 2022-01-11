@@ -266,7 +266,7 @@ class map
 		}
 
 
-		std::pair<iterator, bool>	insert(const value_type& val) { // Could divide this up and make one part properly recursive
+		std::pair<iterator, bool>	insert(const value_type& val) { // Should probably clean this up
 			if (m_size >= 1)
 			{
 				mapnode *temp = NULL;
@@ -283,7 +283,6 @@ class map
 						return ret;
 					}
  					if (value_compare(_comp)(temp->object, root->object)) {
-					// if (_comp(temp->object, root->object)) {
 						if (root->left && !root->left->_delimit)
 							root = root->left;
 						else {
