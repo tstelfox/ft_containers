@@ -23,9 +23,9 @@ void	small_map(T small, iter it) {
 
 void	std_test() {
 
-	std::map<int, std::string> small;
-	std::map<int, std::string>::iterator	small_iter;
-	small_map(small, small_iter);
+	// std::map<int, std::string> small;
+	// std::map<int, std::string>::iterator	small_iter;
+	// small_map(small, small_iter);
 
 	std::map<int, std::string> test;
 
@@ -42,6 +42,8 @@ void	std_test() {
 	test.insert(std::pair<int, std::string>(47, "dio porco"));
 	test.insert(std::pair<int, std::string>(16, "dio stronzo"));
 
+	std::cout << "\nSQUARE BRACKETSSS" << std::endl;
+	std::cout << "Item number " << 4 << " is: " << test[3] << std::endl;
 	// test.printBT();
 
 	std::cout << "\nTESTIN ITERATORS" << std::endl;
@@ -127,6 +129,10 @@ void	test_basic() {
 	std::cout << "Is it there? " << test.count(99) << std::endl;
 	std::cout << "Is it there? " << test.count(66) << std::endl;
 
+	std::cout << "\nSQUARE BRACKETSSS" << std::endl;
+
+	std::cout << "Item number 4 is: " << test[9] << std::endl;
+
 	// Bianchi positivo iolai
 	// it = test.begin();
 	// while (it != test.end()) {
@@ -147,6 +153,6 @@ int		main() {
 
 	// I could build in some variable so that I could compile it as standard or as ft
 	test_basic();
-	// std_test();
+	std_test();
 	return 0;
 }

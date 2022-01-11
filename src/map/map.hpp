@@ -129,11 +129,9 @@ class map
 
 		/* <<**------------------- ELEMENT ACCESS ------------------**>> */
 
-		// mapped_type&	operator[] (key_type const &k) {
-		// 	// Perhaps even requires find() ?
-		// 	//Requires insert I believe - But now I'm not so sure
-		// 	// Time to fuckin gooooooo
-		// }
+		mapped_type&	operator[] (key_type const &k) {
+			return (*((this->insert(make_pair(k, mapped_type()))).first)).second;
+		}
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
@@ -309,6 +307,7 @@ class map
 				}
 				fix_violations(root, temp);
 				first_and_last();
+				return std::make_pair(iterator(temp), true);
 			}
 			else {
 				root = m_allocator.allocate(1);
@@ -318,9 +317,10 @@ class map
 				first_node = root;
 				last_node = root;
 				root->right = _end;
+				return std::make_pair(iterator(root), true);
 				// Boh, need to check first_node and last_node in this situation
 			}// This needs fixed to point to the correct thing
-			return std::make_pair(iterator(root), true);
+			// return std::make_pair(iterator(temp), true);
 		}
 
 		/* <<**------------------- OBSERVERS ------------------**>> */
