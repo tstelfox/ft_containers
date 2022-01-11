@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/06 17:33:51 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/11 18:44:03 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ class map
 		typedef	Rev_bi<const_iterator>								const_reverse_iterator;
 		typedef	size_t												size_type;
 		typedef	ptrdiff_t											difference_type;
-		typedef node<value_type>						mapnode;
+		typedef node<value_type>									mapnode;
 		typedef	typename Alloc::template rebind<mapnode>::other		node_alloc;
 
 		class	value_compare : std::binary_function<value_type, value_type, bool> {
@@ -126,6 +126,7 @@ class map
 		/* <<**------------------- ELEMENT ACCESS ------------------**>> */
 
 		// mapped_type&	operator[] (key_type const &k) {
+		// 	// Perhaps even requires find() ?
 		// 	//Requires insert I believe - But now I'm not so sure
 		// 	// Time to fuckin gooooooo
 		// }
@@ -279,7 +280,8 @@ class map
 						root = saved;
 						return ret;
 					}
- 					if (!value_compare(_comp)(root->object, temp->object)) {
+ 					if (value_compare(_comp)(temp->object, root->object)) {
+					// if (_comp(temp->object, root->object)) {
 						if (root->left && !root->left->_delimit)
 							root = root->left;
 						else {
@@ -325,6 +327,31 @@ class map
 
 		/* <<**------------------- OPERATIONS ------------------**>> */
 
+		iterator	find(const key_type &k) {
+			mapnode *temp = root;
+
+			while (temp && temp != _end && temp != _begin) {
+				if (_comp(k, temp->object.first))
+					temp = temp->left;
+				else if (_comp(temp->object.first, k))
+					temp = temp->right;
+				else return iterator(temp);
+			}
+			return end();
+		}
+
+		const_iterator	find(const key_type &k) const {
+			mapnode *temp = root;
+
+			while (temp && temp != _end && temp != _begin) {
+				if (_comp(k, temp->object.first))
+					temp = temp->left;
+				else if (_comp(temp->object.first, k))
+					temp = temp->right;
+				else return const_iterator(temp);
+			}
+			return end();
+		}
 		// Gonna almost certainly need iterators for this
 
 		/* <<**------------------- ALLOCATOR ------------------**>> */

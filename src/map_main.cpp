@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/11 15:24:27 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/11 18:22:50 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,13 @@ void	test_basic() {
 	rev_it--;
 	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
 	test.insert(std::pair<int, std::string>(4, "This shouldn't exist"));
-	test.printBT();
+	// test.printBT();
+
+
+	ft::map<int, std::string>::iterator found = test.find(99);
+	std::cout << "Found: " << found->second << std::endl;
+	ft::map<int, std::string>::iterator not_found = test.find(0);
+	std::cout << "Found: " << not_found->second << std::endl;
 
 
 	// Bianchi positivo iolai
