@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/11 18:44:03 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/11 18:57:18 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ class map
 
 		iterator	end() {
 			return iterator(_end);
+		}
+
+		iterator	end() const {
+			return const_iterator(_end);
 		}
 
 		reverse_iterator	rend() {
@@ -351,6 +355,13 @@ class map
 				else return const_iterator(temp);
 			}
 			return end();
+		}
+
+		size_type		count(const key_type &k) const {
+			if (find(k) != end())
+				return 1;
+			else
+				return 0;
 		}
 		// Gonna almost certainly need iterators for this
 

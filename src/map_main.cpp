@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/11 18:22:50 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/11 18:54:54 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void	test_basic() {
 	ft::map<int, std::string>::iterator not_found = test.find(0);
 	std::cout << "Found: " << not_found->second << std::endl;
 
+	std::cout << "Is it there? " << test.count(99) << std::endl;
+	std::cout << "Is it there? " << test.count(66) << std::endl;
 
 	// Bianchi positivo iolai
 	// it = test.begin();
