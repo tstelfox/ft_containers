@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/12 13:42:43 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/12 14:18:28 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 #define	BLACK	'b'
 #define	RED		'r'
+#define DOUBLE_BLACK 'd'
 
 namespace ft {
 
@@ -134,11 +135,6 @@ class map
 		}
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
-
-		// If we attempt to pass something with same key to insert, it will not insert it.
-		// std::pair<iterator, bool>	insert (const value_type& val) {
-
-		// Something is wrong because it's forgetting half the tree lol
 
 		void		right_rotate(mapnode *&root, mapnode *&newnode)
 		{
@@ -320,6 +316,16 @@ class map
 				// Boh, need to check first_node and last_node in this situation
 			}// This needs fixed to point to the correct thing
 			// return std::make_pair(iterator(temp), true);
+		}
+
+		// iterator insert (iterator position, const value_type& val) {}
+
+		// template <class InputIterator>
+ 		// void insert (InputIterator first, InputIterator last) {}
+
+		void	erase(iterator position) {
+			 
+			m_size--;
 		}
 
 		/* <<**------------------- OBSERVERS ------------------**>> */
