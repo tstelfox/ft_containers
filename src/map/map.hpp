@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/12 14:18:28 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/12 14:25:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 #define	BLACK	'b'
 #define	RED		'r'
-#define DOUBLE_BLACK 'd'
+#define DOUBLE_BLACK 'd' // This might not be needed at all. Just a function at the right moment
 
 namespace ft {
 
