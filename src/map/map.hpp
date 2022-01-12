@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/12 13:40:17 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/12 13:42:43 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -427,11 +427,6 @@ class map
 			m_allocator.construct(_begin, true);
 			// first_node = m_allocator.allocate(1);
 			first_node = _end;
-			// first_node->parent = _end;
-
-			// // std::cout << _end->_delimit << std::endl;
-			// first_node = m_allocator.allocate(1);
-			// _end->parent = first_node;
 			// first_node->parent = _end;
 		}
 
