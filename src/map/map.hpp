@@ -99,7 +99,7 @@ class map
 			return iterator(_end);
 		}
 
-		iterator	end() const {
+		const_iterator	end() const {
 			return const_iterator(_end);
 		}
 
@@ -129,11 +129,9 @@ class map
 
 		/* <<**------------------- ELEMENT ACCESS ------------------**>> */
 
-		// mapped_type&	operator[] (key_type const &k) {
-		// 	// Perhaps even requires find() ?
-		// 	//Requires insert I believe - But now I'm not so sure
-		// 	// Time to fuckin gooooooo
-		// }
+		mapped_type&	operator[] (key_type const &k) {
+			return (*((this->insert(make_pair(k, mapped_type()))).first)).second;
+		}
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
@@ -268,7 +266,7 @@ class map
 		}
 
 
-		std::pair<iterator, bool>	insert(const value_type& val) { // Could divide this up and make one part properly recursive
+		std::pair<iterator, bool>	insert(const value_type& val) { // Should probably clean this up
 			if (m_size >= 1)
 			{
 				mapnode *temp = NULL;
@@ -285,7 +283,6 @@ class map
 						return ret;
 					}
  					if (value_compare(_comp)(temp->object, root->object)) {
-					// if (_comp(temp->object, root->object)) {
 						if (root->left && !root->left->_delimit)
 							root = root->left;
 						else {
@@ -309,6 +306,7 @@ class map
 				}
 				fix_violations(root, temp);
 				first_and_last();
+				return std::make_pair(iterator(temp), true);
 			}
 			else {
 				root = m_allocator.allocate(1);
@@ -318,9 +316,10 @@ class map
 				first_node = root;
 				last_node = root;
 				root->right = _end;
+				return std::make_pair(iterator(root), true);
 				// Boh, need to check first_node and last_node in this situation
 			}// This needs fixed to point to the correct thing
-			return std::make_pair(iterator(root), true);
+			// return std::make_pair(iterator(temp), true);
 		}
 
 		/* <<**------------------- OBSERVERS ------------------**>> */
