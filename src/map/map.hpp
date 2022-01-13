@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/13 16:46:43 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/13 17:16:11 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,10 +323,10 @@ class map
 		// template <class InputIterator>
  		// void insert (InputIterator first, InputIterator last) {}
 
-		void	erase(iterator position) {
+		// void	erase(iterator position) {
 			 
-			m_size--;
-		}
+		// 	m_size--;
+		// }
 
 		/* <<**------------------- OBSERVERS ------------------**>> */
 
@@ -370,9 +370,45 @@ class map
 		}
 
 
-		// iterator		lower_bound(const key_type &k) {}
+		iterator		lower_bound(const key_type &k) {
+			iterator it = begin();
 
-		// const_iterator	lower_bound(const key_type &k) {}
+			for (; it != end(); it++) {
+				if (_comp(k, it->first) || k == it->first)
+					return it;
+			}
+			return end();
+		}
+
+		const_iterator	lower_bound(const key_type &k) const {
+			const_iterator it = begin();
+
+			for (; it != end(); it++) {
+				if (_comp(k, it->first) || k == it->first)
+					return it;
+			}
+			return end();
+		}
+
+		iterator		upper_bound(const key_type &k) {
+			iterator it = begin();
+
+			for (; it != end(); it++) {
+				if (_comp(k, it->first))
+					return it;
+			}
+			return end();
+		}
+
+		const_iterator		upper_bound(const key_type &k) const {
+			const_iterator it = begin();
+
+			for (; it != end(); it++) {
+				if (_comp(k, it->first))
+					return it;
+			}
+			return end();
+		}
 
 		/* <<**------------------- ALLOCATOR ------------------**>> */
 

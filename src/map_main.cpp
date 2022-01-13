@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/11 18:54:54 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/13 17:15:39 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	std_test() {
 	test.insert(std::pair<int, std::string>(99, "dio bastardo"));
 	test.insert(std::pair<int, std::string>(47, "dio porco"));
 	test.insert(std::pair<int, std::string>(16, "dio stronzo"));
+
+
+	std::cout << "\nLower_bound and sheet" << std::endl;
+	std::cout << "Lower bound of 6: " << test.lower_bound(6)->first << std::endl;
+	std::cout << "Upper bound of 6: " << test.upper_bound(6)->first << std::endl;
 
 	std::cout << "\nSQUARE BRACKETSSS" << std::endl;
 	std::cout << "Item number " << 4 << " is: " << test[3] << std::endl;
@@ -126,12 +131,17 @@ void	test_basic() {
 	ft::map<int, std::string>::iterator not_found = test.find(0);
 	std::cout << "Found: " << not_found->second << std::endl;
 
-	std::cout << "Is it there? " << test.count(99) << std::endl;
-	std::cout << "Is it there? " << test.count(66) << std::endl;
+	std::cout << "Should be there " << test.count(99) << std::endl;
+	std::cout << "Should not be there " << test.count(66) << std::endl;
 
-	std::cout << "\nSQUARE BRACKETSSS" << std::endl;
+	// std::cout << "\nSQUARE BRACKETSSS" << std::endl;
 
-	std::cout << "Item number 4 is: " << test[9] << std::endl;
+	std::cout << "\nLower_bound and sheet" << std::endl;
+
+	std::cout << "Lower bound of 6: " << test.lower_bound(6)->first << std::endl;
+	std::cout << "Upper bound of 6: " << test.upper_bound(6)->first << std::endl;
+
+	// std::cout << "Item number 4 is: " << test[9] << std::endl;
 
 	// Bianchi positivo iolai
 	// it = test.begin();
