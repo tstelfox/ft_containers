@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/13 17:16:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/13 17:41:04 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -408,6 +408,34 @@ class map
 					return it;
 			}
 			return end();
+		}
+
+		std::pair<iterator,iterator>	equal_range(const key_type &k) {
+			iterator	it = begin();
+
+			for (; it != end(); it++) {
+				if (!_comp(k, it->first) && !_comp(it->first, k)) {
+					return std::make_pair<iterator,iterator>(lower_bound(k), upper_bound(k));
+				}
+				if (_comp(k, it->first))
+					break ;
+			}
+			iterator ret = upper_bound(k);
+			return std::make_pair<iterator,iterator>(ret, ret);
+		}
+
+		std::pair<const_iterator,const_iterator>	equal_range(const key_type &k) const {
+			const_iterator	it = begin();
+
+			for (; it != end(); it++) {
+				if (!_comp(k, it->first) && !_comp(it->first, k)) {
+					return std::make_pair<const_iterator,const_iterator>(lower_bound(k), upper_bound(k));
+				}
+				if (_comp(k, it->first))
+					break ;
+			}
+			const_iterator ret = upper_bound(k);
+			return std::make_pair<const_iterator,const_iterator>(ret, ret);
 		}
 
 		/* <<**------------------- ALLOCATOR ------------------**>> */

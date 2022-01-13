@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/13 17:15:39 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/13 17:35:20 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	std_test() {
 	std::cout << "\nLower_bound and sheet" << std::endl;
 	std::cout << "Lower bound of 6: " << test.lower_bound(6)->first << std::endl;
 	std::cout << "Upper bound of 6: " << test.upper_bound(6)->first << std::endl;
+
+	std::cout << "Equal range with a match: " << test.equal_range(15).first->first << " " <<
+		test.equal_range(15).second->first << std::endl;
+	std::cout << "Equal range without a match: " << test.equal_range(87).first->first << " " <<
+		test.equal_range(87).second->first << std::endl;
 
 	std::cout << "\nSQUARE BRACKETSSS" << std::endl;
 	std::cout << "Item number " << 4 << " is: " << test[3] << std::endl;
@@ -141,6 +146,10 @@ void	test_basic() {
 	std::cout << "Lower bound of 6: " << test.lower_bound(6)->first << std::endl;
 	std::cout << "Upper bound of 6: " << test.upper_bound(6)->first << std::endl;
 
+	std::cout << "Equal range with a match: " << test.equal_range(15).first->first << " " <<
+		test.equal_range(15).second->first << std::endl;
+	std::cout << "Equal range without a match: " << test.equal_range(87).first->first << " " <<
+		test.equal_range(87).second->first << std::endl;
 	// std::cout << "Item number 4 is: " << test[9] << std::endl;
 
 	// Bianchi positivo iolai
