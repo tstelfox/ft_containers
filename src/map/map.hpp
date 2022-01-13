@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/12 14:25:12 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/13 16:46:43 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,7 +336,7 @@ class map
 
 		/* <<**------------------- OPERATIONS ------------------**>> */
 
-		iterator	find(const key_type &k) {
+		iterator		find(const key_type &k) {
 			mapnode *temp = root;
 
 			while (temp && temp != _end && temp != _begin) {
@@ -368,7 +368,11 @@ class map
 			else
 				return 0;
 		}
-		// Gonna almost certainly need iterators for this
+
+
+		// iterator		lower_bound(const key_type &k) {}
+
+		// const_iterator	lower_bound(const key_type &k) {}
 
 		/* <<**------------------- ALLOCATOR ------------------**>> */
 
