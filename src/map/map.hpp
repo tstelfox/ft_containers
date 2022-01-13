@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/13 17:41:04 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/13 17:46:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,14 @@ class map
 					init_first_last();
 				}
 
-		// map(const map& x) {} // Dunno how the copy constructor is gonna look and may need iterators or may be able to just use insert()?
+		// map(const map& x) {
+		// 	if (this != &x) {
+		// 		this->m+allocator = x.m_allocator;
+		// 		this->_comp = x._comp;
+		// 		// My guess is that at this point I insert using the range of x's elements
+		// 	}
+		// 	return this;
+		// }
 
 		~map() {}
 
