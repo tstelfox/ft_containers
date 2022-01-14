@@ -325,7 +325,9 @@ class map
 			// return std::make_pair(iterator(temp), true);
 		}
 
-		// iterator insert (iterator position, const value_type& val) {}
+		// iterator insert (iterator position, const value_type& val) {
+		// 	// Whadya mean this is only a hint??
+		// }
 
 		// template <class InputIterator>
  		// void insert (InputIterator first, InputIterator last) {}
