@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:10:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 16:01:00 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 17:53:29 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ class Bimapiterator {
 
 		reference	operator * () const {return m_ptr->object;}
 		pointer		operator -> () {return &(m_ptr->object);}
+
+		node_ptr	get_node() {return m_ptr;}
 
 		//Prefix increment/decrement
 		iterator&	operator ++ () {m_ptr = m_ptr->get_next_node(); return *this;}
