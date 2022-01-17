@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 15:51:54 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 17:03:51 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,12 @@ void	test_basic() {
 
 	range_rover.insert(thething.begin(), thething.end());
 	range_rover.printBT();
+
+	/* std::cout << "\nTRYING THE VARIOUS CONSTRUCTORS" << std::endl;
 	ft::map<std::string, int> copy_constructed(range_rover);
 	copy_constructed.printBT();
+	ft::map<std::string, int> range_constructed(range_rover.begin(), range_rover.end());
+	range_constructed.printBT(); */
 	// std::cout << range_rover.size() << std::endl;
 	// for (ft::map<std::string, int>::iterator it = range_rover.begin(); it != range_rover.end(); it++) {
 	// 	std::cout << it->first << std::endl;

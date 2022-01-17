@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 16:12:48 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 17:02:06 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,20 @@ class map
 					init_first_last();
 				}
 
-		// map(InputIterator first, InputIterator last, const key_compare & comp = key_compare(),
-		// 	const allocator_type &alloc = allocator_type()) {}
+		template <class InputIterator>
+		map(InputIterator first, InputIterator last, const key_compare & comp = key_compare(),
+				const allocator_type &alloc = allocator_type())
+			: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node(), last_node() {
+				init_first_last();
+				insert(first, last);
+			}
 
 		map(const map& x) {
-			// if (this != &x) {
 			this->m_allocator = x.m_allocator;
 			this->_comp = x._comp;
 			this->m_size = 0;
 			init_first_last();
 			this->insert(x.begin(), x.end());
-				// My guess is that at this point I insert using the range of x's elements
-			// }
 		}
 
 		~map() {
@@ -345,7 +347,7 @@ class map
 			/* I actually presume that I will have to go sequentially cause
 			it could easily also be taking elements from an array */
 			for (; first != last; first++) {
-				std::cout << first->first << std::endl;
+				// std::cout << first->first << std::endl;
 				insert(*first);
 			}
 		}
