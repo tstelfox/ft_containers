@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/06 17:30:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 15:35:48 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ class node {
 			return (it);
 		}
 
-		// value_type	*object; // For allocator
 		value_type	object;
 		node*		parent;
 		node*		left;

@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 13:37:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 16:12:48 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,19 @@ class map
 					init_first_last();
 				}
 
-		// map(const map& x) {
-		// 	if (this != &x) {
-		// 		this->m+allocator = x.m_allocator;
-		// 		this->_comp = x._comp;
-		// 		// My guess is that at this point I insert using the range of x's elements
-		// 	}
-		// 	return this;
-		// }
+		// map(InputIterator first, InputIterator last, const key_compare & comp = key_compare(),
+		// 	const allocator_type &alloc = allocator_type()) {}
+
+		map(const map& x) {
+			// if (this != &x) {
+			this->m_allocator = x.m_allocator;
+			this->_comp = x._comp;
+			this->m_size = 0;
+			init_first_last();
+			this->insert(x.begin(), x.end());
+				// My guess is that at this point I insert using the range of x's elements
+			// }
+		}
 
 		~map() {
 			// Erase probably
@@ -95,7 +100,7 @@ class map
 			return iterator(first_node);
 		}
 
-		iterator begin() const {
+		const_iterator begin() const {
 			return const_iterator(first_node);
 		}
 
@@ -315,6 +320,7 @@ class map
 				return std::make_pair(iterator(temp), true);
 			}
 			else {
+				// std::cout << "In here?" << std::endl;
 				root = m_allocator.allocate(1);
 				m_size++;
 				m_allocator.construct(root, val);
@@ -338,8 +344,10 @@ class map
  		void insert (InputIterator first, InputIterator last) {
 			/* I actually presume that I will have to go sequentially cause
 			it could easily also be taking elements from an array */
-			for (; first != last; first++)
+			for (; first != last; first++) {
+				std::cout << first->first << std::endl;
 				insert(*first);
+			}
 		}
 
 		// void	erase(iterator position) {
