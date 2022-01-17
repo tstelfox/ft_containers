@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/13 17:46:12 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 13:20:08 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,9 +325,13 @@ class map
 			// return std::make_pair(iterator(temp), true);
 		}
 
-		// iterator insert (iterator position, const value_type& val) {
-		// 	// Whadya mean this is only a hint??
-		// }
+		iterator insert (iterator position, const value_type& val) {
+			(void)position;
+			// The following would slow it to fuck, I feel
+			// if (find(val->first) == position)
+			// 	return position;
+			return insert(val).first;
+		}
 
 		// template <class InputIterator>
  		// void insert (InputIterator first, InputIterator last) {}
