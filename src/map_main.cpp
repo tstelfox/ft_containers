@@ -6,11 +6,12 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/13 17:35:20 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 13:45:09 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
+#include <vector>
 
 template < class T, class iter>
 void	small_map(T small, iter it) {
@@ -150,6 +151,25 @@ void	test_basic() {
 		test.equal_range(15).second->first << std::endl;
 	std::cout << "Equal range without a match: " << test.equal_range(87).first->first << " " <<
 		test.equal_range(87).second->first << std::endl;
+
+
+	std::cout << "\nRANGED INSERT LEZGO" << std::endl;
+
+	ft::map<std::string, int>	range_rover;
+	std::vector<std::pair<std::string, int> > thething;
+	thething.push_back(std::make_pair("Carlo", 1));
+	thething.push_back(std::make_pair("Eugenio", 7));
+	thething.push_back(std::make_pair("Dé", 3));
+	thething.push_back(std::make_pair("Turlough", 99));
+	thething.push_back(std::make_pair("Cigio", 98));
+	thething.push_back(std::make_pair("Juanito", 69));
+	thething.push_back(std::make_pair("Pilerda", 66));
+	thething.push_back(std::make_pair("Lindsay", 700));
+	thething.push_back(std::make_pair("Perosh", 77));
+	thething.push_back(std::make_pair("DEfo", 88));
+
+	range_rover.insert(thething.begin(), thething.end());
+	range_rover.printBT();
 	// std::cout << "Item number 4 is: " << test[9] << std::endl;
 
 	// Bianchi positivo iolai
@@ -172,6 +192,6 @@ int		main() {
 
 	// I could build in some variable so that I could compile it as standard or as ft
 	test_basic();
-	std_test();
+	// std_test();
 	return 0;
 }

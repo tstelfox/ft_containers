@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 13:24:51 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 13:37:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ class map
 
 		~map() {
 			// Erase probably
-			m_allocator.deallocate(1, _begin);
-			m_allocator.deallocate(1, _end);
+			m_allocator.deallocate(_begin, 1);
+			m_allocator.deallocate(_end, 1);
 		}
 
 		// map&	operator = (const map &x) {
@@ -334,12 +334,13 @@ class map
 			return insert(val).first;
 		}
 
-		// template <class InputIterator>
- 		// void insert (InputIterator first, InputIterator last) {
-		// 	/* I actually presume that I will have to go sequentially cause
-		// 	it could easily also be taking elements from an array */
-				 
-		// }
+		template <class InputIterator>
+ 		void insert (InputIterator first, InputIterator last) {
+			/* I actually presume that I will have to go sequentially cause
+			it could easily also be taking elements from an array */
+			for (; first != last; first++)
+				insert(*first);
+		}
 
 		// void	erase(iterator position) {
 			 
