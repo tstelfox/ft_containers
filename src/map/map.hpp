@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 18:08:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 18:35:25 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -371,8 +371,62 @@ class map
 				return x->right;
 		}
 
+		// https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/?ref=lbp
+
 		void	erase_node(mapnode *v) {
+			mapnode *u = replace_node(v);
 			std::cout << "Item to erase is: " << v->object.first << " " << v->object.second << std::endl;
+
+			bool	doubleBlack = ((u == NULL || u->colour == BLACK) && (v->colour == BLACK));
+			mapnode *parent = v->parent;
+
+			if (u == NULL) {
+				if (v == root) {
+					root = NULL;
+				}
+				else {
+					if (doubleBlack) {
+						fixDoubleBlack(v); // GOtta write this
+					}
+					else {
+						if (v->sibling()) // GOtta write this too
+						v->sibling()->colour = RED;
+					}
+					if (v->parent == v->parent->left)
+						parent->left = NULL;
+					else
+						parent->right = NULL;
+				}
+				m_allocator.deallocate(v, 1);
+				return ;
+			}
+			
+			if (v->left == NULL || v->right == NULL) {
+				if (v == root) {
+					v->object = u->object;
+					v->left = v->right = NULL;
+					m_allocator.deallocate(u, 1);
+				}
+				else {
+					if (v->parent == v->parent->left) {
+						parent->left = u;
+					}
+					else {
+						parent->right = u;
+					}
+					m_allocator.deallocate(v, 1);
+					u->parent = parent;
+					if (doubleBlack) {
+						fixDoubleBlack(u);
+					}
+					else {
+						u->colour = BLACK;
+					}
+				}
+				return ;
+			}
+			swapValues(u, v); // Write this too
+			erase_node(u);
 		}
 
 		void	erase(iterator position) {
@@ -381,14 +435,12 @@ class map
 
 		size_type	erase(const key_type &k) {
 			// Just gonna presume that the ting to erase is actually in the map
-			// mapnode *v = 
 			erase_node(find(k).get_node());
 			// mapnode *u = replace_node(v);
 
 			// std::cout << "Item to erase is: " << v->object.first << " " << v->object.second << std::endl;
 			
-			// bool	doubleBlack = ((u == NULL || u->colour == BLACK) && (v->colour == BLACK));
-			// mapnode *parent = v->parent;
+			
 			return 1;
 		}
 
