@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 13:20:08 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 13:24:51 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ class map
 		// 	return this;
 		// }
 
-		~map() {}
+		~map() {
+			// Erase probably
+			m_allocator.deallocate(1, _begin);
+			m_allocator.deallocate(1, _end);
+		}
 
 		// map&	operator = (const map &x) {
 		// 	// Will probably need to use this->erase() and stuff to reassign;
@@ -278,7 +282,6 @@ class map
 				m_size++;
 				m_allocator.construct(temp, val);
 				while (root) {
-					// std::cout << "PRESUME here?" << std::endl;
 					if (root->object.first == temp->object.first) {
 						m_allocator.deallocate(temp, 1);
 						std::pair<iterator, bool> ret = std::make_pair(iterator(root), false);
@@ -320,9 +323,7 @@ class map
 				last_node = root;
 				root->right = _end;
 				return std::make_pair(iterator(root), true);
-				// Boh, need to check first_node and last_node in this situation
-			}// This needs fixed to point to the correct thing
-			// return std::make_pair(iterator(temp), true);
+			}
 		}
 
 		iterator insert (iterator position, const value_type& val) {
@@ -334,7 +335,11 @@ class map
 		}
 
 		// template <class InputIterator>
- 		// void insert (InputIterator first, InputIterator last) {}
+ 		// void insert (InputIterator first, InputIterator last) {
+		// 	/* I actually presume that I will have to go sequentially cause
+		// 	it could easily also be taking elements from an array */
+				 
+		// }
 
 		// void	erase(iterator position) {
 			 
