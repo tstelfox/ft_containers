@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 17:58:59 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/17 18:00:54 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,10 +378,12 @@ class map
 		size_type	erase(const key_type &k) {
 			// Just gonna presume that the ting to erase is actually in the map
 			mapnode *v = find(k).get_node();
-			mapnode *u = replace_node(v);
+			// mapnode *u = replace_node(v);
+
+			std::cout << "Item to erase is: " << v->object.first << " " << v->object.second << std::endl;
 			
-			bool	doubleBlack = ((u == NULL || u->colour == BLACK) && (v->colour == BLACK));
-			mapnode *parent = v->parent;
+			// bool	doubleBlack = ((u == NULL || u->colour == BLACK) && (v->colour == BLACK));
+			// mapnode *parent = v->parent;
 			return 1;
 		}
 
