@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/18 16:18:45 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/18 16:43:49 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ class map
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
-		void		right_rotate(mapnode *&root, mapnode *&newnode)
+		void		right_rotate(mapnode *&newnode)
 		{
 			mapnode *left_child = newnode->left;
 
@@ -174,7 +174,7 @@ class map
 			newnode->parent = left_child;
 		}
 
-		void		left_rotate(mapnode *&root, mapnode *&newnode)
+		void		left_rotate(mapnode *&newnode)
 		{
 			mapnode *right_child = newnode->right;
 
@@ -228,14 +228,14 @@ class map
 							left-rotation required */
 						if (newnode == p_node->right)
 						{
-							left_rotate(root, p_node);
+							left_rotate(p_node);
 							newnode = p_node;
 							p_node = newnode->parent;
 						}
 						/* case Gamma
 							newnode is left child of its parent
 							right-rotation required */
-						right_rotate(root, gp_node);
+						right_rotate(gp_node);
 						std::swap(p_node->colour, gp_node->colour);
 						newnode = p_node;
 					}
@@ -262,14 +262,14 @@ class map
 							right-rotation required */
 						if (newnode == p_node->left)
 						{
-							right_rotate(root, p_node);
+							right_rotate(p_node);
 							newnode = p_node;
 							p_node = newnode->parent;
 						}
 						/* Case Beta
 							newnode is right child of its parent
 							left-rotation required */
-						left_rotate(root, gp_node);
+						left_rotate(gp_node);
 						std::swap(p_node->colour, gp_node->colour);
 						newnode = p_node;
 					}
@@ -355,7 +355,8 @@ class map
 			mapnode *temp = x;
 			while (temp->left != NULL)
 			{
-				std::cout << "In here right?" << std::endl;
+				// std::cout << "In here right?" << std::endl;
+				// std::cout << temp->object.first << std::endl;
 				temp = temp->left;
 				if (temp->_delimit)
 					break ;
@@ -426,10 +427,10 @@ class map
 					parent->colour = RED;
 					sibling->colour = BLACK;
 					if (sibling == sibling->parent->left) { // check for segfault - replace with isOnLeft()
-						right_rotate(root, parent);
+						right_rotate(parent);
 					}
 					else {
-						left_rotate(root, parent);
+						left_rotate(parent);
 					}
 					fixDoubleBlack(x);
 				}
@@ -439,24 +440,24 @@ class map
 							if (sibling == sibling->parent->left) { // is on left
 								sibling->left->colour = sibling->colour;
 								sibling->colour = parent->colour;
-								right_rotate(root, parent);
+								right_rotate(parent);
 							}
 							else {
 								sibling->left->colour = parent->colour;
-								right_rotate(root, sibling);
-								left_rotate(root, parent);
+								right_rotate(sibling);
+								left_rotate(parent);
 							}
 						}
 						else {
 							if (sibling == sibling->parent->left) { // is on left
 								sibling->right->colour = parent->colour;
-								left_rotate(root, sibling);
-								right_rotate(root, parent);
+								left_rotate(sibling);
+								right_rotate(parent);
 							}
 							else {
 								sibling->right->colour = sibling->colour;
 								sibling->colour = parent->colour;
-								left_rotate(root, parent);
+								left_rotate(parent);
 							}
 						}
 						parent->colour = BLACK;
