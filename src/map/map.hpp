@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 18:35:25 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/18 15:49:38 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,7 +358,33 @@ class map
 			return temp;
 		}
 
-		mapnode	*replace_node(mapnode *x) {
+		mapnode *sibling(mapnode *x) {
+			if (x->parent == NULL)
+				return NULL;
+			if (x == x->parent->left)
+				return x->parent->right;
+			return x->parent->left;
+		}
+
+		void	swapValues(mapnode *u, mapnode *v) {
+			
+			// My god this is so dumb
+			mapnode *temp = v;
+			v = u;
+			v->parent = temp->parent;
+			v->left = temp->left;
+			v->right = temp->right;
+			v->colour = temp->colour;
+
+			temp = u;
+			u = v;
+			u->parent = temp->parent;
+			u->left = temp->left;
+			u->right = temp->right;
+			u->colour = temp->colour;
+		}
+
+		mapnode	*replace_node(mapnode *x) { // CHECKFINAL ?
 			if (x->left != NULL && x->right != NULL)
 				return successor(x->right);
 
@@ -369,6 +395,70 @@ class map
 				return x->left;
 			else
 				return x->right;
+		}
+
+		bool	hasRedChild(mapnode *x) {
+			return ((x->left != NULL && x->left->colour == RED)
+				|| (x->right != NULL && x->right->colour == RED));
+		}
+
+		void	fixDoubleBlack(mapnode *x) {
+			if (x == root)
+				return ;
+			
+			mapnode *sibling = this->sibling(x);
+			mapnode *parent = x->parent;
+			if (sibling == NULL)
+				fixDoubleBlack(parent);
+			else {
+				if (sibling->colour == RED) {
+					parent->colour = RED;
+					sibling->colour = BLACK;
+					if (sibling == sibling->parent->left) { // check for segfault - replace with isOnLeft()
+						right_rotate(root, parent);
+					}
+					else {
+						left_rotate(root, parent);
+					}
+					fixDoubleBlack(x);
+				}
+				else {
+					if (hasRedChild(sibling)) {
+						if (sibling->left != NULL && sibling->left->colour == RED) {
+							if (sibling == sibling->parent->left) { // is on left
+								sibling->left->colour = sibling->colour;
+								sibling->colour = parent->colour;
+								right_rotate(root, parent);
+							}
+							else {
+								sibling->left->colour = parent->colour;
+								right_rotate(root, sibling);
+								left_rotate(root, parent);
+							}
+						}
+						else {
+							if (sibling == sibling->parent->left) { // is on left
+								sibling->right->colour = parent->colour;
+								left_rotate(root, sibling);
+								right_rotate(root, parent);
+							}
+							else {
+								sibling->right->colour = sibling->colour;
+								sibling->colour = parent->colour;
+								left_rotate(root, parent);
+							}
+						}
+						parent->colour = BLACK;
+					}
+					else {
+						sibling->colour = RED;
+						if (parent->colour == BLACK)
+							fixDoubleBlack(parent);
+						else
+							parent->colour = BLACK;
+					}
+				}
+			}
 		}
 
 		// https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/?ref=lbp
@@ -386,11 +476,11 @@ class map
 				}
 				else {
 					if (doubleBlack) {
-						fixDoubleBlack(v); // GOtta write this
+						fixDoubleBlack(v); // Written
 					}
 					else {
-						if (v->sibling()) // GOtta write this too
-						v->sibling()->colour = RED;
+						if (sibling(v)) // Wrote it but no guarantee it works.
+						sibling(v)->colour = RED;
 					}
 					if (v->parent == v->parent->left)
 						parent->left = NULL;
@@ -403,7 +493,13 @@ class map
 			
 			if (v->left == NULL || v->right == NULL) {
 				if (v == root) {
-					v->object = u->object;
+					mapnode *temp = v;
+					v = u;
+					v->parent = temp->parent;
+					v->left = temp->left;
+					v->right = temp->right;
+					v->colour = temp->colour;
+					// v->object = u->object;
 					v->left = v->right = NULL;
 					m_allocator.deallocate(u, 1);
 				}
@@ -425,7 +521,7 @@ class map
 				}
 				return ;
 			}
-			swapValues(u, v); // Write this too
+			swapValues(u, v); // Hopefully works but who knows
 			erase_node(u);
 		}
 
