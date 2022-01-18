@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/18 15:49:38 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/18 16:18:45 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,7 +354,12 @@ class map
 		mapnode *successor(mapnode *x) {
 			mapnode *temp = x;
 			while (temp->left != NULL)
+			{
+				std::cout << "In here right?" << std::endl;
 				temp = temp->left;
+				if (temp->_delimit)
+					break ;
+			}
 			return temp;
 		}
 
@@ -368,7 +373,7 @@ class map
 
 		void	swapValues(mapnode *u, mapnode *v) {
 			
-			// My god this is so dumb
+			// My god this is so dumb - PLEASE just overload this shit somehow
 			mapnode *temp = v;
 			v = u;
 			v->parent = temp->parent;
@@ -376,6 +381,7 @@ class map
 			v->right = temp->right;
 			v->colour = temp->colour;
 
+			// std::cout << "For fuck's sake" << std::endl;
 			temp = u;
 			u = v;
 			u->parent = temp->parent;
@@ -385,9 +391,12 @@ class map
 		}
 
 		mapnode	*replace_node(mapnode *x) { // CHECKFINAL ?
+			// std::cout << "Well?" << std::endl;
 			if (x->left != NULL && x->right != NULL)
+			{
+				// std::cout << "final?" << std::endl;
 				return successor(x->right);
-
+			}
 			if (x->left == NULL && x->right == NULL)
 				return NULL;
 				
@@ -395,6 +404,7 @@ class map
 				return x->left;
 			else
 				return x->right;
+			// std::cout << "This can't be printed?" << std::endl;
 		}
 
 		bool	hasRedChild(mapnode *x) {
@@ -403,6 +413,7 @@ class map
 		}
 
 		void	fixDoubleBlack(mapnode *x) {
+			// std::cout << "How many times in here then" << std::endl;
 			if (x == root)
 				return ;
 			
@@ -469,8 +480,9 @@ class map
 
 			bool	doubleBlack = ((u == NULL || u->colour == BLACK) && (v->colour == BLACK));
 			mapnode *parent = v->parent;
+			// std::cout << "How many times down here then" << std::endl;
 
-			if (u == NULL) {
+			if (u == NULL || u->_delimit) {
 				if (v == root) {
 					root = NULL;
 				}
@@ -491,7 +503,7 @@ class map
 				return ;
 			}
 			
-			if (v->left == NULL || v->right == NULL) {
+			if (v->left == NULL || v->left->_delimit || v->right == NULL || v->right->_delimit) {
 				if (v == root) {
 					mapnode *temp = v;
 					v = u;

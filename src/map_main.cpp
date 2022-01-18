@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/18 15:50:27 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/18 15:51:17 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void	test_basic() {
 	std::cout << "\nERASING" << std::endl;
 
 	range_rover.erase("DEfo");
-	// range_rover.erase("Juanito");
+	range_rover.erase("Dé");
 	range_rover.printBT();
 
 
