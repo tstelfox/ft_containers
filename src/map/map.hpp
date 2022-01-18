@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/18 17:00:20 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/18 18:27:48 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,14 +353,8 @@ class map
 
 		mapnode *successor(mapnode *x) {
 			mapnode *temp = x;
-			while (temp->left != NULL)
-			{
-				// std::cout << "In here right?" << std::endl;
-				// std::cout << temp->object.first << std::endl;
+			while (temp->left != NULL && !temp->left->_delimit)
 				temp = temp->left;
-				if (temp->_delimit)
-					break ;
-			}
 			return temp;
 		}
 
@@ -413,129 +407,243 @@ class map
 				|| (x->right != NULL && x->right->colour == RED));
 		}
 
-		void	fixDoubleBlack(mapnode *x) {
-			// std::cout << "How many times in here then" << std::endl;
-			if (x == root)
-				return ;
+		// void	fixDoubleBlack(mapnode *x) {
+		// 	// std::cout << "How many times in here then" << std::endl;
+		// 	if (x == root)
+		// 		return ;
 			
-			mapnode *sibling = this->sibling(x);
-			mapnode *parent = x->parent;
-			if (sibling == NULL)
-				fixDoubleBlack(parent);
-			else {
-				if (sibling->colour == RED) {
-					parent->colour = RED;
-					sibling->colour = BLACK;
-					if (sibling == sibling->parent->left) { // check for segfault - replace with isOnLeft()
-						right_rotate(parent);
+		// 	mapnode *sibling = this->sibling(x);
+		// 	mapnode *parent = x->parent;
+		// 	if (sibling == NULL)
+		// 		fixDoubleBlack(parent);
+		// 	else {
+		// 		if (sibling->colour == RED) {
+		// 			parent->colour = RED;
+		// 			sibling->colour = BLACK;
+		// 			if (sibling == sibling->parent->left) { // check for segfault - replace with isOnLeft()
+		// 				right_rotate(parent);
+		// 			}
+		// 			else {
+		// 				left_rotate(parent);
+		// 			}
+		// 			fixDoubleBlack(x);
+		// 		}
+		// 		else {
+		// 			if (hasRedChild(sibling)) {
+		// 				if (sibling->left != NULL && sibling->left->colour == RED) {
+		// 					if (sibling == sibling->parent->left) { // is on left
+		// 						sibling->left->colour = sibling->colour;
+		// 						sibling->colour = parent->colour;
+		// 						right_rotate(parent);
+		// 					}
+		// 					else {
+		// 						sibling->left->colour = parent->colour;
+		// 						right_rotate(sibling);
+		// 						left_rotate(parent);
+		// 					}
+		// 				}
+		// 				else {
+		// 					if (sibling == sibling->parent->left) { // is on left
+		// 						sibling->right->colour = parent->colour;
+		// 						left_rotate(sibling);
+		// 						right_rotate(parent);
+		// 					}
+		// 					else {
+		// 						sibling->right->colour = sibling->colour;
+		// 						sibling->colour = parent->colour;
+		// 						left_rotate(parent);
+		// 					}
+		// 				}
+		// 				parent->colour = BLACK;
+		// 			}
+		// 			else {
+		// 				sibling->colour = RED;
+		// 				if (parent->colour == BLACK)
+		// 					fixDoubleBlack(parent);
+		// 				else
+		// 					parent->colour = BLACK;
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+		// // This seems to be overkill:
+		// // https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/?ref=lbp
+
+		// // This might just be the promised tutorial:
+		// // https://www.programiz.com/dsa/deletion-from-a-red-black-tree
+
+		// void	erase_node(mapnode *v) {
+		// 	mapnode *u = replace_node(v);
+		// 	std::cout << "Item to erase is: " << v->object.first << " " << v->object.second << std::endl;
+
+		// 	bool	doubleBlack = ((u == NULL || u->colour == BLACK) && (v->colour == BLACK));
+		// 	mapnode *parent = v->parent;
+		// 	// std::cout << "How many times down here then" << std::endl;
+
+		// 	if (u == NULL || u->_delimit) {
+		// 		if (v == root) {
+		// 			root = NULL;
+		// 		}
+		// 		else {
+		// 			if (doubleBlack) {
+		// 				fixDoubleBlack(v); // Written
+		// 			}
+		// 			else {
+		// 				if (sibling(v)) // Wrote it but no guarantee it works.
+		// 				sibling(v)->colour = RED;
+		// 			}
+		// 			if (v->parent == v->parent->left)
+		// 				parent->left = NULL;
+		// 			else
+		// 				parent->right = NULL;
+		// 		}
+		// 		m_allocator.deallocate(v, 1);
+		// 		return ;
+		// 	}
+			
+		// 	if (v->left == NULL || v->left->_delimit || v->right == NULL || v->right->_delimit) {
+		// 		if (v == root) {
+		// 			mapnode *temp = v;
+		// 			v = u;
+		// 			v->parent = temp->parent;
+		// 			v->left = temp->left;
+		// 			v->right = temp->right;
+		// 			v->colour = temp->colour;
+		// 			// v->object = u->object;
+		// 			v->left = v->right = NULL;
+		// 			m_allocator.deallocate(u, 1);
+		// 		}
+		// 		else {
+		// 			if (v->parent == v->parent->left) {
+		// 				parent->left = u;
+		// 			}
+		// 			else {
+		// 				parent->right = u;
+		// 			}
+		// 			m_allocator.deallocate(v, 1);
+		// 			u->parent = parent;
+		// 			if (doubleBlack) {
+		// 				fixDoubleBlack(u);
+		// 			}
+		// 			else {
+		// 				u->colour = BLACK;
+		// 			}
+		// 		}
+		// 		return ;
+		// 	}
+		// 	swapValues(u, v); // Hopefully works but who knows
+		// 	erase_node(u);
+		// }
+
+		void	erasure_balance(mapnode *x) {
+			mapnode *s;
+			if (x == 0) // Stole this from Reep but doesn't help
+				return ;
+			while (x != root && x->colour == BLACK) {
+				if (x == x->parent->left) {
+					s = x->parent->right;
+					if (s->colour == RED) {
+						s->colour = BLACK;
+						x->parent->colour = RED;
+						left_rotate(x->parent);
+						s = x->parent->right;
+					}
+					if (s->left->colour == BLACK && s->right->colour == BLACK) {
+						s->colour = RED;
+						x = x->parent;
 					}
 					else {
-						left_rotate(parent);
+						if (s->right->colour == BLACK) {
+							s->left->colour = BLACK;
+							s->colour = RED;
+							right_rotate(s);
+							s = x->parent->right;
+						}
+						s->colour = x->parent->colour;
+						x->parent->colour = BLACK;
+						s->right->colour = BLACK;
+						left_rotate(x->parent);
+						x = root;
 					}
-					fixDoubleBlack(x);
 				}
 				else {
-					if (hasRedChild(sibling)) {
-						if (sibling->left != NULL && sibling->left->colour == RED) {
-							if (sibling == sibling->parent->left) { // is on left
-								sibling->left->colour = sibling->colour;
-								sibling->colour = parent->colour;
-								right_rotate(parent);
-							}
-							else {
-								sibling->left->colour = parent->colour;
-								right_rotate(sibling);
-								left_rotate(parent);
-							}
-						}
-						else {
-							if (sibling == sibling->parent->left) { // is on left
-								sibling->right->colour = parent->colour;
-								left_rotate(sibling);
-								right_rotate(parent);
-							}
-							else {
-								sibling->right->colour = sibling->colour;
-								sibling->colour = parent->colour;
-								left_rotate(parent);
-							}
-						}
-						parent->colour = BLACK;
+					s = x->parent->left;
+					if (s->colour == RED) {
+						s->colour = BLACK;
+						x->parent->colour = RED;
+						right_rotate(x->parent);
+						s = x->parent->left;
 					}
+					if (s->right->colour == BLACK && s->right->colour == BLACK) {
+						s->colour = RED;
+						x = x->parent;
+					} 
 					else {
-						sibling->colour = RED;
-						if (parent->colour == BLACK)
-							fixDoubleBlack(parent);
-						else
-							parent->colour = BLACK;
+					if (s->left->colour == BLACK) {
+						s->right->colour = BLACK;
+						s->colour = RED;
+						left_rotate(s);
+						s = x->parent->left;
+					}
+
+					s->colour = x->parent->colour;
+					x->parent->colour = BLACK;
+					s->left->colour = BLACK;
+					right_rotate(x->parent);
+					x = root;
 					}
 				}
 			}
+			x->colour = BLACK;
 		}
 
-		// https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/?ref=lbp
+		void	rbTransplant(mapnode *u, mapnode *v) {
+			if (u->parent == NULL)
+				root = v;
+			else if (u == u->parent->left)
+				u->parent->left = v;
+			else
+				u->parent->right = v;
+			if (v) // Found this on Peer's but what the teering
+				v->parent = u->parent;
+		}
 
-		void	erase_node(mapnode *v) {
-			mapnode *u = replace_node(v);
-			std::cout << "Item to erase is: " << v->object.first << " " << v->object.second << std::endl;
-
-			bool	doubleBlack = ((u == NULL || u->colour == BLACK) && (v->colour == BLACK));
-			mapnode *parent = v->parent;
-			// std::cout << "How many times down here then" << std::endl;
-
-			if (u == NULL || u->_delimit) {
-				if (v == root) {
-					root = NULL;
+		void	erase_node(mapnode *node) {
+			mapnode	*x, *y, *z;
+			z = y = node;
+			// y = node;
+			char	y_og_colour = y->colour;
+			if (z->left == NULL) {
+				x = z->right;
+				rbTransplant(z, z->right); // Write it boy.
+			}
+			else if (z->right == NULL) {
+				x = z->left;
+				rbTransplant(z, z->left);
+			}
+			else {
+				y = successor(z->right);
+				y_og_colour = y->colour;
+				x = y->right;
+				if (y->parent == z) {
+					if (x) // STole
+						x->parent = y;
 				}
 				else {
-					if (doubleBlack) {
-						fixDoubleBlack(v); // Written
-					}
-					else {
-						if (sibling(v)) // Wrote it but no guarantee it works.
-						sibling(v)->colour = RED;
-					}
-					if (v->parent == v->parent->left)
-						parent->left = NULL;
-					else
-						parent->right = NULL;
+					rbTransplant(y, y->right);
+					y->right = z->right;
+					y->right->parent = y;
 				}
-				m_allocator.deallocate(v, 1);
-				return ;
+
+				rbTransplant(z, y);
+				y->left = z->left;
+				y->left->parent = y;
+				y->colour = z->colour;
 			}
-			
-			if (v->left == NULL || v->left->_delimit || v->right == NULL || v->right->_delimit) {
-				if (v == root) {
-					mapnode *temp = v;
-					v = u;
-					v->parent = temp->parent;
-					v->left = temp->left;
-					v->right = temp->right;
-					v->colour = temp->colour;
-					// v->object = u->object;
-					v->left = v->right = NULL;
-					m_allocator.deallocate(u, 1);
-				}
-				else {
-					if (v->parent == v->parent->left) {
-						parent->left = u;
-					}
-					else {
-						parent->right = u;
-					}
-					m_allocator.deallocate(v, 1);
-					u->parent = parent;
-					if (doubleBlack) {
-						fixDoubleBlack(u);
-					}
-					else {
-						u->colour = BLACK;
-					}
-				}
-				return ;
-			}
-			swapValues(u, v); // Hopefully works but who knows
-			erase_node(u);
+			m_allocator.deallocate(z, 1);
+			if (y_og_colour == BLACK)
+				erasure_balance(x);
 		}
 
 		void	erase(iterator position) {
