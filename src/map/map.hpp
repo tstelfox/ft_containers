@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 12:06:56 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 12:28:33 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,6 +324,7 @@ class map
 			}
 			else {
 				root = m_allocator.allocate(1);
+				init_first_last();
 				m_size++;
 				m_allocator.construct(root, val);
 				root->colour = BLACK;
@@ -359,182 +360,53 @@ class map
 			return temp;
 		}
 
-		mapnode *sibling(mapnode *x) {
-			if (x->parent == NULL)
-				return NULL;
-			if (x == x->parent->left)
-				return x->parent->right;
-			return x->parent->left;
-		}
-
-		void	swapValues(mapnode *u, mapnode *v) {
-			
-			// My god this is so dumb - PLEASE just overload this shit somehow
-			mapnode *temp = v;
-			v = u;
-			v->parent = temp->parent;
-			v->left = temp->left;
-			v->right = temp->right;
-			v->colour = temp->colour;
-
-			// std::cout << "For fuck's sake" << std::endl;
-			temp = u;
-			u = v;
-			u->parent = temp->parent;
-			u->left = temp->left;
-			u->right = temp->right;
-			u->colour = temp->colour;
-		}
-
-		mapnode	*replace_node(mapnode *x) { // CHECKFINAL ?
-			// std::cout << "Well?" << std::endl;
-			if (x->left != NULL && x->right != NULL)
-			{
-				// std::cout << "final?" << std::endl;
-				return successor(x->right);
-			}
-			if (x->left == NULL && x->right == NULL)
-				return NULL;
-				
-			if (x->left != NULL)
-				return x->left;
-			else
-				return x->right;
-			// std::cout << "This can't be printed?" << std::endl;
-		}
-
-		bool	hasRedChild(mapnode *x) {
-			return ((x->left != NULL && x->left->colour == RED)
-				|| (x->right != NULL && x->right->colour == RED));
-		}
-
-		// void	fixDoubleBlack(mapnode *x) {
-		// 	// std::cout << "How many times in here then" << std::endl;
-		// 	if (x == root)
-		// 		return ;
-			
-		// 	mapnode *sibling = this->sibling(x);
-		// 	mapnode *parent = x->parent;
-		// 	if (sibling == NULL)
-		// 		fixDoubleBlack(parent);
-		// 	else {
-		// 		if (sibling->colour == RED) {
-		// 			parent->colour = RED;
-		// 			sibling->colour = BLACK;
-		// 			if (sibling == sibling->parent->left) { // check for segfault - replace with isOnLeft()
-		// 				right_rotate(parent);
-		// 			}
-		// 			else {
-		// 				left_rotate(parent);
-		// 			}
-		// 			fixDoubleBlack(x);
-		// 		}
-		// 		else {
-		// 			if (hasRedChild(sibling)) {
-		// 				if (sibling->left != NULL && sibling->left->colour == RED) {
-		// 					if (sibling == sibling->parent->left) { // is on left
-		// 						sibling->left->colour = sibling->colour;
-		// 						sibling->colour = parent->colour;
-		// 						right_rotate(parent);
-		// 					}
-		// 					else {
-		// 						sibling->left->colour = parent->colour;
-		// 						right_rotate(sibling);
-		// 						left_rotate(parent);
-		// 					}
-		// 				}
-		// 				else {
-		// 					if (sibling == sibling->parent->left) { // is on left
-		// 						sibling->right->colour = parent->colour;
-		// 						left_rotate(sibling);
-		// 						right_rotate(parent);
-		// 					}
-		// 					else {
-		// 						sibling->right->colour = sibling->colour;
-		// 						sibling->colour = parent->colour;
-		// 						left_rotate(parent);
-		// 					}
-		// 				}
-		// 				parent->colour = BLACK;
-		// 			}
-		// 			else {
-		// 				sibling->colour = RED;
-		// 				if (parent->colour == BLACK)
-		// 					fixDoubleBlack(parent);
-		// 				else
-		// 					parent->colour = BLACK;
-		// 			}
-		// 		}
-		// 	}
+		// mapnode *sibling(mapnode *x) {
+		// 	if (x->parent == NULL)
+		// 		return NULL;
+		// 	if (x == x->parent->left)
+		// 		return x->parent->right;
+		// 	return x->parent->left;
 		// }
 
-		// // This seems to be overkill:
-		// // https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/?ref=lbp
-
-		// // This might just be the promised tutorial:
-		// // https://www.programiz.com/dsa/deletion-from-a-red-black-tree
-
-		// void	erase_node(mapnode *v) {
-		// 	mapnode *u = replace_node(v);
-		// 	std::cout << "Item to erase is: " << v->object.first << " " << v->object.second << std::endl;
-
-		// 	bool	doubleBlack = ((u == NULL || u->colour == BLACK) && (v->colour == BLACK));
-		// 	mapnode *parent = v->parent;
-		// 	// std::cout << "How many times down here then" << std::endl;
-
-		// 	if (u == NULL || u->_delimit) {
-		// 		if (v == root) {
-		// 			root = NULL;
-		// 		}
-		// 		else {
-		// 			if (doubleBlack) {
-		// 				fixDoubleBlack(v); // Written
-		// 			}
-		// 			else {
-		// 				if (sibling(v)) // Wrote it but no guarantee it works.
-		// 				sibling(v)->colour = RED;
-		// 			}
-		// 			if (v->parent == v->parent->left)
-		// 				parent->left = NULL;
-		// 			else
-		// 				parent->right = NULL;
-		// 		}
-		// 		m_allocator.deallocate(v, 1);
-		// 		return ;
-		// 	}
+		// void	swapValues(mapnode *u, mapnode *v) {
 			
-		// 	if (v->left == NULL || v->left->_delimit || v->right == NULL || v->right->_delimit) {
-		// 		if (v == root) {
-		// 			mapnode *temp = v;
-		// 			v = u;
-		// 			v->parent = temp->parent;
-		// 			v->left = temp->left;
-		// 			v->right = temp->right;
-		// 			v->colour = temp->colour;
-		// 			// v->object = u->object;
-		// 			v->left = v->right = NULL;
-		// 			m_allocator.deallocate(u, 1);
-		// 		}
-		// 		else {
-		// 			if (v->parent == v->parent->left) {
-		// 				parent->left = u;
-		// 			}
-		// 			else {
-		// 				parent->right = u;
-		// 			}
-		// 			m_allocator.deallocate(v, 1);
-		// 			u->parent = parent;
-		// 			if (doubleBlack) {
-		// 				fixDoubleBlack(u);
-		// 			}
-		// 			else {
-		// 				u->colour = BLACK;
-		// 			}
-		// 		}
-		// 		return ;
+		// 	// My god this is so dumb - PLEASE just overload this shit somehow
+		// 	mapnode *temp = v;
+		// 	v = u;
+		// 	v->parent = temp->parent;
+		// 	v->left = temp->left;
+		// 	v->right = temp->right;
+		// 	v->colour = temp->colour;
+
+		// 	// std::cout << "For fuck's sake" << std::endl;
+		// 	temp = u;
+		// 	u = v;
+		// 	u->parent = temp->parent;
+		// 	u->left = temp->left;
+		// 	u->right = temp->right;
+		// 	u->colour = temp->colour;
+		// }
+
+		// mapnode	*replace_node(mapnode *x) { // CHECKFINAL ?
+		// 	// std::cout << "Well?" << std::endl;
+		// 	if (x->left != NULL && x->right != NULL)
+		// 	{
+		// 		// std::cout << "final?" << std::endl;
+		// 		return successor(x->right);
 		// 	}
-		// 	swapValues(u, v); // Hopefully works but who knows
-		// 	erase_node(u);
+		// 	if (x->left == NULL && x->right == NULL)
+		// 		return NULL;
+				
+		// 	if (x->left != NULL)
+		// 		return x->left;
+		// 	else
+		// 		return x->right;
+		// 	// std::cout << "This can't be printed?" << std::endl;
+		// }
+
+		// bool	hasRedChild(mapnode *x) {
+		// 	return ((x->left != NULL && x->left->colour == RED)
+		// 		|| (x->right != NULL && x->right->colour == RED));
 		// }
 
 		void	erasure_balance(mapnode *x) {
@@ -842,7 +714,7 @@ class map
 			_begin = m_allocator.allocate(1);
 			m_allocator.construct(_begin, true);
 			// first_node = m_allocator.allocate(1);
-			first_node = _end;
+			// first_node = _end; // Attempting to fight the double free by commenting this out
 			// first_node->parent = _end;
 		}
 

@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 12:13:10 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 12:29:28 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ void	test_basic() {
 		range_rover.printBT();
 		// std::cout << range_rover.begin()->first << std::endl;
 		range_rover.erase(range_rover.begin());
+		std::cout << range_rover.empty() << std::endl;
 	}
 	// system ("leaks container");
 
