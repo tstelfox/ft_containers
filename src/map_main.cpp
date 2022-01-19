@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:03:27 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 14:33:15 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,31 +207,32 @@ void	test_basic() {
 		range_rover.insert(thething.begin(), thething.end());
 		range_rover.printBT();
 
-		// std::cout << "\nERASING" << std::endl;
+		std::cout << "\nERASING" << std::endl;
 
-		// range_rover.erase("DEfo");
-		// range_rover.erase("Dé");
-		// range_rover.erase("Juanito");
-		// range_rover.printBT();
+		range_rover.erase("DEfo");
+		range_rover.erase("Dé");
+		range_rover.erase("Juanito");
+		range_rover.printBT();
 
 		// std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
 		// range_rover.clear();
 		// std::cout << range_rover.empty() << std::endl;
 		// range_rover.insert(thething.begin() + 2, thething.begin() + 3);
 		// range_rover.printBT();
-		// // std::cout << range_rover.begin()->first << std::endl;
+		// std::cout << range_rover.begin()->first << std::endl;
 		// range_rover.erase(range_rover.begin());
 		// std::cout << range_rover.empty() << std::endl;
 		// range_rover.printBT();
 		// std::cout << "Why this no empty??? YYYY: " << range_rover.begin()->first << std::endl; 
 		// std::cout << "Why this also no empty??? YYYY: " << range_rover.begin()++->first << std::endl; 
 	}
-	ft::map<std::string, int>	single_fucker;
-	single_fucker.insert(std::make_pair("DIOCANE MAIALE", 69));
-	single_fucker.erase(single_fucker.begin());
-	std::cout << "Why this no empty??? YYYY: " << single_fucker.begin()->first << std::endl; 
+	// ft::map<std::string, int>	single_fucker;
+	// single_fucker.insert(std::make_pair("DIOCANE MAIALE", 69));
+	// // std::cout << single_fucker.size() << std::endl;
+	// single_fucker.erase(single_fucker.begin());
+	// std::cout << "Why this no empty??? YYYY: " << single_fucker.begin()->first << std::endl; 
 
-	// system ("leaks container");
+	system ("leaks container");
 
 
 	/* std::cout << "\nTRYING THE VARIOUS CONSTRUCTORS" << std::endl;

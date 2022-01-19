@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:38:31 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 14:33:34 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ class map
 		}
 
 		~map() {
-			// Quietening this for a moment
-			// clear();
+			clear();
 
 			// The following leads to a double free for some reason:
 			// m_allocator.deallocate(_begin, 1);
@@ -103,11 +102,11 @@ class map
 
 		iterator	begin() {
 			// std::cout << "Root" << root->object.first << std::endl;
-			return iterator(first_node);
+			return iterator(_begin->parent);
 		}
 
 		const_iterator begin() const {
-			return const_iterator(first_node);
+			return const_iterator(_begin->parent);
 		}
 
 		reverse_iterator	rbegin() {
@@ -334,6 +333,8 @@ class map
 				first_node = root;
 				last_node = root;
 				root->right = _end;
+				_end->parent = _begin->parent = root;
+				first_and_last();
 				return std::make_pair(iterator(root), true);
 			}
 		}
@@ -537,7 +538,8 @@ class map
 			// std::cout << "deeee" << std::endl;
 			m_allocator.deallocate(z, 1);
 			if (y_og_colour == BLACK) {
-				// std::cout << "This is root: " << x->object.first << std::endl;
+				// std::cout << "This is root: " << root->object.first << std::endl;
+				// std::cout << "And first_node: " << first_node->object.first << std::endl;
 				erasure_balance(x);
 			}
 			// std::cout << "This is root: " << x->object.first << std::endl;
@@ -545,13 +547,19 @@ class map
 
 		void		erase(iterator position) {
 			// std::cout << "Scusami tanto" << std::endl;
+			// std::cout << "This is root first: " << root->object.first << std::endl;
+			// std::cout << "And first_node first: " << first_node->object.first << std::endl;
 			erase_node(position.get_node());
+			// first_node = m_size == 1 ? root : first_node;
+			// std::cout << "This is root after: " << root->object.first << std::endl;
+			// std::cout << "And first_node after: " << first_node->object.first << std::endl;
 			m_size--;
 		}
 
 		size_type	erase(const key_type &k) {
 			// Just gonna presume that the ting to erase is actually in the map
 			erase_node(find(k).get_node());
+			// first_node = m_size == 1 ? root : first_node;
 			m_size--;
 			return 1;
 		}
@@ -563,7 +571,6 @@ class map
 		}
 
 		void	clear() {
-			// std::cout << "Eh no he" << std::endl;
 			while (root)
 				erase_node(root);
 			m_size = 0;
@@ -733,6 +740,8 @@ class map
 			last_node = temp;
 			_end->parent = last_node;
 			last_node->right = _end;
+			// std::cout << "This is root: " << root->object.first << std::endl;
+			// std::cout << "And first_node: " << first_node->object.first << std::endl;
 		}
 
 		void	init_first_last() {
