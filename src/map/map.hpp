@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 14:46:21 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 15:41:18 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ class map
 
 		map&	operator = (const map &x) {
 			/* The container preserves its current allocator, 
-			which is used to allocate additional storage if needed. */
+			which is used to allocate additional storage if needed.
+			BUT
+			How am I meant to assign from maps of different types? */
 			if (this != &x) {
 				this->clear();
 				this->_comp = x._comp;
@@ -265,6 +267,14 @@ class map
 			// std::cout << "Non e mai vero" << std::endl;
 			for (; first != last; first++)
 				erase(first);
+		}
+
+		void	swap(map &x) {
+			// This is almost certainly stupid inefficient but do I ultimately care?
+			// Maybe rewrite it more efficiently later
+			map temp = *this;
+			*this = x;
+			x = temp;
 		}
 
 		void	clear() {
@@ -529,11 +539,8 @@ class map
 			mapnode *s;
 			// std::cout << "In here fo sho" << std::endl;
 			// std::cout << "Is it root? " << (x == root) << std::endl;
-			if (x == 0) // Stole this from Reep but doesn't help
-			{
-				// std::cout << "This is root: " << x->object.first << std::endl;
+			if (x == 0) // Segfaults without this
 				return ;
-			}
 			while (x != root && x->colour == BLACK) {
 				if (x == x->parent->left) {
 					s = x->parent->right;
@@ -742,5 +749,10 @@ class map
 		
 
 };
+
+template <class Key, class T, class Compare, class Alloc>
+  void swap (map<Key,T,Compare,Alloc>& x, map<Key,T,Compare,Alloc>& y) {
+	  x.swap(y);
+  }
 
 }

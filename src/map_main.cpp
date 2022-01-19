@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 14:38:17 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 15:35:41 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,13 +225,28 @@ void	test_basic() {
 		// std::cout << "Why this no empty??? YYYY: " << range_rover.begin()->first << std::endl; 
 		// std::cout << "Why this also no empty??? YYYY: " << range_rover.begin()++->first << std::endl; 
 	}
+	std::cout << "\nGonna be testin swap() now with test and another map" << std::endl;
+
+	ft::map<int, std::string>	swappety;
+	swappety.insert(std::pair<int, std::string>(44, "M'importa"));
+	swappety.insert(std::pair<int, std::string>(22, "Una"));
+	swappety.insert(std::pair<int, std::string>(33, "Bella"));
+	swappety.insert(std::pair<int, std::string>(77, "Sega"));
+	swappety.insert(std::pair<int, std::string>(45, "A"));
+	swappety.insert(std::pair<int, std::string>(23, "Du mani"));
+
+	swappety.swap(test);
+
+	swappety.printBT();
+	test.printBT();
+
 	// ft::map<std::string, int>	single_fucker;
 	// single_fucker.insert(std::make_pair("DIOCANE MAIALE", 69));
 	// // std::cout << single_fucker.size() << std::endl;
 	// single_fucker.erase(single_fucker.begin());
 	// std::cout << "Why this no empty??? YYYY: " << single_fucker.begin()->first << std::endl; 
 
-	system ("leaks container");
+	// system ("leaks container");
 
 
 	/* std::cout << "\nTRYING THE VARIOUS CONSTRUCTORS" << std::endl;
