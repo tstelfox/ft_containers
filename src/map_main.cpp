@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 12:29:54 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 13:03:27 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,51 +31,87 @@ void	std_test() {
 	std::map<int, std::string> test;
 
 	std::cout << "<<<------STANDARD TESTIN BOYSSSS------>>>" << std::endl;
-	test.insert(std::pair<int, std::string>(10, "Fuoco"));
-	test.insert(std::pair<int, std::string>(12, "Kali"));
-	test.insert(std::pair<int, std::string>(17, "Uchis"));
-	test.insert(std::pair<int, std::string>(6, "Colombia"));
-	test.insert(std::pair<int, std::string>(15, "Gran Colombia"));
-	test.insert(std::pair<int, std::string>(4, "Shakira Shakira"));
-	test.insert(std::pair<int, std::string>(5, "Aiuto Shakira"));
-	test.insert(std::pair<int, std::string>(2, "Dio cane"));
-	test.insert(std::pair<int, std::string>(99, "dio bastardo"));
-	test.insert(std::pair<int, std::string>(47, "dio porco"));
-	test.insert(std::pair<int, std::string>(16, "dio stronzo"));
+	// test.insert(std::pair<int, std::string>(10, "Fuoco"));
+	// test.insert(std::pair<int, std::string>(12, "Kali"));
+	// test.insert(std::pair<int, std::string>(17, "Uchis"));
+	// test.insert(std::pair<int, std::string>(6, "Colombia"));
+	// test.insert(std::pair<int, std::string>(15, "Gran Colombia"));
+	// test.insert(std::pair<int, std::string>(4, "Shakira Shakira"));
+	// test.insert(std::pair<int, std::string>(5, "Aiuto Shakira"));
+	// test.insert(std::pair<int, std::string>(2, "Dio cane"));
+	// test.insert(std::pair<int, std::string>(99, "dio bastardo"));
+	// test.insert(std::pair<int, std::string>(47, "dio porco"));
+	// test.insert(std::pair<int, std::string>(16, "dio stronzo"));
 
 
-	std::cout << "\nLower_bound and sheet" << std::endl;
-	std::cout << "Lower bound of 6: " << test.lower_bound(6)->first << std::endl;
-	std::cout << "Upper bound of 6: " << test.upper_bound(6)->first << std::endl;
+	// std::cout << "\nLower_bound and sheet" << std::endl;
+	// std::cout << "Lower bound of 6: " << test.lower_bound(6)->first << std::endl;
+	// std::cout << "Upper bound of 6: " << test.upper_bound(6)->first << std::endl;
 
-	std::cout << "Equal range with a match: " << test.equal_range(15).first->first << " " <<
-		test.equal_range(15).second->first << std::endl;
-	std::cout << "Equal range without a match: " << test.equal_range(87).first->first << " " <<
-		test.equal_range(87).second->first << std::endl;
+	// std::cout << "Equal range with a match: " << test.equal_range(15).first->first << " " <<
+	// 	test.equal_range(15).second->first << std::endl;
+	// std::cout << "Equal range without a match: " << test.equal_range(87).first->first << " " <<
+	// 	test.equal_range(87).second->first << std::endl;
 
-	std::cout << "\nSQUARE BRACKETSSS" << std::endl;
-	std::cout << "Item number " << 4 << " is: " << test[3] << std::endl;
-	// test.printBT();
+	// std::cout << "\nSQUARE BRACKETSSS" << std::endl;
+	// std::cout << "Item number " << 4 << " is: " << test[3] << std::endl;
+	// // test.printBT();
 
-	std::cout << "\nTESTIN ITERATORS" << std::endl;
-	std::map<int, std::string>::iterator it = test.begin();
-	// std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
-	while (it != test.end()) {
-		// std::cout << "Testin testin" << std::endl;
-		std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
-		it++;
+	// std::cout << "\nTESTIN ITERATORS" << std::endl;
+	// std::map<int, std::string>::iterator it = test.begin();
+	// // std::cout << "Value at beginning: " << it->first << " " << it->second << std::endl;
+	// while (it != test.end()) {
+	// 	// std::cout << "Testin testin" << std::endl;
+	// 	std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
+	// 	it++;
+	// }
+	// std::cout << "NOW BACKWARDS with rev" << std::endl;
+	// std::map<int, std::string>::reverse_iterator rev_it = test.rbegin();
+	// // rev
+	// // it++;
+	// while (rev_it != test.rend()) {
+	// 	std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
+	// 	rev_it++;
+	// }
+	// // Eh ma diobe
+	// rev_it--;
+	// std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
+
+	std::cout << "\nRANGED INSERT LEZGO" << std::endl;
+	{
+		std::map<std::string, int>	range_rover;
+		std::vector<std::pair<std::string, int> > thething;
+		thething.push_back(std::make_pair("Carlo", 1));
+		thething.push_back(std::make_pair("Eugenio", 7));
+		thething.push_back(std::make_pair("Dé", 3));
+		thething.push_back(std::make_pair("Turlough", 99));
+		thething.push_back(std::make_pair("Cigio", 98));
+		thething.push_back(std::make_pair("Juanito", 69));
+		thething.push_back(std::make_pair("Pilerda", 66));
+		thething.push_back(std::make_pair("Lindsay", 700));
+		thething.push_back(std::make_pair("Perosh", 77));
+		thething.push_back(std::make_pair("DEfo", 88));
+
+		range_rover.insert(thething.begin(), thething.end());
+
+		std::cout << "\nERASING" << std::endl;
+
+		range_rover.erase("DEfo");
+		range_rover.erase("Dé");
+		range_rover.erase("Juanito");
+
+		std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
+		range_rover.clear();
+		std::cout << range_rover.empty() << std::endl;
+		range_rover.insert(thething.begin() + 2, thething.begin() + 3);
+		std::cout << range_rover.begin()->first << std::endl;
+		range_rover.erase(range_rover.begin());
+		std::cout << range_rover.empty() << std::endl;
+		// range_rover.printBT();
+		std::cout << range_rover.begin()->first << std::endl;
+		// std::cout << "Why this also no empty??? YYYY: " << range_rover.begin()++->first << std::endl; 
+
 	}
-	std::cout << "NOW BACKWARDS with rev" << std::endl;
-	std::map<int, std::string>::reverse_iterator rev_it = test.rbegin();
-	// rev
-	// it++;
-	while (rev_it != test.rend()) {
-		std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
-		rev_it++;
-	}
-	// Eh ma diobe
-	rev_it--;
-	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
 }
 
 
@@ -171,23 +207,31 @@ void	test_basic() {
 		range_rover.insert(thething.begin(), thething.end());
 		range_rover.printBT();
 
-		std::cout << "\nERASING" << std::endl;
+		// std::cout << "\nERASING" << std::endl;
 
-		range_rover.erase("DEfo");
-		range_rover.erase("Dé");
-		range_rover.erase("Juanito");
-		range_rover.printBT();
+		// range_rover.erase("DEfo");
+		// range_rover.erase("Dé");
+		// range_rover.erase("Juanito");
+		// range_rover.printBT();
 
-		std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
-		range_rover.clear();
-		std::cout << range_rover.empty() << std::endl;
-		range_rover.insert(thething.begin() + 2, thething.begin() + 3);
-		range_rover.printBT();
-		// std::cout << range_rover.begin()->first << std::endl;
-		range_rover.erase(range_rover.begin());
-		std::cout << range_rover.empty() << std::endl;
+		// std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
+		// range_rover.clear();
+		// std::cout << range_rover.empty() << std::endl;
+		// range_rover.insert(thething.begin() + 2, thething.begin() + 3);
+		// range_rover.printBT();
+		// // std::cout << range_rover.begin()->first << std::endl;
+		// range_rover.erase(range_rover.begin());
+		// std::cout << range_rover.empty() << std::endl;
+		// range_rover.printBT();
+		// std::cout << "Why this no empty??? YYYY: " << range_rover.begin()->first << std::endl; 
+		// std::cout << "Why this also no empty??? YYYY: " << range_rover.begin()++->first << std::endl; 
 	}
-	system ("leaks container");
+	ft::map<std::string, int>	single_fucker;
+	single_fucker.insert(std::make_pair("DIOCANE MAIALE", 69));
+	single_fucker.erase(single_fucker.begin());
+	std::cout << "Why this no empty??? YYYY: " << single_fucker.begin()->first << std::endl; 
+
+	// system ("leaks container");
 
 
 	/* std::cout << "\nTRYING THE VARIOUS CONSTRUCTORS" << std::endl;

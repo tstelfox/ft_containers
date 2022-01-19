@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 12:30:36 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 13:38:31 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ class map
 		}
 
 		~map() {
-			clear();
+			// Quietening this for a moment
+			// clear();
+
 			// The following leads to a double free for some reason:
 			// m_allocator.deallocate(_begin, 1);
 			// m_allocator.deallocate(_end, 1);
@@ -100,6 +102,7 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
+			// std::cout << "Root" << root->object.first << std::endl;
 			return iterator(first_node);
 		}
 
@@ -411,8 +414,13 @@ class map
 
 		void	erasure_balance(mapnode *x) {
 			mapnode *s;
+			// std::cout << "In here fo sho" << std::endl;
+			// std::cout << "Is it root? " << (x == root) << std::endl;
 			if (x == 0) // Stole this from Reep but doesn't help
+			{
+				// std::cout << "This is root: " << x->object.first << std::endl;
 				return ;
+			}
 			while (x != root && x->colour == BLACK) {
 				if (x == x->parent->left) {
 					s = x->parent->right;
@@ -478,24 +486,36 @@ class map
 				u->parent->left = v;
 			else
 				u->parent->right = v;
-			if (v) // Found this on Peer's and it makes sense
+			if (v) { // Found this on Peer's and it makes sense
+				// std::cout << "This is root: " << v->object.first << std::endl;
 				v->parent = u->parent;
+			}
 		}
 
 		void	erase_node(mapnode *node) {
 			mapnode	*x, *y, *z;
 			z = y = node;
 			// y = node;
+			/* Here goes some fuckery */
+			// if (node == root && node->right->_delimit && node->left->_delimit) {
+			// 	m_allocator.deallocate(root, 1);
+			// 	// root->object = NULL;
+			// }
+			// std::cout << "Just da root" << std::endl;
+			
 			char	y_og_colour = y->colour;
+			// std::cout << "In here?" << std::endl;
 			if (z->left == NULL) {
 				x = z->right;
 				rbTransplant(z, z->right);
+				// std::cout << "This is root: " << x->object.first << std::endl;
 			}
 			else if (z->right == NULL) {
 				x = z->left;
 				rbTransplant(z, z->left);
 			}
 			else {
+				// std::cout << "This is root: " << std::endl;
 				y = successor(z->right);
 				y_og_colour = y->colour;
 				x = y->right;
@@ -514,12 +534,17 @@ class map
 				y->left->parent = y;
 				y->colour = z->colour;
 			}
+			// std::cout << "deeee" << std::endl;
 			m_allocator.deallocate(z, 1);
-			if (y_og_colour == BLACK)
+			if (y_og_colour == BLACK) {
+				// std::cout << "This is root: " << x->object.first << std::endl;
 				erasure_balance(x);
+			}
+			// std::cout << "This is root: " << x->object.first << std::endl;
 		}
 
 		void		erase(iterator position) {
+			// std::cout << "Scusami tanto" << std::endl;
 			erase_node(position.get_node());
 			m_size--;
 		}
@@ -532,11 +557,13 @@ class map
 		}
 
 		void		erase(iterator first, iterator last) {
+			// std::cout << "Non e mai vero" << std::endl;
 			for (; first != last; first++)
 				erase(first);
 		}
 
 		void	clear() {
+			// std::cout << "Eh no he" << std::endl;
 			while (root)
 				erase_node(root);
 			m_size = 0;
