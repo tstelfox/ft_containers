@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/18 18:27:48 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 11:35:19 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -605,7 +605,7 @@ class map
 				u->parent->left = v;
 			else
 				u->parent->right = v;
-			if (v) // Found this on Peer's but what the teering
+			if (v) // Found this on Peer's and it makes sense
 				v->parent = u->parent;
 		}
 
@@ -616,7 +616,7 @@ class map
 			char	y_og_colour = y->colour;
 			if (z->left == NULL) {
 				x = z->right;
-				rbTransplant(z, z->right); // Write it boy.
+				rbTransplant(z, z->right);
 			}
 			else if (z->right == NULL) {
 				x = z->left;
@@ -627,7 +627,7 @@ class map
 				y_og_colour = y->colour;
 				x = y->right;
 				if (y->parent == z) {
-					if (x) // STole
+					if (x) // Stole this from Reeeep and now see why it makes sense
 						x->parent = y;
 				}
 				else {
