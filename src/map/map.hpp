@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 15:41:18 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 15:50:38 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 #define	BLACK	'b'
 #define	RED		'r'
-#define DOUBLE_BLACK 'd' // This might not be needed at all. Just a function at the right moment
 
 namespace ft {
 
@@ -67,14 +66,12 @@ class map
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
 				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node(), last_node() {
-					// init_first_last();
 				}
 
 		template <class InputIterator>
 		map(InputIterator first, InputIterator last, const key_compare & comp = key_compare(),
 				const allocator_type &alloc = allocator_type())
 			: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node(), last_node() {
-				// init_first_last();
 				insert(first, last);
 			}
 
@@ -82,7 +79,6 @@ class map
 			this->m_allocator = x.m_allocator;
 			this->_comp = x._comp;
 			this->m_size = 0;
-			// init_first_last();
 			this->insert(x.begin(), x.end());
 		}
 

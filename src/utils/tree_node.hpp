@@ -6,18 +6,15 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/29 13:50:54 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 15:35:48 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 15:47:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
-
-template < class value_type > // Have to add the comp here, maybe (?)
+template < class value_type >
 class node {
 
 	public:
 
-		// Create nodes as red/vermelho
 		explicit node(value_type const &val = value_type()) :
 			object(val) , parent(0), left(0), right(0), colour('r') , _delimit(false) {} 
 
@@ -63,10 +60,7 @@ class node {
 		node*	get_prev_node() {
 			node *it(this);
 
-			// if (it->parent->_delimit)
-			// 	return (it->parent);
 			if (it->left) {
-				// std::cout << it->left->_delimit << std::endl;
 				it = it->left;
 				while (it->right)
 					it = it->right;
@@ -88,6 +82,6 @@ class node {
 		node*		right;
 		char		colour;
 		bool		_delimit;
-	private: // Maybe (?)
+	private:
 		
 };
