@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 14:39:03 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 14:46:21 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
-			// std::cout << "Root" << root->object.first << std::endl;
 			return iterator(_begin->parent);
 		}
 
@@ -164,130 +163,7 @@ class map
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
-		void		right_rotate(mapnode *&newnode)
-		{
-			mapnode *left_child = newnode->left;
-
-			newnode->left = left_child->right;
-			if (newnode->left != NULL)
-				newnode->left->parent = newnode;
-			
-			left_child->parent = newnode->parent;
-
-			if (newnode->parent == NULL)
-				root = left_child;
-			else if (newnode == newnode->parent->left)
-				newnode->parent->left = left_child;
-			else
-				newnode->parent->right = left_child;
-			left_child->right = newnode;
-			newnode->parent = left_child;
-		}
-
-		void		left_rotate(mapnode *&newnode)
-		{
-			mapnode *right_child = newnode->right;
-
-			newnode->right = right_child->left;
-
-			if (newnode->right != NULL)
-				newnode->right->parent = newnode;
-			
-			right_child->parent = newnode->parent;
-
-			if (newnode->parent == NULL)
-				root = right_child;
-			else if (newnode == newnode->parent->left)
-				newnode->parent->left = right_child;
-			else
-				newnode->parent->right = right_child;
-
-			right_child->left = newnode;
-			newnode->parent = right_child;
-		}
-
-		void		fix_violations(mapnode *&root, mapnode *&newnode) 
-		{
-			mapnode *p_node = NULL;
-			mapnode	*gp_node = NULL;
-
-			while ((newnode != root) && (newnode->colour != BLACK) &&
-					(newnode->parent->colour == RED))
-			{
-				p_node = newnode->parent;
-				gp_node = newnode->parent->parent;
-				/* Case A
-					Parent of newnode is left-child of grandparent of newnode */
-				if (p_node == gp_node->left)
-				{
-					mapnode *uncle_node = gp_node->right;
-					/* Case alpha
-						Uncle of node is also RED
-						Only recolouring required */
-					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_delimit)
-					{
-						gp_node->colour = RED;
-						p_node->colour = BLACK;
-						uncle_node->colour = BLACK;
-						newnode = gp_node;
-					}
-					else
-					{
-						/* Case Beta
-							newnode is right child of its parent
-							left-rotation required */
-						if (newnode == p_node->right)
-						{
-							left_rotate(p_node);
-							newnode = p_node;
-							p_node = newnode->parent;
-						}
-						/* case Gamma
-							newnode is left child of its parent
-							right-rotation required */
-						right_rotate(gp_node);
-						std::swap(p_node->colour, gp_node->colour);
-						newnode = p_node;
-					}
-				}
-				/* Case B
-					Parent of newnode is right child of grandparent */
-				else
-				{
-					mapnode *uncle_node = gp_node->left;
-					/* Case alpha
-						Uncle of node is also RED
-						Only recolouring required */
-					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_delimit)
-					{
-						gp_node->colour = RED;
-						p_node->colour = BLACK;
-						uncle_node->colour = BLACK;
-						newnode = gp_node;
-					}
-					else
-					{
-						/* case Gamma
-							newnode is left child of its parent
-							right-rotation required */
-						if (newnode == p_node->left)
-						{
-							right_rotate(p_node);
-							newnode = p_node;
-							p_node = newnode->parent;
-						}
-						/* Case Beta
-							newnode is right child of its parent
-							left-rotation required */
-						left_rotate(gp_node);
-						std::swap(p_node->colour, gp_node->colour);
-						newnode = p_node;
-					}
-				}
-				
-			}
-			root->colour = BLACK;
-		}
+		
 
 
 		std::pair<iterator, bool>	insert(const value_type& val) { // Should probably clean this up
@@ -364,193 +240,7 @@ class map
 			}
 		}
 
-		mapnode *successor(mapnode *x) {
-			mapnode *temp = x;
-			while (temp->left != NULL && !temp->left->_delimit)
-				temp = temp->left;
-			return temp;
-		}
-
-		// mapnode *sibling(mapnode *x) {
-		// 	if (x->parent == NULL)
-		// 		return NULL;
-		// 	if (x == x->parent->left)
-		// 		return x->parent->right;
-		// 	return x->parent->left;
-		// }
-
-		// void	swapValues(mapnode *u, mapnode *v) {
-			
-		// 	// My god this is so dumb - PLEASE just overload this shit somehow
-		// 	mapnode *temp = v;
-		// 	v = u;
-		// 	v->parent = temp->parent;
-		// 	v->left = temp->left;
-		// 	v->right = temp->right;
-		// 	v->colour = temp->colour;
-
-		// 	// std::cout << "For fuck's sake" << std::endl;
-		// 	temp = u;
-		// 	u = v;
-		// 	u->parent = temp->parent;
-		// 	u->left = temp->left;
-		// 	u->right = temp->right;
-		// 	u->colour = temp->colour;
-		// }
-
-		// mapnode	*replace_node(mapnode *x) { // CHECKFINAL ?
-		// 	// std::cout << "Well?" << std::endl;
-		// 	if (x->left != NULL && x->right != NULL)
-		// 	{
-		// 		// std::cout << "final?" << std::endl;
-		// 		return successor(x->right);
-		// 	}
-		// 	if (x->left == NULL && x->right == NULL)
-		// 		return NULL;
-				
-		// 	if (x->left != NULL)
-		// 		return x->left;
-		// 	else
-		// 		return x->right;
-		// 	// std::cout << "This can't be printed?" << std::endl;
-		// }
-
-		// bool	hasRedChild(mapnode *x) {
-		// 	return ((x->left != NULL && x->left->colour == RED)
-		// 		|| (x->right != NULL && x->right->colour == RED));
-		// }
-
-		void	erasure_balance(mapnode *x) {
-			mapnode *s;
-			// std::cout << "In here fo sho" << std::endl;
-			// std::cout << "Is it root? " << (x == root) << std::endl;
-			if (x == 0) // Stole this from Reep but doesn't help
-			{
-				// std::cout << "This is root: " << x->object.first << std::endl;
-				return ;
-			}
-			while (x != root && x->colour == BLACK) {
-				if (x == x->parent->left) {
-					s = x->parent->right;
-					if (s->colour == RED) {
-						s->colour = BLACK;
-						x->parent->colour = RED;
-						left_rotate(x->parent);
-						s = x->parent->right;
-					}
-					if (s->left->colour == BLACK && s->right->colour == BLACK) {
-						s->colour = RED;
-						x = x->parent;
-					}
-					else {
-						if (s->right->colour == BLACK) {
-							s->left->colour = BLACK;
-							s->colour = RED;
-							right_rotate(s);
-							s = x->parent->right;
-						}
-						s->colour = x->parent->colour;
-						x->parent->colour = BLACK;
-						s->right->colour = BLACK;
-						left_rotate(x->parent);
-						x = root;
-					}
-				}
-				else {
-					s = x->parent->left;
-					if (s->colour == RED) {
-						s->colour = BLACK;
-						x->parent->colour = RED;
-						right_rotate(x->parent);
-						s = x->parent->left;
-					}
-					if (s->right->colour == BLACK && s->right->colour == BLACK) {
-						s->colour = RED;
-						x = x->parent;
-					} 
-					else {
-					if (s->left->colour == BLACK) {
-						s->right->colour = BLACK;
-						s->colour = RED;
-						left_rotate(s);
-						s = x->parent->left;
-					}
-
-					s->colour = x->parent->colour;
-					x->parent->colour = BLACK;
-					s->left->colour = BLACK;
-					right_rotate(x->parent);
-					x = root;
-					}
-				}
-			}
-			x->colour = BLACK;
-		}
-
-		void	rbTransplant(mapnode *u, mapnode *v) {
-			if (u->parent == NULL)
-				root = v;
-			else if (u == u->parent->left)
-				u->parent->left = v;
-			else
-				u->parent->right = v;
-			if (v) { // Found this on Peer's and it makes sense
-				// std::cout << "This is root: " << v->object.first << std::endl;
-				v->parent = u->parent;
-			}
-		}
-
-		void	erase_node(mapnode *node) {
-			mapnode	*x, *y, *z;
-			z = y = node;
-			// y = node;
-			/* Here goes some fuckery */
-			// if (node == root && node->right->_delimit && node->left->_delimit) {
-			// 	m_allocator.deallocate(root, 1);
-			// 	// root->object = NULL;
-			// }
-			// std::cout << "Just da root" << std::endl;
-			
-			char	y_og_colour = y->colour;
-			// std::cout << "In here?" << std::endl;
-			if (z->left == NULL) {
-				x = z->right;
-				rbTransplant(z, z->right);
-				// std::cout << "This is root: " << x->object.first << std::endl;
-			}
-			else if (z->right == NULL) {
-				x = z->left;
-				rbTransplant(z, z->left);
-			}
-			else {
-				// std::cout << "This is root: " << std::endl;
-				y = successor(z->right);
-				y_og_colour = y->colour;
-				x = y->right;
-				if (y->parent == z) {
-					if (x) // Stole this from Reeeep and now see why it makes sense
-						x->parent = y;
-				}
-				else {
-					rbTransplant(y, y->right);
-					y->right = z->right;
-					y->right->parent = y;
-				}
-
-				rbTransplant(z, y);
-				y->left = z->left;
-				y->left->parent = y;
-				y->colour = z->colour;
-			}
-			// std::cout << "deeee" << std::endl;
-			m_allocator.deallocate(z, 1);
-			if (y_og_colour == BLACK) {
-				// std::cout << "This is root: " << root->object.first << std::endl;
-				// std::cout << "And first_node: " << first_node->object.first << std::endl;
-				erasure_balance(x);
-			}
-			// std::cout << "This is root: " << x->object.first << std::endl;
-		}
+		
 
 		void		erase(iterator position) {
 			// std::cout << "Scusami tanto" << std::endl;
@@ -699,7 +389,291 @@ class map
 			return m_allocator;
 		}
 
-		/* <<**------------------- TEEEEEEESTING ------------------**>> */
+		/* <<**------------------- REDBLACK INSERTION AND DELETION FUNCTIONS ------------------**>> */
+
+
+		void		right_rotate(mapnode *&newnode)
+		{
+			mapnode *left_child = newnode->left;
+
+			newnode->left = left_child->right;
+			if (newnode->left != NULL)
+				newnode->left->parent = newnode;
+			
+			left_child->parent = newnode->parent;
+
+			if (newnode->parent == NULL)
+				root = left_child;
+			else if (newnode == newnode->parent->left)
+				newnode->parent->left = left_child;
+			else
+				newnode->parent->right = left_child;
+			left_child->right = newnode;
+			newnode->parent = left_child;
+		}
+
+		void		left_rotate(mapnode *&newnode)
+		{
+			mapnode *right_child = newnode->right;
+
+			newnode->right = right_child->left;
+
+			if (newnode->right != NULL)
+				newnode->right->parent = newnode;
+			
+			right_child->parent = newnode->parent;
+
+			if (newnode->parent == NULL)
+				root = right_child;
+			else if (newnode == newnode->parent->left)
+				newnode->parent->left = right_child;
+			else
+				newnode->parent->right = right_child;
+
+			right_child->left = newnode;
+			newnode->parent = right_child;
+		}
+
+		void		fix_violations(mapnode *&root, mapnode *&newnode) 
+		{
+			mapnode *p_node = NULL;
+			mapnode	*gp_node = NULL;
+
+			while ((newnode != root) && (newnode->colour != BLACK) &&
+					(newnode->parent->colour == RED))
+			{
+				p_node = newnode->parent;
+				gp_node = newnode->parent->parent;
+				/* Case A
+					Parent of newnode is left-child of grandparent of newnode */
+				if (p_node == gp_node->left)
+				{
+					mapnode *uncle_node = gp_node->right;
+					/* Case alpha
+						Uncle of node is also RED
+						Only recolouring required */
+					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_delimit)
+					{
+						gp_node->colour = RED;
+						p_node->colour = BLACK;
+						uncle_node->colour = BLACK;
+						newnode = gp_node;
+					}
+					else
+					{
+						/* Case Beta
+							newnode is right child of its parent
+							left-rotation required */
+						if (newnode == p_node->right)
+						{
+							left_rotate(p_node);
+							newnode = p_node;
+							p_node = newnode->parent;
+						}
+						/* case Gamma
+							newnode is left child of its parent
+							right-rotation required */
+						right_rotate(gp_node);
+						std::swap(p_node->colour, gp_node->colour);
+						newnode = p_node;
+					}
+				}
+				/* Case B
+					Parent of newnode is right child of grandparent */
+				else
+				{
+					mapnode *uncle_node = gp_node->left;
+					/* Case alpha
+						Uncle of node is also RED
+						Only recolouring required */
+					if (uncle_node != NULL && uncle_node->colour == RED && !uncle_node->_delimit)
+					{
+						gp_node->colour = RED;
+						p_node->colour = BLACK;
+						uncle_node->colour = BLACK;
+						newnode = gp_node;
+					}
+					else
+					{
+						/* case Gamma
+							newnode is left child of its parent
+							right-rotation required */
+						if (newnode == p_node->left)
+						{
+							right_rotate(p_node);
+							newnode = p_node;
+							p_node = newnode->parent;
+						}
+						/* Case Beta
+							newnode is right child of its parent
+							left-rotation required */
+						left_rotate(gp_node);
+						std::swap(p_node->colour, gp_node->colour);
+						newnode = p_node;
+					}
+				}
+				
+			}
+			root->colour = BLACK;
+		}
+
+
+		mapnode *successor(mapnode *x) {
+			mapnode *temp = x;
+			while (temp->left != NULL && !temp->left->_delimit)
+				temp = temp->left;
+			return temp;
+		}
+
+		void	erasure_balance(mapnode *x) {
+			mapnode *s;
+			// std::cout << "In here fo sho" << std::endl;
+			// std::cout << "Is it root? " << (x == root) << std::endl;
+			if (x == 0) // Stole this from Reep but doesn't help
+			{
+				// std::cout << "This is root: " << x->object.first << std::endl;
+				return ;
+			}
+			while (x != root && x->colour == BLACK) {
+				if (x == x->parent->left) {
+					s = x->parent->right;
+					if (s->colour == RED) {
+						s->colour = BLACK;
+						x->parent->colour = RED;
+						left_rotate(x->parent);
+						s = x->parent->right;
+					}
+					if (s->left->colour == BLACK && s->right->colour == BLACK) {
+						s->colour = RED;
+						x = x->parent;
+					}
+					else {
+						if (s->right->colour == BLACK) {
+							s->left->colour = BLACK;
+							s->colour = RED;
+							right_rotate(s);
+							s = x->parent->right;
+						}
+						s->colour = x->parent->colour;
+						x->parent->colour = BLACK;
+						s->right->colour = BLACK;
+						left_rotate(x->parent);
+						x = root;
+					}
+				}
+				else {
+					s = x->parent->left;
+					if (s->colour == RED) {
+						s->colour = BLACK;
+						x->parent->colour = RED;
+						right_rotate(x->parent);
+						s = x->parent->left;
+					}
+					if (s->right->colour == BLACK && s->right->colour == BLACK) {
+						s->colour = RED;
+						x = x->parent;
+					} 
+					else {
+					if (s->left->colour == BLACK) {
+						s->right->colour = BLACK;
+						s->colour = RED;
+						left_rotate(s);
+						s = x->parent->left;
+					}
+
+					s->colour = x->parent->colour;
+					x->parent->colour = BLACK;
+					s->left->colour = BLACK;
+					right_rotate(x->parent);
+					x = root;
+					}
+				}
+			}
+			x->colour = BLACK;
+		}
+
+		void	rbTransplant(mapnode *u, mapnode *v) {
+			if (u->parent == NULL)
+				root = v;
+			else if (u == u->parent->left)
+				u->parent->left = v;
+			else
+				u->parent->right = v;
+			if (v) { // Found this on Peer's and it makes sense
+				// std::cout << "This is root: " << v->object.first << std::endl;
+				v->parent = u->parent;
+			}
+		}
+
+		void	erase_node(mapnode *node) {
+			mapnode	*x, *y, *z;
+			z = y = node;
+			
+			char	y_og_colour = y->colour;
+			if (z->left == NULL) {
+				x = z->right;
+				rbTransplant(z, z->right);
+			}
+			else if (z->right == NULL) {
+				x = z->left;
+				rbTransplant(z, z->left);
+			}
+			else {
+				y = successor(z->right);
+				y_og_colour = y->colour;
+				x = y->right;
+				if (y->parent == z) {
+					if (x) // Stole this from Reeeep and now see why it makes sense
+						x->parent = y;
+				}
+				else {
+					rbTransplant(y, y->right);
+					y->right = z->right;
+					y->right->parent = y;
+				}
+
+				rbTransplant(z, y);
+				y->left = z->left;
+				y->left->parent = y;
+				y->colour = z->colour;
+			}
+			m_allocator.deallocate(z, 1);
+			if (y_og_colour == BLACK) {
+				erasure_balance(x);
+			}
+		}
+
+		/* <<**------------------- DELIMITER UTILS ------------------**>> */
+
+
+
+		void		first_and_last() {
+			mapnode *temp = root;
+
+			while (temp->left && !temp->left->_delimit)
+				temp = temp->left;
+			first_node = temp;
+			first_node->left = _begin;
+			_begin->parent = first_node;
+			temp = root;
+			while (temp->right && !temp->right->_delimit)
+				temp = temp->right;
+			last_node = temp;
+			_end->parent = last_node;
+			last_node->right = _end;
+		}
+
+		void	init_first_last() {
+			_end = m_allocator.allocate(1);
+			m_allocator.construct(_end, true);
+			_begin = m_allocator.allocate(1);
+			m_allocator.construct(_begin, true);
+			// first_node = m_allocator.allocate(1);
+			// first_node = _end; // Attempting to fight the double free by commenting this out
+			// first_node->parent = _end;
+		}
+
+		/* <<**------------------- PRINT LE TREE ------------------**>> */
 
 		// void	print_next_nodes(mapnode *node, int i) {
 		// 	mapnode *temp_node = node;
@@ -713,7 +687,6 @@ class map
 
 		// void	contents(mapnode *root, int i, bool both) { // Now it prints out the tree as a diagram kinda
 		// 	mapnode *temp = root;
-
 		// 	if (both) {
 		// 		std::cout << std::endl << std::setw(i - 10) << temp->left->object.first << std::setw(20) << temp->right->object.first << std::endl;
 		// 		print_next_nodes(temp->left, i - 10);
@@ -733,34 +706,6 @@ class map
 		// 	}
 		// }
 
-		void		first_and_last() {
-			mapnode *temp = root;
-
-			while (temp->left && !temp->left->_delimit)
-				temp = temp->left;
-			first_node = temp;
-			first_node->left = _begin;
-			_begin->parent = first_node;
-			temp = root;
-			while (temp->right && !temp->right->_delimit)
-				temp = temp->right;
-			last_node = temp;
-			_end->parent = last_node;
-			last_node->right = _end;
-			// std::cout << "This is root: " << root->object.first << std::endl;
-			// std::cout << "And first_node: " << first_node->object.first << std::endl;
-		}
-
-		void	init_first_last() {
-			_end = m_allocator.allocate(1);
-			m_allocator.construct(_end, true);
-			_begin = m_allocator.allocate(1);
-			m_allocator.construct(_begin, true);
-			// first_node = m_allocator.allocate(1);
-			// first_node = _end; // Attempting to fight the double free by commenting this out
-			// first_node->parent = _end;
-		}
-
 		void printBT() const {
 			printBT("", this->root, false);
 			std::cerr << std::endl;
@@ -769,26 +714,19 @@ class map
 		void printBT(const std::string& prefix, const mapnode* trav, bool isLeft) const {
 			// std::cout << last_node->object.first << std::endl;
 			// std::cout << first_node->object.first << std::endl;
-			// Hmmmm
-			// if (trav && trav != first_node && trav != last_node) {
 			if (trav && trav != _end && trav != _begin) {
 					std::cerr << prefix;
 					std::cerr << (isLeft ? "├L─" : "└R-" );
-					// print the value of the node
 					if (trav->colour == RED)
 						std::cerr << ROSSO;
 					else if (trav->colour == BLACK)
 						std::cerr << _IWHITE << GREY;
 					std::cerr << trav->object.first << END << std::endl ;
-					// enter the next tree level - left and right branch
+					// RYYYYYKEHHHRSHION
 					printBT( prefix + (isLeft ? "│   " : "    "), trav->left, true);
 					printBT( prefix + (isLeft ? "│   " : "    "), trav->right, false);
 			}
 		}
-		
-		// mapnode*	get_root() {
-		// 	return root;
-		// }
 
 	private:
 		node_alloc			m_allocator;
