@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 11:32:51 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 12:13:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,29 +154,39 @@ void	test_basic() {
 
 
 	std::cout << "\nRANGED INSERT LEZGO" << std::endl;
+	{
+		ft::map<std::string, int>	range_rover;
+		std::vector<std::pair<std::string, int> > thething;
+		thething.push_back(std::make_pair("Carlo", 1));
+		thething.push_back(std::make_pair("Eugenio", 7));
+		thething.push_back(std::make_pair("Dé", 3));
+		thething.push_back(std::make_pair("Turlough", 99));
+		thething.push_back(std::make_pair("Cigio", 98));
+		thething.push_back(std::make_pair("Juanito", 69));
+		thething.push_back(std::make_pair("Pilerda", 66));
+		thething.push_back(std::make_pair("Lindsay", 700));
+		thething.push_back(std::make_pair("Perosh", 77));
+		thething.push_back(std::make_pair("DEfo", 88));
 
-	ft::map<std::string, int>	range_rover;
-	std::vector<std::pair<std::string, int> > thething;
-	thething.push_back(std::make_pair("Carlo", 1));
-	thething.push_back(std::make_pair("Eugenio", 7));
-	thething.push_back(std::make_pair("Dé", 3));
-	thething.push_back(std::make_pair("Turlough", 99));
-	thething.push_back(std::make_pair("Cigio", 98));
-	thething.push_back(std::make_pair("Juanito", 69));
-	thething.push_back(std::make_pair("Pilerda", 66));
-	thething.push_back(std::make_pair("Lindsay", 700));
-	thething.push_back(std::make_pair("Perosh", 77));
-	thething.push_back(std::make_pair("DEfo", 88));
+		range_rover.insert(thething.begin(), thething.end());
+		range_rover.printBT();
 
-	range_rover.insert(thething.begin(), thething.end());
-	range_rover.printBT();
+		std::cout << "\nERASING" << std::endl;
 
-	std::cout << "\nERASING" << std::endl;
+		range_rover.erase("DEfo");
+		range_rover.erase("Dé");
+		range_rover.erase("Juanito");
+		range_rover.printBT();
 
-	range_rover.erase("DEfo");
-	range_rover.erase("Dé");
-	range_rover.erase("Juanito");
-	range_rover.printBT();
+		std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
+		range_rover.clear();
+		std::cout << range_rover.empty() << std::endl;
+		range_rover.insert(thething.begin() + 2, thething.begin() + 3);
+		range_rover.printBT();
+		// std::cout << range_rover.begin()->first << std::endl;
+		range_rover.erase(range_rover.begin());
+	}
+	// system ("leaks container");
 
 
 	/* std::cout << "\nTRYING THE VARIOUS CONSTRUCTORS" << std::endl;

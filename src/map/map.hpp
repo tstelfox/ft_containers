@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 11:35:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 12:06:56 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,10 @@ class map
 		}
 
 		~map() {
-			// Clear probably
-			m_allocator.deallocate(_begin, 1);
-			m_allocator.deallocate(_end, 1);
+			clear();
+			// The following leads to a double free for some reason:
+			// m_allocator.deallocate(_begin, 1);
+			// m_allocator.deallocate(_end, 1);
 		}
 
 		// map&	operator = (const map &x) {
@@ -646,7 +647,7 @@ class map
 				erasure_balance(x);
 		}
 
-		void	erase(iterator position) {
+		void		erase(iterator position) {
 			erase_node(position.get_node());
 			m_size--;
 		}
@@ -658,9 +659,16 @@ class map
 			return 1;
 		}
 
-		// void	clear() {
-			
-		// }
+		void		erase(iterator first, iterator last) {
+			for (; first != last; first++)
+				erase(first);
+		}
+
+		void	clear() {
+			while (root)
+				erase_node(root);
+			m_size = 0;
+		}
 
 		/* <<**------------------- OBSERVERS ------------------**>> */
 
@@ -863,9 +871,9 @@ class map
 			}
 		}
 		
-		mapnode*	get_root() {
-			return root;
-		}
+		// mapnode*	get_root() {
+		// 	return root;
+		// }
 
 	private:
 		node_alloc			m_allocator;
