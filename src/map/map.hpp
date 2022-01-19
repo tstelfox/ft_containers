@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 14:33:34 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/19 14:39:03 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,16 @@ class map
 			// m_allocator.deallocate(_end, 1);
 		}
 
-		// map&	operator = (const map &x) {
-		// 	// Will probably need to use this->clear() and stuff to reassign;
-		// }
+		map&	operator = (const map &x) {
+			/* The container preserves its current allocator, 
+			which is used to allocate additional storage if needed. */
+			if (this != &x) {
+				this->clear();
+				this->_comp = x._comp;
+				this->insert(x.begin(), x.end());
+			}
+			return *this;
+		}
 
 		/* <<**------------------- ITERATORS ------------------**>> */
 
