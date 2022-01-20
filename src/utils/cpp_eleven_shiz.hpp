@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #pragma once
+#include <type_traits>
 
 template <class T>
-struct is_integral
+struct is_integral : integral_constant
 {
 	// I REALLY don't get the point of this
 };
