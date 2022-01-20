@@ -41,5 +41,7 @@ class stack {
 		container_type	cntr;
 };
 
+// Relational operators to be added
+
 
 }
