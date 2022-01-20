@@ -19,11 +19,9 @@
 #include "bimap_iterator.hpp"
 #include "colours.hpp"
 #include "pair.hpp"
+#include "cpp_eleven_shiz.hpp"
 
 
-
-#define	BLACK	'b'
-#define	RED		'r'
 
 namespace ft {
 

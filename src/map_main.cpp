@@ -227,20 +227,24 @@ void	test_basic() {
 		// std::cout << "Why this no empty??? YYYY: " << range_rover.begin()->first << std::endl; 
 		// std::cout << "Why this also no empty??? YYYY: " << range_rover.begin()++->first << std::endl; 
 	}
-	std::cout << "\nGonna be testin swap() now with test and another map" << std::endl;
+	// std::cout << "\nGonna be testin swap() now with test and another map" << std::endl;
 
-	ft::map<int, std::string>	swappety;
-	swappety.insert(ft::pair<int, std::string>(44, "M'importa"));
-	swappety.insert(ft::pair<int, std::string>(22, "Una"));
-	swappety.insert(ft::pair<int, std::string>(33, "Bella"));
-	swappety.insert(ft::pair<int, std::string>(77, "Sega"));
-	swappety.insert(ft::pair<int, std::string>(45, "A"));
-	swappety.insert(ft::pair<int, std::string>(23, "Du mani"));
+	// ft::map<int, std::string>	swappety;
+	// swappety.insert(ft::pair<int, std::string>(44, "M'importa"));
+	// swappety.insert(ft::pair<int, std::string>(22, "Una"));
+	// swappety.insert(ft::pair<int, std::string>(33, "Bella"));
+	// swappety.insert(ft::pair<int, std::string>(77, "Sega"));
+	// swappety.insert(ft::pair<int, std::string>(45, "A"));
+	// swappety.insert(ft::pair<int, std::string>(23, "Du mani"));
 
-	swappety.swap(test);
+	// swappety.swap(test);
 
-	swappety.printBT();
-	test.printBT();
+	// swappety.printBT();
+	// test.printBT();
+
+	std::cout << "\nStupid cpp 11 sheet" << std::endl;
+
+	std::cout << ft::is_integral<char>::value << std::endl;
 
 	// ft::map<std::string, int>	single_fucker;
 	// single_fucker.insert(make_pair("DIOCANE MAIALE", 69));
