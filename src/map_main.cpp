@@ -16,7 +16,8 @@
 
 template < class T, class iter>
 void	small_map(T small, iter it) {
-	small.insert(pair<int, std::string>(1, "Root"));
+	small.insert(ft::pair<int, std::string>(1, "Root"));
+	// small.insert(std::pair<int, std::string>(1, "Root"));
 	it = small.begin();
 	
 	std::cout << it->first << " " << it->second << std::endl;
@@ -124,20 +125,20 @@ void	test_basic() {
 	std::cout << "<<<------THESE ARE MY BOYZZZZZZZZ------>>>" << std::endl;
 	ft::map<int, std::string> test;
 
-	test.insert(pair<int, std::string>(10, "Fuoco"));
-	test.insert(pair<int, std::string>(12, "Kali"));
-	test.insert(pair<int, std::string>(17, "Uchis"));
-	test.insert(pair<int, std::string>(6, "Colombia"));
-	test.insert(pair<int, std::string>(15, "Gran Colombia"));
-	test.insert(pair<int, std::string>(4, "Shakira Shakira"));
-	test.insert(pair<int, std::string>(5, "Aiuto Shakira"));
-	test.insert(pair<int, std::string>(2, "Dio cane"));
-	test.insert(pair<int, std::string>(99, "dio bastardo"));
-	test.insert(pair<int, std::string>(47, "dio porco"));
-	test.insert(pair<int, std::string>(16, "dio stronzo"));
+	test.insert(ft::pair<int, std::string>(10, "Fuoco"));
+	test.insert(ft::pair<int, std::string>(12, "Kali"));
+	test.insert(ft::pair<int, std::string>(17, "Uchis"));
+	test.insert(ft::pair<int, std::string>(6, "Colombia"));
+	test.insert(ft::pair<int, std::string>(15, "Gran Colombia"));
+	test.insert(ft::pair<int, std::string>(4, "Shakira Shakira"));
+	test.insert(ft::pair<int, std::string>(5, "Aiuto Shakira"));
+	test.insert(ft::pair<int, std::string>(2, "Dio cane"));
+	test.insert(ft::pair<int, std::string>(99, "dio bastardo"));
+	test.insert(ft::pair<int, std::string>(47, "dio porco"));
+	test.insert(ft::pair<int, std::string>(16, "dio stronzo"));
 
 
-	// pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(pair<int, std::string>(47, "Dio Vigliacco"));
+	// ft::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(ft::pair<int, std::string>(47, "Dio Vigliacco"));
 
 	// Main testing here
 	std::cout << "\nTree CONTENTS TIME" << std::endl;
@@ -165,7 +166,7 @@ void	test_basic() {
 	}
 	rev_it--;
 	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
-	test.insert(pair<int, std::string>(4, "This shouldn't exist"));
+	test.insert(ft::pair<int, std::string>(4, "This shouldn't exist"));
 	// test.printBT();
 
 
@@ -193,17 +194,17 @@ void	test_basic() {
 	std::cout << "\nRANGED INSERT LEZGO" << std::endl;
 	{
 		ft::map<std::string, int>	range_rover;
-		std::vector<pair<std::string, int> > thething;
-		thething.push_back(make_pair("Carlo", 1));
-		thething.push_back(make_pair("Eugenio", 7));
-		thething.push_back(make_pair("Dé", 3));
-		thething.push_back(make_pair("Turlough", 99));
-		thething.push_back(make_pair("Cigio", 98));
-		thething.push_back(make_pair("Juanito", 69));
-		thething.push_back(make_pair("Pilerda", 66));
-		thething.push_back(make_pair("Lindsay", 700));
-		thething.push_back(make_pair("Perosh", 77));
-		thething.push_back(make_pair("DEfo", 88));
+		std::vector<ft::pair<std::string, int> > thething;
+		thething.push_back(ft::make_pair("Carlo", 1));
+		thething.push_back(ft::make_pair("Eugenio", 7));
+		thething.push_back(ft::make_pair("Dé", 3));
+		thething.push_back(ft::make_pair("Turlough", 99));
+		thething.push_back(ft::make_pair("Cigio", 98));
+		thething.push_back(ft::make_pair("Juanito", 69));
+		thething.push_back(ft::make_pair("Pilerda", 66));
+		thething.push_back(ft::make_pair("Lindsay", 700));
+		thething.push_back(ft::make_pair("Perosh", 77));
+		thething.push_back(ft::make_pair("DEfo", 88));
 
 		range_rover.insert(thething.begin(), thething.end());
 		range_rover.printBT();
@@ -229,12 +230,12 @@ void	test_basic() {
 	std::cout << "\nGonna be testin swap() now with test and another map" << std::endl;
 
 	ft::map<int, std::string>	swappety;
-	swappety.insert(pair<int, std::string>(44, "M'importa"));
-	swappety.insert(pair<int, std::string>(22, "Una"));
-	swappety.insert(pair<int, std::string>(33, "Bella"));
-	swappety.insert(pair<int, std::string>(77, "Sega"));
-	swappety.insert(pair<int, std::string>(45, "A"));
-	swappety.insert(pair<int, std::string>(23, "Du mani"));
+	swappety.insert(ft::pair<int, std::string>(44, "M'importa"));
+	swappety.insert(ft::pair<int, std::string>(22, "Una"));
+	swappety.insert(ft::pair<int, std::string>(33, "Bella"));
+	swappety.insert(ft::pair<int, std::string>(77, "Sega"));
+	swappety.insert(ft::pair<int, std::string>(45, "A"));
+	swappety.insert(ft::pair<int, std::string>(23, "Du mani"));
 
 	swappety.swap(test);
 
