@@ -12,6 +12,7 @@
 
 #pragma once
 #include "vector.hpp"
+// #include <stack>
 
 namespace ft {
 
@@ -23,7 +24,7 @@ class stack {
 		typedef	Container	container_type;
 		typedef	size_t		size_type;
 
-		explicit stack(const container_type &cntr = container_type()) this->cntr(cntr) {}
+		explicit stack(const container_type &kontain = container_type()) : cntr(kontain) {}
 
 		bool		empty() const { return cntr.empty(); }
 
@@ -37,9 +38,36 @@ class stack {
 
 		void		pop() { cntr.pop_back(); }
 
+		friend bool	operator== (const stack &lhs, const stack	&rhs) { return (lhs.cntr == rhs.cntr); }
+		friend bool	operator< (const stack &lhs, const stack &rhs) { return (lhs.cntr < rhs.cntr); }
+
 	private:
 		container_type	cntr;
 };
+
+// template <class T, class Container>
+//   bool operator==(const stack<T, Container>& x, const stack<T, Container>& y)
+// 	{ return x == y; }
+
+// template <class T, class Container>
+//   bool operator< (const stack<T, Container>& x, const stack<T, Container>& y)
+// 	{ return x < y; }
+
+template <class T, class Container>
+  bool operator!=(const stack<T, Container>& x, const stack<T, Container>& y)
+	{ return !(x == y); }
+
+template <class T, class Container>
+  bool operator> (const stack<T, Container>& x, const stack<T, Container>& y)
+	{ return !(x < y); }
+
+template <class T, class Container>
+  bool operator>=(const stack<T, Container>& x, const stack<T, Container>& y)
+	{ return (!(x < y) && !(x == y)); }
+
+template <class T, class Container>
+  bool operator<=(const stack<T, Container>& x, const stack<T, Container>& y)
+	{ return (!(x > y) && !(x == y)); }
 
 // Relational operators to be added
 

@@ -16,14 +16,14 @@ SRC = vector_main.cpp
 OBJ_DIR = obj
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 FLAGS = -Wall -Wextra -Werror -std=c++98
-INCLUDES = -Isrc/vector -Isrc/map -Isrc/iterators -Isrc/utils
+INCLUDES = -Isrc/vector -Isrc/map -Isrc/stack -Isrc/iterators -Isrc/utils
 
 ifdef SEGS
 	FLAGS += -fsanitize=address -g
 endif
 
 
-map vector:
+map vector stack:
 	@echo Compiling $@
 	@$(CXX) src/$@_main.cpp $(FLAGS) $(INCLUDES) -o $(NAME)
 
