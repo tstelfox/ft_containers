@@ -24,6 +24,9 @@ int		main() {
 	ft::stack<int>	other;
 
 	std::cout << stacco.top() << std::endl;
+	stacco.push(999);
+	std::cout << stacco.top() << std::endl;
+	std::cout << stacco.size() << std::endl;
 	std::cout << std::boolalpha;
 	std::cout << (stacco > other) << std::endl;
 
