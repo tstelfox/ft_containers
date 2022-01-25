@@ -179,16 +179,16 @@ void	test_basic() {
 		std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
 		rev_it++;
 	}
-	rev_it--;
-	std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
+	// rev_it--;
+	// std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
 	test.insert(ft::pair<int, std::string>(4, "This shouldn't exist"));
 	// test.printBT();
 
 
 	ft::map<int, std::string>::iterator found = test.find(99);
 	std::cout << "Found: " << found->second << std::endl;
-	ft::map<int, std::string>::iterator not_found = test.find(0);
-	std::cout << "Found: " << not_found->second << std::endl;
+	// ft::map<int, std::string>::iterator not_found = test.find(0);
+	// std::cout << "Found: " << not_found->second << std::endl;
 
 	std::cout << "Should be there " << test.count(99) << std::endl;
 	std::cout << "Should not be there " << test.count(66) << std::endl;
@@ -227,8 +227,13 @@ void	test_basic() {
 
 	std::cout << "\nERASING" << std::endl;
 
+	std::cout << "Size before erasing two items: " << range_rover.size() << std::endl;
+
 	range_rover.erase("DEfo");
 	range_rover.erase("Dé");
+
+	std::cout << "Size after erasing two items: " << range_rover.size() << std::endl;
+
 	// if (FT)
 	// 	range_rover.printBT();
 
@@ -259,12 +264,12 @@ void	test_basic() {
 	// swappety.printBT();
 	// test.printBT();
 
-	std::cout << "\nReverse_iterator with the iterator_traits.\nWhat if I try to make it do something stoopid?" << std::endl;
+	// std::cout << "\nReverse_iterator with the iterator_traits.\nWhat if I try to make it do something stoopid?" << std::endl;
 
 
-	ft::map<std::string, int>::reverse_iterator	randello = range_rover.rbegin();
-	randello++;
-	std::cout << randello->first << std::endl;
+	// ft::map<std::string, int>::reverse_iterator	randello = range_rover.rbegin();
+	// randello++;
+	// std::cout << randello->first << std::endl;
 	// ft::map<std::string, int>	single_fucker;
 	// single_fucker.insert(make_pair("DIOCANE MAIALE", 69));
 	// // std::cout << single_fucker.size() << std::endl;
