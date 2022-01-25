@@ -19,7 +19,7 @@
 namespace ft {
 
 template < class Iterator >
-class	Rev_rai {
+class	rev_iterator {
 	public:
 		typedef typename	ft::iterator_traits<Iterator>::iterator_category	iterator_category;
 		typedef typename	ft::iterator_traits<Iterator>::value_type			value_type;
@@ -32,15 +32,15 @@ class	Rev_rai {
 		// typedef typename 	iterator_type::pointer			pointer;
 
 		//Constructors, = overload and base()
-		Rev_rai() : current() {}
+		rev_iterator() : current() {}
 		
-		explicit Rev_rai(iterator_type it) : current(it) {}
+		explicit rev_iterator(iterator_type it) : current(it) {}
 
 		template < class Iter >
-		Rev_rai (Rev_rai<Iter> const &rev_it) : current(rev_it.base()) {}
-		~Rev_rai () {}
+		rev_iterator (rev_iterator<Iter> const &rev_it) : current(rev_it.base()) {}
+		~rev_iterator () {}
 
-		Rev_rai&	operator = (const Rev_rai &rhs) {
+		rev_iterator&	operator = (const rev_iterator &rhs) {
 			if (this != &rhs)
 				this->current = rhs.base();
 			return *this;
@@ -57,38 +57,38 @@ class	Rev_rai {
 		pointer		operator -> () const {
 			return &operator*();
 		}
-		Rev_rai&	operator ++ () {
+		rev_iterator&	operator ++ () {
 			--current; 
 			return *this;
 		}
-		Rev_rai		operator ++ (int) {
-			Rev_rai temp(*this);
+		rev_iterator		operator ++ (int) {
+			rev_iterator temp(*this);
 			++(*this);
 			return temp;
 		}
-		Rev_rai&	operator -- () {
+		rev_iterator&	operator -- () {
 			++current;
 			return *this;
 		}
-		Rev_rai		operator -- (int) {
-			Rev_rai temp(*this);
+		rev_iterator		operator -- (int) {
+			rev_iterator temp(*this);
 			--(*this);
 			return temp;
 		}
-		Rev_rai		operator + (difference_type	n) const {
-			return Rev_rai(current - n);
+		rev_iterator		operator + (difference_type	n) const {
+			return rev_iterator(current - n);
 		}
-		Rev_rai& 	operator += (difference_type n) {
+		rev_iterator& 	operator += (difference_type n) {
 			current -= n;
 			return *this;
 		}
-		Rev_rai		operator - (difference_type	n) const {
-			return Rev_rai(current + n);
+		rev_iterator		operator - (difference_type	n) const {
+			return rev_iterator(current + n);
 		}
-		difference_type operator - (Rev_rai const &rhs) const {
+		difference_type operator - (rev_iterator const &rhs) const {
 			return rhs.base() - this->base();
 		}
-		Rev_rai& 	operator -= (difference_type n) {
+		rev_iterator& 	operator -= (difference_type n) {
 			current += n;
 			return *this;
 		}
@@ -96,12 +96,12 @@ class	Rev_rai {
 			return *(*this + n);
 		}
 
-		bool operator== (Rev_rai const &b) const { return this->base() == b.base(); }
-		bool operator!= (Rev_rai const &b) const { return !(this->base() == b.base()); }
-		bool operator < (Rev_rai const &b) const { return this->base > b.base(); }
-		bool operator > (Rev_rai const &b) const { return this->base < b.base(); }
-		bool operator >= (Rev_rai const &b) const { return this->base <= b.base(); }
-		bool operator <= (Rev_rai const &b) const { return this->base >= b.base(); }
+		bool operator== (rev_iterator const &b) const { return this->base() == b.base(); }
+		bool operator!= (rev_iterator const &b) const { return !(this->base() == b.base()); }
+		bool operator < (rev_iterator const &b) const { return this->base > b.base(); }
+		bool operator > (rev_iterator const &b) const { return this->base < b.base(); }
+		bool operator >= (rev_iterator const &b) const { return this->base <= b.base(); }
+		bool operator <= (rev_iterator const &b) const { return this->base >= b.base(); }
 
 	protected:
 		Iterator	current;
@@ -109,10 +109,10 @@ class	Rev_rai {
 };
 
 template <class Iterator>
-Rev_rai<Iterator>	operator +(typename	Rev_rai<Iterator>::difference_type off,
-										const Rev_rai<Iterator> &it)
+rev_iterator<Iterator>	operator +(typename	rev_iterator<Iterator>::difference_type off,
+										const rev_iterator<Iterator> &it)
 {
-	return Rev_rai<Iterator>(it.base() - off);
+	return rev_iterator<Iterator>(it.base() - off);
 }
 
 }

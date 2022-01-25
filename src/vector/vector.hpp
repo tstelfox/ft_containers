@@ -38,8 +38,8 @@ class vector
 		typedef				size_t							size_type;
 		typedef				Raiterator<T, T*, T&>						iterator;
 		typedef				Raiterator<T, T const*, T const&>			const_iterator;
-		typedef				Rev_rai<iterator>							reverse_iterator;
-		typedef				Rev_rai<const_iterator>						const_reverse_iterator;
+		typedef				rev_iterator<iterator>							reverse_iterator;
+		typedef				rev_iterator<const_iterator>						const_reverse_iterator;
 
 		explicit vector(const allocator_type &alloc = allocator_type()) : allocator(alloc) , v_capacity(10) , v_size(0) {
 			data = allocator.allocate(10); // Set it to allocate 10 as a default for now

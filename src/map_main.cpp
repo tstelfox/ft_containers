@@ -192,28 +192,28 @@ void	test_basic() {
 
 
 	std::cout << "\nRANGED INSERT LEZGO" << std::endl;
-	{
-		ft::map<std::string, int>	range_rover;
-		std::vector<ft::pair<std::string, int> > thething;
-		thething.push_back(ft::make_pair("Carlo", 1));
-		thething.push_back(ft::make_pair("Eugenio", 7));
-		thething.push_back(ft::make_pair("Dé", 3));
-		thething.push_back(ft::make_pair("Turlough", 99));
-		thething.push_back(ft::make_pair("Cigio", 98));
-		thething.push_back(ft::make_pair("Juanito", 69));
-		thething.push_back(ft::make_pair("Pilerda", 66));
-		thething.push_back(ft::make_pair("Lindsay", 700));
-		thething.push_back(ft::make_pair("Perosh", 77));
-		thething.push_back(ft::make_pair("DEfo", 88));
+	// {
+	ft::map<std::string, int>	range_rover;
+	std::vector<ft::pair<std::string, int> > thething;
+	thething.push_back(ft::make_pair("Carlo", 1));
+	thething.push_back(ft::make_pair("Eugenio", 7));
+	thething.push_back(ft::make_pair("Dé", 3));
+	thething.push_back(ft::make_pair("Turlough", 99));
+	thething.push_back(ft::make_pair("Cigio", 98));
+	thething.push_back(ft::make_pair("Juanito", 69));
+	thething.push_back(ft::make_pair("Pilerda", 66));
+	thething.push_back(ft::make_pair("Lindsay", 700));
+	thething.push_back(ft::make_pair("Perosh", 77));
+	thething.push_back(ft::make_pair("DEfo", 88));
 
-		range_rover.insert(thething.begin(), thething.end());
-		range_rover.printBT();
+	range_rover.insert(thething.begin(), thething.end());
+	range_rover.printBT();
 
-		std::cout << "\nERASING" << std::endl;
+	std::cout << "\nERASING" << std::endl;
 
-		range_rover.erase("DEfo");
-		range_rover.erase("Dé");
-		range_rover.printBT();
+	range_rover.erase("DEfo");
+	range_rover.erase("Dé");
+	range_rover.printBT();
 
 		// std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
 		// range_rover.clear();
@@ -226,7 +226,7 @@ void	test_basic() {
 		// range_rover.printBT();
 		// std::cout << "Why this no empty??? YYYY: " << range_rover.begin()->first << std::endl; 
 		// std::cout << "Why this also no empty??? YYYY: " << range_rover.begin()++->first << std::endl; 
-	}
+	// }
 	// std::cout << "\nGonna be testin swap() now with test and another map" << std::endl;
 
 	// ft::map<int, std::string>	swappety;
@@ -242,10 +242,12 @@ void	test_basic() {
 	// swappety.printBT();
 	// test.printBT();
 
-	std::cout << "\nStupid cpp 11 sheet" << std::endl;
+	std::cout << "\nReverse_iterator with the iterator_traits.\nWhat if I try to make it do something stoopid?" << std::endl;
 
-	std::cout << ft::is_integral<char>::value << std::endl;
 
+	ft::map<std::string, int>::reverse_iterator	randello = range_rover.rbegin();
+	randello++;
+	std::cout << randello->first << std::endl;
 	// ft::map<std::string, int>	single_fucker;
 	// single_fucker.insert(make_pair("DIOCANE MAIALE", 69));
 	// // std::cout << single_fucker.size() << std::endl;

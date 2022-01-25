@@ -42,8 +42,8 @@ class map
 		typedef const value_type*									const_pointer;
 		typedef	Bimapiterator<value_type, pointer, reference>		iterator;
 		typedef	Bimapiterator<value_type, const_pointer, const_reference>	const_iterator;
-		typedef Rev_bi<iterator>									reverse_iterator;
-		typedef	Rev_bi<const_iterator>								const_reverse_iterator;
+		typedef rev_iterator<iterator>								reverse_iterator;
+		typedef	rev_iterator<const_iterator>						const_reverse_iterator;
 		typedef	size_t												size_type;
 		typedef	ptrdiff_t											difference_type;
 		typedef node<value_type>									mapnode;
