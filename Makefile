@@ -21,9 +21,12 @@ INCLUDES = -Isrc/vector -Isrc/map -Isrc/stack -Isrc/iterators -Isrc/utils
 ifdef SEGS
 	FLAGS += -fsanitize=address -g
 endif
+ifdef STL
+	FLAGS += -DSTL
+endif
 
 
-map vector stack:
+map vector stack their:
 	@echo Compiling $@
 	@$(CXX) src/$@_main.cpp $(FLAGS) $(INCLUDES) -o $(NAME)
 

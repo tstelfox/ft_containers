@@ -24,25 +24,25 @@ class stack {
 		typedef	Container	container_type;
 		typedef	size_t		size_type;
 
-		explicit stack(const container_type &kontain = container_type()) : cntr(kontain) {}
+		explicit stack(const container_type &kontain = container_type()) : c(kontain) {}
 
-		bool		empty() const { return cntr.empty(); }
+		bool		empty() const { return c.empty(); }
 
-		size_type	size() const { return cntr.size(); }
+		size_type	size() const { return c.size(); }
 
-		value_type&	top() { return cntr.back(); }
+		value_type&	top() { return c.back(); }
 
-		const value_type& top() const { return cntr.back(); }
+		const value_type& top() const { return c.back(); }
 
-		void		push(const value_type &val) { cntr.push_back(val); }
+		void		push(const value_type &val) { c.push_back(val); }
 
-		void		pop() { cntr.pop_back(); }
+		void		pop() { c.pop_back(); }
 
-		friend bool	operator== (const stack &lhs, const stack	&rhs) { return (lhs.cntr == rhs.cntr); }
-		friend bool	operator< (const stack &lhs, const stack &rhs) { return (lhs.cntr < rhs.cntr); }
+		friend bool	operator== (const stack &lhs, const stack	&rhs) { return (lhs.c == rhs.c); }
+		friend bool	operator< (const stack &lhs, const stack &rhs) { return (lhs.c < rhs.c); }
 
-	private:
-		container_type	cntr;
+	protected:
+		container_type	c;
 };
 
 // template <class T, class Container>
