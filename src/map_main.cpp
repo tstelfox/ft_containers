@@ -25,10 +25,10 @@
 #endif
 
 template < class T>
-void	small_map(T small) {
+void	small_map(T &small) {
 	small.insert(ft::pair<int, std::string>(1, "Root"));
 	// small.insert(std::pair<int, std::string>(1, "Root"));
-	typename T::iterator it = small.begin();
+	typename T::const_iterator it = small.begin();
 	
 	std::cout << it->first << " " << it->second << std::endl;
 }
@@ -36,10 +36,10 @@ void	small_map(T small) {
 void	test_basic() {
 
 	ft::map<int, std::string> small;
-	small.insert(ft::pair<int, std::string>(1, "Root"));
-	ft::map<int, std::string>::iterator	smallit = small.begin();
-	std::cout << smallit->first << " " << smallit->second << std::endl;
-	// small_map(small);
+	// small.insert(ft::pair<int, std::string>(1, "Root"));
+	// ft::map<int, std::string>::iterator	smallit = small.begin();
+	// std::cout << smallit->first << " " << smallit->second << std::endl;
+	small_map(small);
 	// std::cout << "<<<------THESE ARE MY BOYZZZZZZZZ------>>>" << std::endl;
 	ft::map<int, std::string> test;
 
