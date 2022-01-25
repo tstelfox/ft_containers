@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
 #include <deque>
+#include <chrono>
+#include <algorithm>
+#include <time.h>
+#include <iomanip>
 // #define STL 1
 #if STL //CREATE A REAL STL EXAMPLE
 	#include <map>
@@ -48,6 +52,20 @@ public:
 };
 
 int main(int argc, char** argv) {
+
+	time_t start, end;
+  
+    /* You can call it like this : start = time(NULL);
+     in both the way start contain total time in seconds 
+     since the Epoch. */
+    time(&start);
+  
+    // unsync the I/O of C and C++.
+   std::ios_base::sync_with_stdio(false);
+  
+  
+    // Recording end time.
+   
 	if (argc != 2)
 	{
 		std::cerr << "Usage: ./test seed" << std::endl;
@@ -118,5 +136,12 @@ int main(int argc, char** argv) {
 	}
 	std::cout << std::endl;
 	std::cout << TEST << std::endl;
+	 time(&end);
+  
+    // Calculating total time taken by the program.
+    double time_taken = double(end - start);
+    std::cout << "Time taken by program is : " << std::fixed
+         << time_taken << std::setprecision(5);
+    std::cout << " sec " << std::endl;
 	return (0);
 }
