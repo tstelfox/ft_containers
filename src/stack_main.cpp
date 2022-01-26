@@ -6,12 +6,24 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/21 16:10:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/21 16:10:27 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/26 16:04:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.hpp"
-#include <iterator>
+#if STL
+	#include <map>
+	#include <iostream>
+	#include <iomanip>
+	#include <vector>
+	#include <stack>
+	#include <iterator>
+	#define FT 0
+	namespace ft = std;
+#else
+	#define FT 1
+	#include "stack.hpp"
+	#include "vector.hpp"
+#endif
 
 int		main() {
 
@@ -21,8 +33,8 @@ int		main() {
 	for (int i = 0; i < 5; i++)
 		fuck.push_back(numset[i]);
 
-	ft::stack<int>	stacco(fuck);
-	ft::stack<int>	other;
+	ft::stack<int, ft::vector<int> >	stacco(fuck);
+	ft::stack<int, ft::vector<int> >	other;
 
 	std::cout << stacco.top() << std::endl;
 	stacco.push(999);

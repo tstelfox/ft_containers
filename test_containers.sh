@@ -6,7 +6,7 @@ RED='\033[0;31m'
 PURPLE='\033[0;35m'
 GREEN='\033[0;32m'
 
-echo -e "${PURPLE}What container you wannae test?${NC}"
+echo -e "${PURPLE}What container you wannae test for output?${NC}"
 read var
 if [ $var != map ] && [ $var != stack ] && [ $var != vector ]
 then
@@ -36,3 +36,4 @@ else
 fi
 
 make fclean
+
