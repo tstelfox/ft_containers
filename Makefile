@@ -6,7 +6,7 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2022/01/26 14:06:44 by tmullan       ########   odam.nl          #
+#    Updated: 2022/01/26 15:34:15 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,11 @@ map vector stack their:
 # 	$(CXX) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+	@ rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f *.txt
+	@ rm -f $(NAME)
+	@ rm -f *.txt
 
 re: fclean al
 

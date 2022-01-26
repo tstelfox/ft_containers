@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 17:14:35 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/26 15:33:54 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,10 +214,10 @@ void	test_basic() {
 
 int		main() {
 
-	if (FT)
-		std::cout << "<<-------IT'S THE FT VERSION------->>" << std::endl;
-	else
-		std::cout << "<<-------IT'S THE STD VERSION------->>" << std::endl;	
+	// if (FT)
+	// 	std::cout << "<<-------IT'S THE FT VERSION------->>" << std::endl;
+	// else
+	// 	std::cout << "<<-------IT'S THE STD VERSION------->>" << std::endl;	
 
 	// I could build in some variable so that I could compile it as standard or as ft
 	test_basic();
