@@ -6,7 +6,7 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2021/12/22 12:26:50 by tmullan       ########   odam.nl          #
+#    Updated: 2022/01/26 14:06:44 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f *.txt
 
 re: fclean al
 

@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/26 13:40:23 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/26 14:05:11 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ class	tester {
 	public:
 		tester() : counts(1) , angle(0.78) , name("Fares") {}
 		tester(int par, float para, std::string param) : counts(par) , angle(para) , name(param) {}
+		tester(const tester &x) {
+			*this = x;
+		}
+		tester&	operator= (const tester &x) {
+			if (this != &x) {
+				this->counts = x.getcounts();
+				this->angle = x.getangle();
+				this->name = x.getname();
+			}
+			return *this;
+		}
 		~tester() {}
 
 		int getcounts() const {
@@ -121,17 +132,17 @@ void	test_object() {
 	std::cout << "<-------TESTING VECTOR WITH OBJECT------->" << std::endl;
 
 	tester	testinstance;
-	tester	second(69, 3.14, "Montolivo");
-	tester	third(99, 49.473, "Simio");
-	tester	fourth(46, 6.66, "Magico Bilan");
-	tester	swapper(27, 9.47, "Forza Napoli");
-	tester	sixth(0, 1010, "Adriatico");
+	tester  *second = new tester(69, 3.14, "Montolivo");
+	tester	*third = new tester(99, 49.473, "Simio");
+	tester	*fourth = new tester(46, 6.66, "Magico Bilan");
+	tester	*swapper = new tester(27, 9.47, "Forza Napoli");
+	tester	*sixth = new tester(0, 1010, "Adriatico");
 	ft::vector<tester>	attempt;
 	
 	attempt.push_back(testinstance);
-	attempt.push_back(second);
-	attempt.push_back(third);
-	attempt.push_back(fourth);
+	attempt.push_back(*second);
+	attempt.push_back(*third);
+	attempt.push_back(*fourth);
 
 	std::cout << "** Iterator test **" << std::endl;
 
@@ -147,7 +158,7 @@ void	test_object() {
 	std::cout << "** Swap test **" << std::endl;
 
 	ft::vector<tester> swapped;
-	swapped.push_back(swapper);
+	swapped.push_back(*swapper);
 
 	swapped.swap(attempt);
 	for (size_t i = 0; i < swapped.size(); i++)
@@ -163,12 +174,12 @@ void	test_object() {
 
 	std::cout << "***** Insertion *****" << std::endl;
 	iter += 2;
-	swapped.insert(iter, sixth);
+	swapped.insert(iter, *sixth);
 	std::cout << "*Single*" << std::endl;
 	for (size_t i = 0; i < swapped.size(); i++)
 		std::cout << "Item no " << i << " of vector: " << swapped[i];
-	std::cout << "*Ranged*" << std::endl;
-	swapped.insert(iter, 5, swapper);
+	// std::cout << "*Ranged*" << std::endl;
+	// swapped.insert(iter, 5, swapper);
 	for (size_t i = 0; i < swapped.size(); i++)
 		std::cout << "Item no " << i << " of vector: " << swapped[i];
 	std::cout << "*With Iterators*" << std::endl;
@@ -224,6 +235,12 @@ void	test_object() {
 		std::cout << "string_vec is smaller" << std::endl;
 	else if (other_vec < string_vec)
 		std::cout << "other_vec is smaller" << std::endl;
+	
+	std::cout << "*Ranged*" << std::endl;
+	string_vec.insert(string_vec.begin() + 3, 5, "NO ME IMPOLTA");
+
+	for (it = string_vec.begin(); it != string_vec.end(); it++)
+		std::cout << "Vector after ranged insert: " << *it << std::endl;
 	
 	std::cout << "Clearing both of them" << std::endl;
 	other_vec.clear();
