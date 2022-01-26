@@ -1,23 +1,33 @@
+#!/bin/bash
+
 CYAN='\033[0;36m'
 NC='\033[0m'
 RED='\033[0;31m'
 PURPLE='\033[0;35m'
 GREEN='\033[0;32m'
 
-echo -e "${CYAN}Compiling and running ft::map${NC}"
-make map 
+echo -e "${PURPLE}What container you wannae test?${NC}"
+read var
+if [ $var != map ] && [ $var != stack ] && [ $var != vector ]
+then
+	echo -e "${RED}THAT IS NO CONTAINER, BROTHER${NC}"
+	exit
+fi	
+
+echo -e "${CYAN}Compiling and running ft::$var${NC}"
+make $var 
 ./container
-./container > ft_map.txt
+./container > ft_$var.txt
 
 echo ""
-echo -e "${RED}Compiling and running std::map${NC}"
-make map STL=1
+echo -e "${RED}Compiling and running std::$var${NC}"
+make $var STL=1
 ./container
-./container > std_map.txt
+./container > std_$var.txt
 
 echo ""
 echo -e "${PURPLE}Running the difference on the two outputs: ${NC}"
-diff ft_map.txt std_map.txt
+diff ft_$var.txt std_$var.txt
 if [ $? == 0 ]
 then
 	echo -e "${GREEN}Like your container, G${NC}"
