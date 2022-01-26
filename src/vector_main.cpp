@@ -6,11 +6,25 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/04 15:56:53 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/01/26 13:40:23 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.hpp"
+#if STL
+	#include <map>
+	#include <iostream>
+	#include <iomanip>
+	#include <vector>
+	#define FT 0
+	namespace ft = std;
+#else
+	#define FT 1
+	#include "map.hpp"
+	// #include <vector>
+	#include "vector.hpp"
+#endif
+
+
 
 class	tester {
 	
