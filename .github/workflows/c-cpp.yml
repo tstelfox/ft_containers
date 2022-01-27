@@ -12,8 +12,12 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    - name: make
+    - name: make vec
       run: make vector
+    - name: make map
+      run: make map
+    - name: make stack
+      run: make stack
 
   Ubuntuvector:
 
@@ -21,8 +25,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make
+    - name: make vec
       run: make vector
+    - name: make map
+      run: make map
+    - name: make stack
+      run: make stack
 
 #     - name: configure
 #       run: ./configure
