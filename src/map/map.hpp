@@ -45,7 +45,7 @@ class map
 		typedef rev_iterator<iterator>								reverse_iterator;
 		typedef	rev_iterator<const_iterator>						const_reverse_iterator;
 		typedef	size_t												size_type;
-		typedef	ptrdiff_t											difference_type;
+		typedef	std::ptrdiff_t											difference_type;
 		typedef node<value_type>									mapnode;
 		typedef	typename Alloc::template rebind<mapnode>::other		node_alloc;
 
