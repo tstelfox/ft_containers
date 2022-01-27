@@ -15,7 +15,7 @@ class node {
 
 	public:
 
-		// explicit node(value_type const &val = value_type()) :
+		// explicit node(value_type const &val = value_type()) : // The explicit keyword fucked Ubuntu up
 		node(value_type const &val = value_type()) :
 			object(val) , parent(0), left(0), right(0), colour('r') , _delimit(false) {} 
 
