@@ -170,6 +170,7 @@ class map
 				temp = m_allocator.allocate(1);
 				mapnode *saved = root;
 				m_size++;
+				// m_allocator.construct(temp(val));
 				m_allocator.construct(temp, val);
 				while (root) {
 					if (root->object.first == temp->object.first) {
