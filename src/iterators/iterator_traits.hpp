@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fuckin_traits.hpp                                  :+:    :+:            */
+/*   iterator_traits.hpp                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -27,7 +27,7 @@ struct iterator_traits
 template<class T>
 struct iterator_traits<T*>
 {
-    typedef ptrdiff_t difference_type;
+    typedef std::ptrdiff_t difference_type;
     typedef T value_type;
     typedef T* pointer;
     typedef T& reference;
@@ -37,7 +37,7 @@ struct iterator_traits<T*>
 template<class T>
 struct iterator_traits<const T*>
 {
-    typedef ptrdiff_t difference_type;
+    typedef std::ptrdiff_t difference_type;
     typedef T value_type;
     typedef T* pointer;
     typedef T& reference;
