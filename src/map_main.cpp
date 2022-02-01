@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/01 19:06:09 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/01 19:35:00 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ void	test_basic() {
 	// ft::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(ft::pair<int, std::string>(47, "Dio Vigliacco"));
 
 	std::cout << "\nSQUARE BRACKETS" << std::endl;
+	test.printBT();
 	std::cout << "What is the value here with a non-used key? " << test[68] << std::endl;
 	std::cout << "What about with a used key? " << test[17] << std::endl;
+	test.printBT();
 	// Main testing here
 	// std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
