@@ -160,8 +160,6 @@ class map
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
-		
-
 
 		std::pair<iterator, bool>	insert(const value_type& val) { // Should probably clean this up
 			if (m_size >= 1)
