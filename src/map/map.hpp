@@ -168,13 +168,12 @@ class map
 			{
 				mapnode *temp = NULL;
 				temp = m_allocator.allocate(1);
-				m_size++;
-				// m_allocator.construct(temp(val));
+
 				m_allocator.construct(temp, val);
 				mapnode *point(root);
 				while (point) {
 					if (point->object.first == temp->object.first) {
-						m_size--;
+						// m_size--;
 						m_allocator.deallocate(temp, 1);
 						std::pair<iterator, bool> ret = std::make_pair(iterator(point), false);
 						return ret;
@@ -199,9 +198,11 @@ class map
 						}
 					}
 				}
+				mapnode *ffs(temp); // listen, fix_violations() sometimes makes temp point to root
 				fix_violations(root, temp);
 				first_and_last();
-				return std::make_pair(iterator(temp), true);
+				m_size++;
+				return std::make_pair(iterator(ffs), true);
 			}
 			else {
 				root = m_allocator.allocate(1);

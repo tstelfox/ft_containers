@@ -62,10 +62,18 @@ void	test_basic() {
 	// ft::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(ft::pair<int, std::string>(47, "Dio Vigliacco"));
 
 	std::cout << "\nSQUARE BRACKETS" << std::endl;
-	test.printBT();
+	// test.printBT();
 	std::cout << "What is the value here with a non-used key? " << test[68] << std::endl;
+	std::cout << "And another unused key " << test[999] << std::endl;
+	std::cout << "And another unused key " << test[9399] << std::endl;
+	std::cout << "And another unused key " << test[232] << std::endl;
+	std::cout << "And another unused key " << test[48] << std::endl;
+	std::cout << "And another unused key " << test[343] << std::endl;
+	std::cout << "And another unused key " << test[4435358] << std::endl;
 	std::cout << "What about with a used key? " << test[17] << std::endl;
-	test.printBT();
+	// test.printBT();
+	std::cout << test.size() << std::endl;
+	// return ;
 	// Main testing here
 	// std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;

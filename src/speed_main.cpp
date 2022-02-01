@@ -157,33 +157,33 @@ void	map_speed() {
 	// speedmap.count(76);
 
 	int sum = 0;
-	int i = 0;
-	for (ft::map<int, int>::iterator it = speedmap.begin(); it != speedmap.end(); it++)
-	{
-		if (i == 20)
-			break;
-		std::cout << it->second << std::endl;
-		i++;
-	}
+	// int i = 0;
+	// for (ft::map<int, int>::iterator it = speedmap.begin(); it != speedmap.end(); it++)
+	// {
+	// 	if (i == 20)
+	// 		break;
+	// 	std::cout << it->second << std::endl;
+	// 	i++;
+	// }
 	for (int i = 0; i < 10000; i++)
 	{
 		int access = rand();
-		if (i == 0){
-			std::cout << "access is: " << access << std::endl;
-			std::cout << "Can I find anything there? " << speedmap.find(access)->second << std::endl;
-			std::cout << "Why such a high number here? " << speedmap[access] << std::endl;
-			std::cout << "before " << sum << std::endl;
-			std::cout << typeid(sum).name() << std::endl;
-			std::cout << typeid(speedmap[access]).name() << std::endl;
-			std::cout << "Why such a high number here? " << speedmap[access] << std::endl;
-		}
+		// if (i == 0){
+		// 	std::cout << "access is: " << access << std::endl;
+		// 	std::cout << "Can I find anything there? " << speedmap.find(access)->second << std::endl;
+		// 	std::cout << "Why such a high number here? " << speedmap[access] << std::endl;
+		// 	std::cout << "before " << sum << std::endl;
+		// 	std::cout << typeid(sum).name() << std::endl;
+		// 	std::cout << typeid(speedmap[access]).name() << std::endl;
+		// 	std::cout << "Why such a high number here? " << speedmap[access] << std::endl;
+		// }
 		sum += speedmap[access];
-		if (i == 0){
-			std::cout << "after " << sum << std::endl;
-			std::cout << typeid(sum).name() << std::endl;
-			std::cout << typeid(speedmap[access]).name() << std::endl;
-			std::cout << "And now it is? " << speedmap[access] << std::endl;
-		}
+		// if (i == 0){
+		// 	std::cout << "after " << sum << std::endl;
+		// 	std::cout << typeid(sum).name() << std::endl;
+		// 	std::cout << typeid(speedmap[access]).name() << std::endl;
+		// 	std::cout << "And now it is? " << speedmap[access] << std::endl;
+		// }
 		// if (i == 0){
 		// 	std::cout << typeid(sum).name() << std::endl;
 		// 	std::cout << typeid(speedmap[access]).name() << std::endl;
