@@ -530,8 +530,6 @@ class map
 
 		void	erasure_balance(mapnode *x) {
 			mapnode *s;
-			// std::cout << "In here fo sho" << std::endl;
-			// std::cout << "Is it root? " << (x == root) << std::endl;
 			if (x == 0) // Segfaults without this
 				return ;
 			while (x != root && x->colour == BLACK) {
