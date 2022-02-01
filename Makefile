@@ -6,7 +6,7 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2022/01/26 15:34:15 by tmullan       ########   odam.nl          #
+#    Updated: 2022/02/01 17:28:04 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ ifdef STL
 endif
 
 
-map vector stack their:
+map vector stack speed:
 	@echo Compiling $@
 	@$(CXX) src/$@_main.cpp $(FLAGS) $(INCLUDES) -o $(NAME)
 

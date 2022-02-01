@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/26 15:33:54 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/01 19:06:09 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 	#include <iostream>
 	#include <iomanip>
 	#include <vector>
+	#include <time.h>
 	#define FT 0
 	namespace ft = std;
 #else
 	#define FT 1
 	#include "map.hpp"
 	#include <vector>
+	#include <time.h>
+	#include <iomanip>
 #endif
 
 template < class T>
@@ -58,8 +61,11 @@ void	test_basic() {
 
 	// ft::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(ft::pair<int, std::string>(47, "Dio Vigliacco"));
 
+	std::cout << "\nSQUARE BRACKETS" << std::endl;
+	std::cout << "What is the value here with a non-used key? " << test[68] << std::endl;
+	std::cout << "What about with a used key? " << test[17] << std::endl;
 	// Main testing here
-	std::cout << "\nTree CONTENTS TIME" << std::endl;
+	// std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
 	// test.contents(test.get_root(), 50, false);
 	// if (FT == 1) {
@@ -196,7 +202,6 @@ void	test_basic() {
 
 	// std::cout << "Item number 4 is: " << test[9] << std::endl;
 
-	// Bianchi positivo iolai
 	// it = test.begin();
 	// while (it != test.end()) {
 	// 	std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
@@ -213,13 +218,7 @@ void	test_basic() {
 }
 
 int		main() {
-
-	// if (FT)
-	// 	std::cout << "<<-------IT'S THE FT VERSION------->>" << std::endl;
-	// else
-	// 	std::cout << "<<-------IT'S THE STD VERSION------->>" << std::endl;	
-
-	// I could build in some variable so that I could compile it as standard or as ft
+	
 	test_basic();
 	// std_test();
 	return 0;

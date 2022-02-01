@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/26 14:05:11 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/01 18:03:30 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 	#include <iostream>
 	#include <iomanip>
 	#include <vector>
+	#include <time.h>
 	#define FT 0
 	namespace ft = std;
 #else
 	#define FT 1
 	#include "map.hpp"
+	#include <time.h>
+	#include <iomanip>
 	// #include <vector>
 	#include "vector.hpp"
 #endif
@@ -284,7 +287,6 @@ void	test_int() {
 }
 
 int		main(void) {
-
 
 	// test_std();
 	test_object();

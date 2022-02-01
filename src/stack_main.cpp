@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/21 16:10:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/26 16:04:12 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/01 18:03:08 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,21 @@
 	#include <vector>
 	#include <stack>
 	#include <iterator>
+	#include <time.h>
+	#include <algorithm>
+	#include <iomanip>
 	#define FT 0
 	namespace ft = std;
 #else
 	#define FT 1
 	#include "stack.hpp"
 	#include "vector.hpp"
+	#include <time.h>
+	#include <iomanip>
+	#include <algorithm>
 #endif
 
-int		main() {
-
+void	basic() {
 	ft::vector<int>	fuck;
 	int		numset[5] = {69, 99, 7, 111, 47};
 	
@@ -42,6 +47,12 @@ int		main() {
 	std::cout << stacco.size() << std::endl;
 	std::cout << std::boolalpha;
 	std::cout << (stacco > other) << std::endl;
+}
+
+int		main() {
+
+
+	basic();
 
 	return 0;
 }

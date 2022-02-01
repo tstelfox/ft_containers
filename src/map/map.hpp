@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 17:13:02 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/01 19:29:12 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ class map
 		/* <<**------------------- ELEMENT ACCESS ------------------**>> */
 
 		mapped_type&	operator[] (key_type const &k) {
-			return (*((this->insert(make_pair(k, mapped_type()))).first)).second;
+			return (*((this->insert(ft::make_pair(k, mapped_type()))).first)).second;
 		}
 
 		/* <<**------------------- MODIFIERS ------------------**>> */
@@ -168,35 +168,33 @@ class map
 			{
 				mapnode *temp = NULL;
 				temp = m_allocator.allocate(1);
-				mapnode *saved = root;
 				m_size++;
 				// m_allocator.construct(temp(val));
 				m_allocator.construct(temp, val);
-				while (root) {
-					if (root->object.first == temp->object.first) {
+				mapnode *point(root);
+				while (point) {
+					if (point->object.first == temp->object.first) {
+						m_size--;
 						m_allocator.deallocate(temp, 1);
-						std::pair<iterator, bool> ret = std::make_pair(iterator(root), false);
-						root = saved;
+						std::pair<iterator, bool> ret = std::make_pair(iterator(point), false);
 						return ret;
 					}
- 					if (value_compare(_comp)(temp->object, root->object)) {
-						if (root->left && !root->left->_delimit)
-							root = root->left;
+ 					if (value_compare(_comp)(temp->object, point->object)) {
+						if (point->left && !point->left->_delimit)
+							point = point->left;
 						else {
-							temp->parent = root;
-							root->left = temp;
-							root = saved;
+							temp->parent = point;
+							point->left = temp;
 							break;
 						}
 					}
 					else {
-						if (root->right && !root->right->_delimit) {
-							root = root->right;
+						if (point->right && !point->right->_delimit) {
+							point = point->right;
 						}
 						else {
-							temp->parent = root;
-							root->right = temp;
-							root = saved;
+							temp->parent = point;
+							point->right = temp;
 							break;
 						}
 					}
