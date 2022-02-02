@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/01 19:35:00 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/02 12:43:51 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	small_map(T &small) {
 }
 
 void	test_basic() {
+
+	std::cout << std::boolalpha;
 
 	ft::map<int, std::string> small;
 	// small.insert(ft::pair<int, std::string>(1, "Root"));
@@ -157,19 +159,16 @@ void	test_basic() {
 
 	// if (FT)
 	// 	range_rover.printBT();
-
-		// std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
-		// range_rover.clear();
-		// std::cout << range_rover.empty() << std::endl;
-		// range_rover.insert(thething.begin() + 2, thething.begin() + 3);
-		// range_rover.printBT();
-		// std::cout << range_rover.begin()->first << std::endl;
-		// range_rover.erase(range_rover.begin());
-		// std::cout << range_rover.empty() << std::endl;
-		// range_rover.printBT();
-		// std::cout << "Why this no empty??? YYYY: " << range_rover.begin()->first << std::endl; 
-		// std::cout << "Why this also no empty??? YYYY: " << range_rover.begin()++->first << std::endl; 
-	// }
+	{	
+		std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
+		range_rover.clear();
+		
+		std::cout << "Map is empty after clear()? " << range_rover.empty() << std::endl;
+		range_rover.insert(thething.begin() + 2, thething.begin() + 3);
+		std::cout << "Item inserted after clearing: " << range_rover.begin()->first << std::endl;
+		range_rover.erase(range_rover.begin());
+		std::cout << "Map is empty after erasing single item? " << range_rover.empty() << std::endl;
+	}
 	// std::cout << "\nGonna be testin swap() now with test and another map" << std::endl;
 
 	// ft::map<int, std::string>	swappety;
