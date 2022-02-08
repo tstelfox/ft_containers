@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/08 17:03:36 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/08 17:09:20 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	test_object() {
 	ft::vector<tester>::iterator iter = swapped.begin();
 	attempt.assign(iter, iter + 2);
 	for (size_t i = 0; i < attempt.size(); i++)
-		std::cout << "Attempt has been assigned " << swapped[i];
+		std::cout << "Attempt has been assigned the items from swapped: " << swapped[i];
 
 
 	std::cout << "***** Insertion *****" << std::endl;
@@ -123,7 +123,7 @@ void	test_object() {
 	for (size_t i = 0; i < attempt.size(); i++)
 		std::cout << "Item no " << i << " of attempt vector BEFORE: " << attempt[i];
 	ft::vector<tester>::iterator first = swapped.begin() + 1;
-	ft::vector<tester>::iterator last = first + 7;
+	ft::vector<tester>::iterator last = first + 4;
 	attempt.insert(attempt.begin() + attempt.size(), first, last);
 	for (size_t i = 0; i < attempt.size(); i++)
 		std::cout << "Item no " << i << " of attempt vector AFTER: " << attempt[i];
@@ -133,8 +133,8 @@ void	test_object() {
 	attempt.erase(attempt.begin() + 2);
 	for (size_t i = 0; i < attempt.size(); i++)
 		std::cout << "Item no " << i << " of attempt vector: " << attempt[i];
-	std::cout << "*Ranged*" << std::endl;
-	attempt.erase(attempt.begin() + 1, attempt.begin() + 6);
+	std::cout << "*Ranged of first three elements*" << std::endl;
+	attempt.erase(attempt.begin(), attempt.begin() + 3);
 	for (size_t i = 0; i < attempt.size(); i++)
 		std::cout << "Item no " << i << " of attempt vector: " << attempt[i];
 
