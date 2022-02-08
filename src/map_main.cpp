@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/08 17:14:41 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/08 17:28:13 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,8 +176,11 @@ void	test_basic() {
 		std::cout << "item: " << itery->first << " containing: " << itery->second << std::endl;
 	
 	std::cout << "Contents of test:" << std::endl;
-	for (ft::map<int, std::string>::iterator itest = test.begin(); itest != test.end(); itest++)
+	for (ft::map<int, std::string>::iterator itest = test.begin(); itest != test.end(); itest++) {
 		std::cout << "item: " << itest->first << " containing: " << itest->second << std::endl;
+		ft::map<int, std::string>::const_iterator& const_thing = reinterpret_cast<ft::map<int, std::string>::const_iterator&>(itest);
+	}
+
 	// swappety.printBT();
 	// test.printBT();
 
