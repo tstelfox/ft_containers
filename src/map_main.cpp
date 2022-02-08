@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/02 12:43:51 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/08 17:02:10 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@
 
 template < class T>
 void	small_map(T &small) {
-	small.insert(ft::pair<int, std::string>(1, "Root"));
-	// small.insert(std::pair<int, std::string>(1, "Root"));
+	small.insert(ft::pair<int, std::string>(1, "Root"));]
 	typename T::const_iterator it = small.begin();
 	
 	std::cout << it->first << " " << it->second << std::endl;
@@ -41,9 +40,6 @@ void	test_basic() {
 	std::cout << std::boolalpha;
 
 	ft::map<int, std::string> small;
-	// small.insert(ft::pair<int, std::string>(1, "Root"));
-	// ft::map<int, std::string>::iterator	smallit = small.begin();
-	// std::cout << smallit->first << " " << smallit->second << std::endl;
 	small_map(small);
 	// std::cout << "<<<------THESE ARE MY BOYZZZZZZZZ------>>>" << std::endl;
 	ft::map<int, std::string> test;
