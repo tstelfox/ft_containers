@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/08 17:09:43 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/08 17:14:41 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,15 @@ void	test_basic() {
 	test.insert(ft::pair<int, std::string>(16, "dio stronzo"));
 
 
-	// ft::pair<ft::map<int, std::string>::iterator, bool> deh = test.insert(ft::pair<int, std::string>(47, "Dio Vigliacco"));
-
 	std::cout << "\nSQUARE BRACKETS" << std::endl;
 	// test.printBT();
 	std::cout << "What is the value here with a non-used key? " << test[68] << std::endl;
 	std::cout << "And another unused key " << test[999] << std::endl;
 	std::cout << "And another unused key " << test[9399] << std::endl;
-	std::cout << "And another unused key " << test[232] << std::endl;
-	std::cout << "And another unused key " << test[48] << std::endl;
-	std::cout << "And another unused key " << test[343] << std::endl;
-	std::cout << "And another unused key " << test[4435358] << std::endl;
+	// std::cout << "And another unused key " << test[232] << std::endl;
+	// std::cout << "And another unused key " << test[48] << std::endl;
+	// std::cout << "And another unused key " << test[343] << std::endl;
+	// std::cout << "And another unused key " << test[4435358] << std::endl;
 	std::cout << "What about with a used key? " << test[17] << std::endl;
 	// test.printBT();
 	std::cout << test.size() << std::endl;
@@ -76,10 +74,6 @@ void	test_basic() {
 	// std::cout << "\nTree CONTENTS TIME" << std::endl;
 	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
 	// test.contents(test.get_root(), 50, false);
-	// if (FT == 1) {
-	// 	std::cout << FT << std::endl;
-	// 	test.printBT();
-	// }
 
 	std::cout << "\nTESTIN ITERATORS" << std::endl;
 	ft::map<int, std::string>::iterator it = test.begin();
@@ -165,18 +159,25 @@ void	test_basic() {
 		range_rover.erase(range_rover.begin());
 		std::cout << "Map is empty after erasing single item? " << range_rover.empty() << std::endl;
 	}
-	// std::cout << "\nGonna be testin swap() now with test and another map" << std::endl;
+	std::cout << "\nGonna be testin swap() now with test and another map" << std::endl;
 
-	// ft::map<int, std::string>	swappety;
-	// swappety.insert(ft::pair<int, std::string>(44, "M'importa"));
-	// swappety.insert(ft::pair<int, std::string>(22, "Una"));
-	// swappety.insert(ft::pair<int, std::string>(33, "Bella"));
-	// swappety.insert(ft::pair<int, std::string>(77, "Sega"));
-	// swappety.insert(ft::pair<int, std::string>(45, "A"));
-	// swappety.insert(ft::pair<int, std::string>(23, "Du mani"));
+	ft::map<int, std::string>	swappety;
+	swappety.insert(ft::pair<int, std::string>(44, "M'importa"));
+	swappety.insert(ft::pair<int, std::string>(22, "Una"));
+	swappety.insert(ft::pair<int, std::string>(33, "Bella"));
+	swappety.insert(ft::pair<int, std::string>(77, "Sega"));
+	swappety.insert(ft::pair<int, std::string>(45, "A"));
+	swappety.insert(ft::pair<int, std::string>(23, "Du mani"));
 
-	// swappety.swap(test);
+	swappety.swap(test);
 
+	std::cout << "Contents of swappety:" << std::endl;
+	for (ft::map<int, std::string>::iterator itery = swappety.begin(); itery != swappety.end(); itery++)
+		std::cout << "item: " << itery->first << " containing: " << itery->second << std::endl;
+	
+	std::cout << "Contents of test:" << std::endl;
+	for (ft::map<int, std::string>::iterator itest = test.begin(); itest != test.end(); itest++)
+		std::cout << "item: " << itest->first << " containing: " << itest->second << std::endl;
 	// swappety.printBT();
 	// test.printBT();
 
