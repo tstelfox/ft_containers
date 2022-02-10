@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/08 17:28:13 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/10 15:01:04 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	test_basic() {
 
 	ft::map<int, std::string> small;
 	small_map(small);
-	// std::cout << "<<<------THESE ARE MY BOYZZZZZZZZ------>>>" << std::endl;
 	ft::map<int, std::string> test;
 
 	test.insert(ft::pair<int, std::string>(10, "Fuoco"));
@@ -69,11 +68,6 @@ void	test_basic() {
 	std::cout << "What about with a used key? " << test[17] << std::endl;
 	// test.printBT();
 	std::cout << test.size() << std::endl;
-	// return ;
-	// Main testing here
-	// std::cout << "\nTree CONTENTS TIME" << std::endl;
-	// std::cout << test.get_root()->object.first << " " << test.get_root()->object.second <<  std::endl;
-	// test.contents(test.get_root(), 50, false);
 
 	std::cout << "\nTESTIN ITERATORS" << std::endl;
 	ft::map<int, std::string>::iterator it = test.begin();
@@ -135,8 +129,6 @@ void	test_basic() {
 	thething.push_back(ft::make_pair("DEfo", 88));
 
 	range_rover.insert(thething.begin(), thething.end());
-	// if (FT)
-	// 	range_rover.printBT();
 
 	std::cout << "\nERASING" << std::endl;
 
@@ -147,8 +139,6 @@ void	test_basic() {
 
 	std::cout << "Size after erasing two items: " << range_rover.size() << std::endl;
 
-	// if (FT)
-	// 	range_rover.printBT();
 	{	
 		std::cout << "\nGonna clear the map, add a single element and erase it" << std::endl;
 		range_rover.clear();
@@ -178,57 +168,23 @@ void	test_basic() {
 	std::cout << "Contents of test:" << std::endl;
 	for (ft::map<int, std::string>::iterator itest = test.begin(); itest != test.end(); itest++) {
 		std::cout << "item: " << itest->first << " containing: " << itest->second << std::endl;
-		ft::map<int, std::string>::const_iterator& const_thing = reinterpret_cast<ft::map<int, std::string>::const_iterator&>(itest);
+		// ft::map<int, std::string>::const_iterator& const_thing = reinterpret_cast<ft::map<int, std::string>::const_iterator&>(itest);
 	}
 
-	// swappety.printBT();
-	// test.printBT();
 
-	// std::cout << "\nReverse_iterator with the iterator_traits.\nWhat if I try to make it do something stoopid?" << std::endl;
+	std::cout << "\nReverse_iterator with the iterator_traits." << std::endl;
 
 
-	// ft::map<std::string, int>::reverse_iterator	randello = range_rover.rbegin();
-	// randello++;
-	// std::cout << randello->first << std::endl;
-	// ft::map<std::string, int>	single_fucker;
-	// single_fucker.insert(make_pair("DIOCANE MAIALE", 69));
-	// // std::cout << single_fucker.size() << std::endl;
-	// single_fucker.erase(single_fucker.begin());
-	// std::cout << "Why this no empty??? YYYY: " << single_fucker.begin()->first << std::endl; 
+	ft::map<int, std::string>::reverse_iterator	randello = swappety.rbegin();
+	randello++;
+	std::cout << randello->first << std::endl;
 
 	// system ("leaks container");
-
-
-	/* std::cout << "\nTRYING THE VARIOUS CONSTRUCTORS" << std::endl;
-	ft::map<std::string, int> copy_constructed(range_rover);
-	copy_constructed.printBT();
-	ft::map<std::string, int> range_constructed(range_rover.begin(), range_rover.end());
-	range_constructed.printBT(); */
-	// std::cout << range_rover.size() << std::endl;
-	// for (ft::map<std::string, int>::iterator it = range_rover.begin(); it != range_rover.end(); it++) {
-	// 	std::cout << it->first << std::endl;
-	// }
-
-	// std::cout << "Item number 4 is: " << test[9] << std::endl;
-
-	// it = test.begin();
-	// while (it != test.end()) {
-	// 	std::cout << "Value at next iteration: " << it->first << " " << it->second << std::endl;
-	// 	it++;
-	// }
-	// for (size_t i = 0; i < (test.size()); i++) {
-	// }
-	// std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
-	// *it++;
-	// std::cout << "Attempting to *iterate: " << it->first << " " << it->second << std::endl;
-
-	// ft::map<int, std::string>::const_iterator const_it = test.begin();
 	
 }
 
 int		main() {
 	
 	test_basic();
-	// std_test();
 	return 0;
 }
