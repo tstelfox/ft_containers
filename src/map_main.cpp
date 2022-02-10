@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/10 15:01:04 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/10 15:11:01 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,11 @@ void	test_basic() {
 		std::cout << "item: " << itest->first << " containing: " << itest->second << std::endl;
 		// ft::map<int, std::string>::const_iterator& const_thing = reinterpret_cast<ft::map<int, std::string>::const_iterator&>(itest);
 	}
+
+	std::cout << "Erasing something not in swappety" << std::endl;
+	
+	swappety.erase(99);
+	
 
 
 	std::cout << "\nReverse_iterator with the iterator_traits." << std::endl;

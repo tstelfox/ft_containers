@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/01 19:31:19 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/10 15:06:57 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,20 +238,13 @@ class map
 		
 
 		void		erase(iterator position) {
-			// std::cout << "Scusami tanto" << std::endl;
-			// std::cout << "This is root first: " << root->object.first << std::endl;
-			// std::cout << "And first_node first: " << first_node->object.first << std::endl;
 			erase_node(position.get_node());
-			// first_node = m_size == 1 ? root : first_node;
-			// std::cout << "This is root after: " << root->object.first << std::endl;
-			// std::cout << "And first_node after: " << first_node->object.first << std::endl;
 			m_size--;
 		}
 
 		size_type	erase(const key_type &k) {
 			// Just gonna presume that the ting to erase is actually in the map
 			erase_node(find(k).get_node());
-			// first_node = m_size == 1 ? root : first_node;
 			m_size--;
 			return 1;
 		}
@@ -263,8 +256,6 @@ class map
 		}
 
 		void	swap(map &x) {
-			// This is almost certainly stupid inefficient but do I ultimately care?
-			// Maybe rewrite it more efficiently later
 			map temp = *this;
 			*this = x;
 			x = temp;
@@ -597,10 +588,8 @@ class map
 				u->parent->left = v;
 			else
 				u->parent->right = v;
-			if (v) { // Found this on Peer's and it makes sense
-				// std::cout << "This is root: " << v->object.first << std::endl;
+			if (v)
 				v->parent = u->parent;
-			}
 		}
 
 		void	erase_node(mapnode *node) {
@@ -621,7 +610,7 @@ class map
 				y_og_colour = y->colour;
 				x = y->right;
 				if (y->parent == z) {
-					if (x) // Stole this from Reeeep and now see why it makes sense
+					if (x)
 						x->parent = y;
 				}
 				else {
@@ -666,9 +655,6 @@ class map
 			m_allocator.construct(_end, true);
 			_begin = m_allocator.allocate(1);
 			m_allocator.construct(_begin, true);
-			// first_node = m_allocator.allocate(1);
-			// first_node = _end; // Attempting to fight the double free by commenting this out
-			// first_node->parent = _end;
 		}
 
 		/* <<**------------------- PRINT LE TREE ------------------**>> */
