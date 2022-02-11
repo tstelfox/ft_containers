@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/10 15:11:01 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/11 18:36:31 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ void	test_basic() {
 	std::cout << "And another unused key " << test[999] << std::endl;
 	std::cout << "And another unused key " << test[9399] << std::endl;
 	// std::cout << "And another unused key " << test[232] << std::endl;
-	// std::cout << "And another unused key " << test[48] << std::endl;
-	// std::cout << "And another unused key " << test[343] << std::endl;
-	// std::cout << "And another unused key " << test[4435358] << std::endl;
 	std::cout << "What about with a used key? " << test[17] << std::endl;
 	// test.printBT();
 	std::cout << test.size() << std::endl;
@@ -80,14 +77,10 @@ void	test_basic() {
 	std::cout << "This should be the last item: " << it->first << " " << it->second << std::endl;
 	std::cout << "NOW BACKWARDS WITH REVERSE_ITERATOR" << std::endl;
 	ft::map<int, std::string>::reverse_iterator rev_it = test.rbegin();
-	// rev
-	// it++;
 	while (rev_it != test.rend()) {
 		std::cout << "Value at previous iteration: " << rev_it->first << " " << rev_it->second << std::endl;
 		rev_it++;
 	}
-	// rev_it--;
-	// std::cout << "This is where the money at aooooooo: " << rev_it->first << " " << rev_it->second << std::endl;
 	test.insert(ft::pair<int, std::string>(4, "This shouldn't exist"));
 	// test.printBT();
 
