@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/15 17:04:58 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/11 18:36:31 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/12 15:29:24 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,6 @@ void	test_basic() {
 	randello++;
 	std::cout << randello->first << std::endl;
 
-	// system ("leaks container");
 	
 }
 
