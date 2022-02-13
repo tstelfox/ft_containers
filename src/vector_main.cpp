@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 16:44:37 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/08 17:09:20 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 16:03:50 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,11 @@ void	test_int() {
 	ft::vector<int> swapped;
 	swapped.push_back(99999);
 
+	ft::vector<int>::iterator	swapit = swapped.begin();
+	std::cout << "iterator should point to 99999 before swap: " << *swapit << std::endl;
 	swapped.swap(fuck);
+	std::cout << "iterator should still point to 99999 after swap: " << *swapit << std::endl;
+
 	for (size_t i = 0; i < swapped.size(); i++)
 		std::cout << "Swapped item [" << i << "] " << swapped[i] << std::endl;
 	
