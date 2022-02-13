@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/11 15:27:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 13:30:05 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 18:33:02 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,18 @@ class	rev_iterator {
 		// typedef typename	iterator_type::difference_type	difference_type;
 		// typedef typename 	iterator_type::reference		reference;
 		// typedef typename 	iterator_type::pointer			pointer;
+	protected:
+		Iterator	current;
 
+	public:
 		//Constructors, = overload and base()
 		rev_iterator() : current() {}
 		
-		explicit rev_iterator(iterator_type it) : current(it) {}
+		rev_iterator(const iterator_type it) : current(it) {}
 
 		template < class Iter >
 		rev_iterator (rev_iterator<Iter> const &rev_it) : current(rev_it.base()) {}
+		
 		~rev_iterator () {}
 
 		rev_iterator&	operator = (const rev_iterator &rhs) {
@@ -45,7 +49,7 @@ class	rev_iterator {
 				this->current = rhs.base();
 			return *this;
 		}
-		Iterator	base() const {
+		iterator_type	base() const {
 			return current;
 		}
 
@@ -96,15 +100,68 @@ class	rev_iterator {
 			return *(*this + n);
 		}
 
+		// template <class Iterator>
+		// bool operator==(const rev_iterator<Iterator>& lhs, const rev_iterator<Iterator>& rhs) {
+		// 	return (lhs.base() == rhs.base());
+		// }
+
+		// template <class Iterator>
+		// bool operator!=(const rev_iterator<Iterator>& lhs, const rev_iterator<Iterator>& rhs) {
+		// 	return (!(lhs == rhs));
+		// }
+
+		// template <class Iterator>
+		// bool operator<(const rev_iterator<Iterator>& lhs, const rev_iterator<Iterator>& rhs) {
+		// 	return (rhs.base() < lhs.base());
+		// }
+
+		// template <class Iterator>
+		// bool operator<=(const rev_iterator<Iterator>& lhs, const rev_iterator<Iterator>& rhs) {
+		// 	return (!(rhs < lhs));
+		// }
+
+		// template <class Iterator>
+		// bool operator>(const rev_iterator<Iterator>& lhs, const rev_iterator<Iterator>& rhs) {
+		// 	return (rhs < lhs);
+		// }
+
+		// template <class Iterator>
+		// bool operator>= (const rev_iterator<Iterator>& lhs, const rev_iterator<Iterator>& rhs) {
+		// 	return (!(lhs < rhs));
+		// }
+
 		bool operator== (rev_iterator const &b) const { return this->base() == b.base(); }
 		bool operator!= (rev_iterator const &b) const { return !(this->base() == b.base()); }
-		bool operator < (rev_iterator const &b) const { return this->base > b.base(); }
-		bool operator > (rev_iterator const &b) const { return this->base < b.base(); }
-		bool operator >= (rev_iterator const &b) const { return this->base <= b.base(); }
-		bool operator <= (rev_iterator const &b) const { return this->base >= b.base(); }
+		bool operator < (rev_iterator const &b) const { return this->base() > b.base(); }
+		bool operator > (rev_iterator const &b) const { return this->base() < b.base(); }
+		bool operator >= (rev_iterator const &b) const { return this->base() <= b.base(); }
+		bool operator <= (rev_iterator const &b) const { return this->base() >= b.base(); }
+		// Comparison of reverse_iterator to const reverse iterator
+		// template <typename IteratorL, typename IteratorR>
+		// inline bool operator==(const rev_iterator<IteratorL>& lhs, const rev_iterator<IteratorR>& rhs) {
+		// 	return (lhs.base() == rhs.base());
+		// }
+		// template <typename IteratorL, typename IteratorR>
+		// inline bool operator<(const rev_iterator<IteratorL>& lhs, const rev_iterator<IteratorR>& rhs) {
+		// 	return (rhs.base() < lhs.base());
+		// }
+		// template <typename IteratorL, typename IteratorR>
+		// inline bool operator!=(const rev_iterator<IteratorL>& lhs, const rev_iterator<IteratorR>& rhs) {
+		// 	return !(lhs == rhs);
+		// }
+		// template <typename IteratorL, typename IteratorR>
+		// inline bool operator>(const rev_iterator<IteratorL>& lhs, const rev_iterator<IteratorR>& rhs) {
+		// 	return (rhs < lhs);
+		// }
+		// template <typename IteratorL, typename IteratorR>
+		// inline bool operator<=(const rev_iterator<IteratorL>& lhs, const rev_iterator<IteratorR>& rhs) {
+		// 	return !(rhs < lhs);
+		// }
+		// template <typename IteratorL, typename IteratorR>
+		// inline bool operator>=(const rev_iterator<IteratorL>& lhs, const rev_iterator<IteratorR>& rhs) {
+		// 	return !(lhs < rhs);
+		// }
 
-	protected:
-		Iterator	current;
 
 };
 

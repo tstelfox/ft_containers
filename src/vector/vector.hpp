@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/13 16:48:20 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 18:42:37 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "ra_iterator.hpp"
 # include "rev_iterator.hpp"
 # include "equal_lexographical_compare.h"
+// # include "cpp_eleven_shiz.hpp"
 
 namespace ft {
 
@@ -53,7 +54,8 @@ class vector
 		}
 
 		template <class InputIterator>
-		vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type()) : allocator(alloc) {
+		vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, int>::type* = NULL) : allocator(alloc) {
 			difference_type r_size = last - first;
 			data = allocator.allocate(r_size * 2);
 			v_capacity = r_size * 2;
@@ -207,7 +209,8 @@ class vector
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
 		template < class InputIterator >
-		void	assign(InputIterator first, InputIterator last) {
+		void	assign(InputIterator first, InputIterator last,
+					typename ft::enable_if<!ft::is_integral<InputIterator>::value, int>::type* = NULL) {
 			clear();
 			v_size = last - first;
 			if (v_size >= v_capacity) {
@@ -273,7 +276,8 @@ class vector
 		}
 
 		template < class InputIterator >
-		void		insert(iterator position, InputIterator first, InputIterator last) {
+		void		insert(iterator position, InputIterator first, InputIterator last,
+						typename ft::enable_if<!ft::is_integral<InputIterator>::value, int>::type* = NULL) {
 			difference_type	n = last - first;
 			v_size += n;
 			if (v_size > v_capacity)
@@ -355,11 +359,6 @@ bool	operator == (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
 	if (lhs.size() != rhs.size())
 		return false;
 	return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
-	// for (size_t i = 0; i < lhs.size(); i++) {
-	// 	if (!(lhs[i] == rhs[i]))
-	// 		return false;
-	// }
-	// return true;
 }
 
 template <class T, class Alloc>
@@ -371,17 +370,6 @@ template <class T, class Alloc>
 bool	operator < (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
 	
 	return (ft::lexographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
-	// size_t i = 0;
-	// while (i < lhs.size() || i < rhs.size()) {
-	// 	if (i >= lhs.size())
-	// 		return true;
-	// 	if (i >= rhs.size())
-	// 		return false;
-	// 	if (lhs[i] < rhs[i] && rhs[i] > lhs[i])
-	// 		return true;
-	// 	i++;
-	// }
-	// return false;
 }
 
 template <class T, class Alloc>

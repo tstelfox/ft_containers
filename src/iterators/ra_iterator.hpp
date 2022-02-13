@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/28 17:23:20 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/13 11:53:17 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 18:28:04 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ class Raiterator {
 		Raiterator() : m_ptr(NULL) {}
 		Raiterator(const pointer ptr) : m_ptr(ptr) {}
 		Raiterator(const iterator& x) { *this = x; }
+		// Raiterator(const const_iterator& x) : m_ptr(const_cast<pointer>(x.m_ptr)) { }
+		// Raiterator(const const_iterator& x) { *this = x; }
 		virtual ~Raiterator() {}
 
 		operator const_iterator() const { return (const_iterator(m_ptr)); }
@@ -55,7 +57,7 @@ class Raiterator {
 		iterator	operator ++ (int) {Raiterator temp = *this; ++(*this); return temp;}
 		iterator	operator -- (int) {Raiterator temp = *this; --(*this); return temp;}
 
-		iterator&	operator [] (int index) {return *(m_ptr + index);}
+		reference	operator [] (difference_type index) {return *(m_ptr + index);}
 
 		iterator	operator + (difference_type off) const { iterator copy = *this; copy += off; return copy; }
 		iterator&	operator += (difference_type off) { this->m_ptr += off; return *this; }
@@ -66,15 +68,20 @@ class Raiterator {
 		difference_type	operator - (iterator const &rhs) const { return (this->m_ptr - rhs.m_ptr); }
 		
 
-		//Is it fine to have these overloads within the class?
-		bool operator== (Raiterator const& b) const { return m_ptr == b.m_ptr; }
-		bool operator!= (Raiterator const& b) const { return m_ptr != b.m_ptr; }
-		bool operator< (Raiterator const& b) const { return m_ptr < b.m_ptr; }
-		bool operator> (Raiterator const& b) const { return m_ptr > b.m_ptr; }
-		bool operator<= (Raiterator const& b) const { return m_ptr <= b.m_ptr; }
-		bool operator>= (Raiterator const& b) const { return m_ptr >= b.m_ptr; }
+		template<typename T2, typename P, typename R, class C>
+			friend inline bool operator== (const iterator& lhs, const Raiterator<T2, P, R, C>& rhs) { return lhs.m_ptr == rhs.m_ptr; }
+		template<typename T2, typename P, typename R, class C>
+			friend inline bool operator!= (const iterator& lhs, const Raiterator<T2, P, R, C>& rhs) { return lhs.m_ptr != rhs.m_ptr; }
+		template<typename T2, typename P, typename R, class C>
+			friend inline bool operator< (const iterator& lhs, const Raiterator<T2, P, R, C>& rhs) { return lhs.m_ptr < rhs.m_ptr; }
+		template<typename T2, typename P, typename R, class C>
+			friend inline bool operator> (const iterator& lhs, const Raiterator<T2, P, R, C>& rhs) { return lhs.m_ptr > rhs.m_ptr; }
+		template<typename T2, typename P, typename R, class C>
+			friend inline bool operator<= (const iterator& lhs, const Raiterator<T2, P, R, C>& rhs) { return lhs.m_ptr <= rhs.m_ptr; }
+		template<typename T2, typename P, typename R, class C>
+			friend inline bool operator>= (const iterator& lhs, const Raiterator<T2, P, R, C>& rhs) { return lhs.m_ptr >= rhs.m_ptr; }
 
-	private:
+	// private:
 		pointer m_ptr;
 };
 
