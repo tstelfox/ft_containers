@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/13 16:40:04 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 16:48:20 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ class vector
 			}
 		}
 
-		void	assign(size_type n, const value_type &val) { // Might need revisiting
+		void	assign(size_type n, const value_type &val) {
 			for (size_type i = 0; i < n; i++) {
 				if (i >= v_capacity)
 					reserve(n + v_capacity);
