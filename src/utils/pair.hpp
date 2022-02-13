@@ -6,11 +6,12 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 15:47:26 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/19 17:11:14 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 20:07:59 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+# include <utility>
 
 namespace ft  {
 
@@ -24,6 +25,9 @@ struct pair
 
 	template<class U, class V>
 	pair(const pair<U,V> &pr) : first(pr.first) , second(pr.second) {}
+	template<class U, class V>
+	pair(const std::pair<U,V> &pr) : first(pr.first) , second(pr.second) {}
+
 	pair(const first_type &a, const second_type &b) : first(a) , second(b) {}
 
 	pair&	operator = (const pair &pr) {

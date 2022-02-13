@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/13 18:42:37 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 19:53:35 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <algorithm>
 # include "ra_iterator.hpp"
 # include "rev_iterator.hpp"
-# include "equal_lexographical_compare.h"
+# include "equal_lexographical_compare.hpp"
 // # include "cpp_eleven_shiz.hpp"
 
 namespace ft {

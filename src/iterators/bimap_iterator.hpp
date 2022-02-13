@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:10:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/17 17:53:29 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 19:57:32 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,74 +62,14 @@ class Bimapiterator {
 		iterator	operator -- (int) {Bimapiterator temp = *this; --(*this); return temp;}
 
 		//Is it fine to have these overloads within the class?
-		bool operator== (Bimapiterator const& b) const { return m_ptr == b.m_ptr; }
-		bool operator!= (Bimapiterator const& b) const { return m_ptr != b.m_ptr; }
+		template<typename T2, typename P, typename R, class C>
+		friend inline bool operator== (const iterator& lhs, const Bimapiterator<T2, P, R, C>& rhs) { return lhs.m_ptr == rhs.m_ptr; }
+		template<typename T2, typename P, typename R, class C>
+		friend inline bool operator!= (const iterator& lhs, const Bimapiterator<T2, P, R, C>& rhs) { return lhs.m_ptr != rhs.m_ptr; }
 
 
-	private:
+	// private:
 		node_ptr m_ptr;
 };
-
-
-// template < class Iterator >
-// class	Rev_bi {
-
-// 	public:
-// 		typedef				Iterator					iterator_type;
-// 		typedef typename	iterator_type::difference_type	difference_type;
-// 		typedef typename 	iterator_type::reference		reference;
-// 		typedef typename 	iterator_type::pointer			pointer;
-
-// 		//Constructors, = overload and base()
-// 		Rev_bi() : current() {}
-		
-// 		explicit Rev_bi(iterator_type it) : current(it) {}
-
-// 		template < class Iter >
-// 		Rev_bi (Rev_bi<Iter> const &rev_it) : current(rev_it.base()) {}
-// 		~Rev_bi () {}
-
-// 		Rev_bi&	operator = (const Rev_bi &rhs) {
-// 			if (this != &rhs)
-// 				this->current = rhs.base();
-// 			return *this;
-// 		}
-// 		Iterator	base() const {
-// 			return current;
-// 		}
-
-// 		//Operators
-// 		reference	operator * () const {
-// 			Iterator temp = current;
-// 			return *temp;
-// 		}
-// 		pointer		operator -> () const {
-// 			return &operator*();
-// 		}
-// 		Rev_bi&	operator ++ () {
-// 			--current; 
-// 			return *this;
-// 		}
-// 		Rev_bi		operator ++ (int) {
-// 			Rev_bi temp(*this);
-// 			++(*this);
-// 			return temp;
-// 		}
-// 		Rev_bi&	operator -- () {
-// 			++current;
-// 			return *this;
-// 		}
-// 		Rev_bi		operator -- (int) {
-// 			Rev_bi temp(*this);
-// 			--(*this);
-// 			return temp;
-// 		}
-
-// 		bool operator== (Rev_bi const &b) const { return this->base() == b.base(); }
-// 		bool operator!= (Rev_bi const &b) const { return !(this->base() == b.base()); }
-
-// 	protected:
-// 		Iterator	current;
-// };
 
 }

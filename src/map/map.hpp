@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/10 15:06:57 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 20:27:22 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "colours.hpp"
 #include "pair.hpp"
 #include "cpp_eleven_shiz.hpp"
+#include "equal_lexographical_compare.hpp"
 
 
 
@@ -64,12 +65,12 @@ class map
 		};
 
 		explicit map(key_compare const &comp = key_compare(), allocator_type const &alloc = allocator_type())
-				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node(), last_node() {
-				}
+				: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node(), last_node() {}
 
 		template <class InputIterator>
 		map(InputIterator first, InputIterator last, const key_compare & comp = key_compare(),
-				const allocator_type &alloc = allocator_type())
+				const allocator_type &alloc = allocator_type(),
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, int>::type* = NULL)
 			: m_allocator(alloc) , _comp(comp) , m_size(0), root(), first_node(), last_node() {
 				insert(first, last);
 			}
@@ -83,17 +84,9 @@ class map
 
 		~map() {
 			clear();
-
-			// The following leads to a double free for some reason:
-			// m_allocator.deallocate(_begin, 1);
-			// m_allocator.deallocate(_end, 1);
 		}
 
 		map&	operator = (const map &x) {
-			/* The container preserves its current allocator, 
-			which is used to allocate additional storage if needed.
-			BUT
-			How am I meant to assign from maps of different types? */
 			if (this != &x) {
 				this->clear();
 				this->_comp = x._comp;
@@ -105,10 +98,14 @@ class map
 		/* <<**------------------- ITERATORS ------------------**>> */
 
 		iterator	begin() {
+			if (!m_size)
+				return iterator(_end);
 			return iterator(_begin->parent);
 		}
 
 		const_iterator begin() const {
+			if (!m_size)
+				return iterator(_end);
 			return const_iterator(_begin->parent);
 		}
 
@@ -161,7 +158,7 @@ class map
 		/* <<**------------------- MODIFIERS ------------------**>> */
 
 
-		std::pair<iterator, bool>	insert(const value_type& val) { // Should probably clean this up
+		std::pair<iterator, bool>	insert(const value_type& val) {
 			if (m_size >= 1)
 			{
 				mapnode *temp = NULL;
@@ -171,7 +168,6 @@ class map
 				mapnode *point(root);
 				while (point) {
 					if (point->object.first == temp->object.first) {
-						// m_size--;
 						m_allocator.deallocate(temp, 1);
 						std::pair<iterator, bool> ret = std::make_pair(iterator(point), false);
 						return ret;
@@ -196,7 +192,7 @@ class map
 						}
 					}
 				}
-				mapnode *ffs(temp); // listen, fix_violations() sometimes makes temp point to root
+				mapnode *ffs(temp);
 				fix_violations(root, temp);
 				first_and_last();
 				m_size++;
@@ -226,11 +222,11 @@ class map
 		}
 
 		template <class InputIterator>
- 		void insert (InputIterator first, InputIterator last) {
+ 		void insert (InputIterator first, InputIterator last,
+		 			typename ft::enable_if<!ft::is_integral<InputIterator>::value, int>::type* = NULL) {
 			/* I actually presume that I will have to go sequentially cause
 			it could easily also be taking elements from an array */
 			for (; first != last; first++) {
-				// std::cout << first->first << std::endl;
 				insert(*first);
 			}
 		}
@@ -243,22 +239,25 @@ class map
 		}
 
 		size_type	erase(const key_type &k) {
-			// Just gonna presume that the ting to erase is actually in the map
 			erase_node(find(k).get_node());
 			m_size--;
 			return 1;
 		}
 
 		void		erase(iterator first, iterator last) {
-			// std::cout << "Non e mai vero" << std::endl;
 			for (; first != last; first++)
 				erase(first);
 		}
 
 		void	swap(map &x) {
-			map temp = *this;
-			*this = x;
-			x = temp;
+			std::swap(m_allocator, x.m_allocator);
+			std::swap(_comp, x._comp);
+			std::swap(m_size, x.m_size);
+			std::swap(root, x.root);
+			std::swap(first_node, x.first_node);
+			std::swap(last_node, x.last_node);
+			std::swap(_end, x._end);
+			std::swap(_begin, x._begin);
 		}
 
 		void	clear() {
@@ -726,6 +725,47 @@ class map
 		
 
 };
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator== ( const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs ) {
+
+	if (lhs.size() != rhs.size())
+		return false;
+	return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+}
+
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator!= ( const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs ) {
+	return (!(lhs == rhs));
+}
+
+	
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator< ( const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs ) {
+	return (ft::lexographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+}
+
+
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator<= ( const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs ) {
+	return !(rhs < lhs);
+}
+
+
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator> ( const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs ) {
+	return (rhs < lhs);
+}
+	
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator>= ( const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs ) {
+	return !(lhs < rhs);
+}
 
 template <class Key, class T, class Compare, class Alloc>
   void swap (map<Key,T,Compare,Alloc>& x, map<Key,T,Compare,Alloc>& y) {
