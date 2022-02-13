@@ -6,13 +6,13 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 12:21:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/01/20 12:21:27 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 20:43:07 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "vector.hpp"
-// #include <iterator>
+#include "integral_enable.hpp"
 
 namespace ft {
 
