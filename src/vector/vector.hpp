@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:07:27 by tmullan       #+#    #+#                 */
-/*   Updated: 2021/10/25 11:42:25 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/13 16:40:04 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <utility>
 # include <vector>
 # include <iterator>
+# include <algorithm>
 # include "ra_iterator.hpp"
 # include "rev_iterator.hpp"
 # include "equal_lexographical_compare.h"
@@ -79,6 +80,7 @@ class vector
 		}
 
 		vector&	operator = (const vector &other) {
+			// std::cout << "In here too?" << std::endl;
 			clear();
 			v_size = other.v_size;
 			if (v_size > v_capacity) {
@@ -319,9 +321,10 @@ class vector
 		}
 
 		void	swap(vector& x) {
-			vector	temp(x);
-			x = *this;
-			*this = temp;
+			std::swap(data, x.data);
+			std::swap(allocator, x.allocator);
+			std::swap(v_capacity, x.v_capacity);
+			std::swap(v_size, x.v_size);
 		}
 
 		void	clear() {
