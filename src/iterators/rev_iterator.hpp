@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/11 15:27:43 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/13 19:41:30 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/17 14:55:48 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,12 @@ class	rev_iterator {
 			return *(*this + n);
 		}
 
-		bool operator== (rev_iterator const &b) const { return this->base() == b.base(); }
-		bool operator!= (rev_iterator const &b) const { return !(this->base() == b.base()); }
-		bool operator < (rev_iterator const &b) const { return this->base() > b.base(); }
-		bool operator > (rev_iterator const &b) const { return this->base() < b.base(); }
-		bool operator >= (rev_iterator const &b) const { return this->base() <= b.base(); }
-		bool operator <= (rev_iterator const &b) const { return this->base() >= b.base(); }
+		// bool operator== (rev_iterator const &b) const { return this->base() == b.base(); }
+		// bool operator!= (rev_iterator const &b) const { return !(this->base() == b.base()); }
+		// bool operator < (rev_iterator const &b) const { return this->base() > b.base(); }
+		// bool operator > (rev_iterator const &b) const { return this->base() < b.base(); }
+		// bool operator >= (rev_iterator const &b) const { return this->base() <= b.base(); }
+		// bool operator <= (rev_iterator const &b) const { return this->base() >= b.base(); }
 
 
 
