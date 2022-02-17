@@ -6,12 +6,12 @@
 #    By: tmullan <tmullan@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/09/14 16:41:04 by tmullan       #+#    #+#                  #
-#    Updated: 2022/02/01 17:28:04 by tmullan       ########   odam.nl          #
+#    Updated: 2022/02/17 15:37:48 by tmullan       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = container
-CXX = clang++
+CXX = c++
 SRC = vector_main.cpp
 OBJ_DIR = obj
 OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
