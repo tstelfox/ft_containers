@@ -1,3 +1,3 @@
 # ft_containers
 
-Lezgo make some containers for some data n stuff
+In this project, you will implement a few container types of the C++ standard templatelibrary.

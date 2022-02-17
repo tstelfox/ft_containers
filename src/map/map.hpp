@@ -6,7 +6,7 @@
 /*   By: tmullan <tmullan@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/14 17:27:29 by tmullan       #+#    #+#                 */
-/*   Updated: 2022/02/13 20:43:23 by tmullan       ########   odam.nl         */
+/*   Updated: 2022/02/17 14:50:14 by tmullan       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,6 @@ class map
 		}
 
 		
-
 		void		erase(iterator position) {
 			erase_node(position.get_node());
 			m_size--;
