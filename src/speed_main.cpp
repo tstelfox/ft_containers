@@ -30,20 +30,24 @@ struct Buffer
 
 
 #define COUNT (MAX_RAM / (int)sizeof(Buffer))
+// #define COUNT INT_MAX
 
 
 void	map_speed() {
 
 	ft::map<int, int>	speedmap;
 
-	for (int i = 0; i < COUNT; ++i)
+	std::cout << "Testing map insertion" << std::endl;
+
+	for (int i = 0; i < COUNT + 40000; ++i)
 	{
 		speedmap.insert(ft::make_pair(rand(), rand()));
 	}
 	speedmap.count(76);
 
+	std::cout << "Testing map access" << std::endl;
 	int sum = 0;
-	for (int i = 0; i < 10000; i++)
+	for (int i = 0; i < 1000000; i++)
 	{
 		int access = rand();
 		sum += speedmap[access];
@@ -57,12 +61,15 @@ void	map_speed() {
 void	vector_speed() {
 	ft::vector<float>	speedvec;
 
-	for (int i = 0; i < (INT_MAX / 10); i++) {
+
+	std::cout << "Testing vector push_back" << std::endl;
+	for (int i = 0; i < (INT_MAX / 4); i++) {
 		speedvec.push_back((0.9 * rand()));
 	}
 
+	std::cout << "Testing vector access" << std::endl;
 	int sum = 0;
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < 1000000; i++)
 		sum += speedvec[i];
 	std::cout << "Constant again: " << sum << std::endl;
 	{
